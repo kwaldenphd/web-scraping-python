@@ -7,6 +7,8 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 This lab provides an introduction and overview to parsing HTML in Python using the `beautiful soup` package.
 
+[Link to lab overview video](https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=027559db-c0d5-4535-bf95-ace600e36408) (Panopto, ND users).
+
 # Tutorial Options
 
 Select and work through one of the following tutorials. 
