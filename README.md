@@ -11,19 +11,18 @@ This lab provides an introduction and overview to parsing HTML in Python using t
 
 # Tutorial Options
 
-Select and work through one of the following tutorials. 
-
-- Jeri Wieringa, "Intro to Beautiful Soup," *The Programming Historian* 1 (2012), https://doi.org/10.46430/phen0008.
-
+Work through the following `beautifulsoup` tutorial:
 - Lisa Tagliaferri, "How to Scrape Web Pages With Beautiful Soup and Python 3" *Digital Ocean* (20 March 2019). https://www.digitalocean.com/community/tutorials/how-to-scrape-web-pages-with-beautiful-soup-and-python-3
 
-- Martin Breuss, "Beautiful Soup: Build a Web Scraper With Python" *Real Python*. https://realpython.com/beautiful-soup-web-scraper-python/
 
+Additional tutorials you can consult as needed:
+- Jeri Wieringa, "Intro to Beautiful Soup," *The Programming Historian* 1 (2012), https://doi.org/10.46430/phen0008.
+- Martin Breuss, "Beautiful Soup: Build a Web Scraper With Python" *Real Python*. https://realpython.com/beautiful-soup-web-scraper-python/
 - DataQuest, "Tutorial: Web Scraping With Python Using Beautiful Soup" *DataQuest* (2 September 2020). https://www.dataquest.io/blog/web-scraping-tutorial-python/
 
 # Lab Notebook Questions
 
-Q1: Include code + comments that document your experience working through the tutorial
+Q1: Include code + comments that document your experience working through the Digital Ocean tutorial.
 
 Q2: Select a web page of your choosing and write a Python program that downloads select content from that web page. That content could be files, paragraphs of text, tables od data, etc. Include code + comments.
 
