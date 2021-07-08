@@ -23,12 +23,28 @@ Select and work through one of the following tutorials.
 
 # Lab Notebook Questions
 
-For the lab notebook, submit the following components:
-- Code + comments that document your experience working through the tutorial
-- Written reflection (at least 250 words) that touches on what you learned through the lab
-  * What are some of your main takeaways from this lab
-  * How you think the concepts/skills covered in this lab might be useful when working with sport data
-  * Challenges you faced, and how you approached or solved them
-  * Any other comments/observations
+Q1: Include code + comments that document your experience working through the tutorial
 
-This could come in as a Jupyter Notebook (code + reflection) or a `.py` file with additional reflection text document.
+Q2: Select a web page of your choosing and write a Python program that downloads select content from that web page. That content could be files, paragraphs of text, tables od data, etc. Include code + comments.
+
+Websites for unstructured text:
+- [Wikisource](https://en.wikisource.org/wiki/Main_Page)
+- [Project Gutenberg](https://www.gutenberg.org/)
+- [HathiTrust Digital Library](https://www.hathitrust.org/) 
+  * Click the `Login` button in the top-right hand corner and select the University of Notre Dame to log in with your Notre Dame credentials.
+
+Websites for structured data:
+- [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
+  * Some pages (especially for athletic teams or competitions) will have tables of data. For example, check out this Wikipedia page on the [Summer Olympic Games](https://en.wikipedia.org/wiki/All-time_Olympic_Games_medal_table).
+- Other Sport Data Sources
+  * [KenPom ratings](https://kenpom.com/)
+  * [Her Hoop Stats](https://herhoopstats.com/)
+  * [Hockey DB](https://www.hockeydb.com/)
+
+Q3: Include a written reflection (at least 250 words) that touches on what you learned through the lab
+- What are some of your main takeaways from this lab
+- How you think the concepts/skills covered in this lab might be useful when working with data
+- Challenges you faced, and how you approached or solved them
+- Any other comments/observations
+
+This lab notebook can be submitted as a Jupyter Notebook (code + reflection) or a `.py` file with additional reflection text document.
