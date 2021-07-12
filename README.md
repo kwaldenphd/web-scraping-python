@@ -31,6 +31,8 @@ The introductory sections of this lab are based on and adapted from:
 - [Additional Lab Notebook Questions](#additional-lab-notebook-questions)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
+[Link to lab notebook template](https://docs.google.com/document/d/1_bbenDLXoWf6N-ZPZrjTvWUcCjPCoCayxv1AyQDR2qU/copy) (Google Doc, ND users)
+
 # Introduction to Beautiful Soup
 
 1. What is Beautiful Soup? 
@@ -223,6 +225,8 @@ Q4: Reflect on your experience tackling Q3 (and this lab more generally):
 This lab notebook can be submitted as a Jupyter Notebook (code + reflection) or a `.py` file with additional reflection text document.
 
 # Lab Notebook Questions
+
+[Link to lab notebook template](https://docs.google.com/document/d/1_bbenDLXoWf6N-ZPZrjTvWUcCjPCoCayxv1AyQDR2qU/copy) (Google Doc, ND users)
 
 Q1: Include code + comments that document your experience working through the Digital Ocean tutorial.
 
