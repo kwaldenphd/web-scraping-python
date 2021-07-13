@@ -309,7 +309,7 @@ open(file_name.extension, access_mode)
  f = open("new_file.csv", "x")
  ```
  
-45. Each time you run one of these examples, you will see a newly-created file appear in your environment or project workspace. 
+45. If you these examples, you will see a newly-created file appear in your environment or project workspace. 
 
 ## `write()`
 
