@@ -207,37 +207,37 @@ soup = BeautifulSoup(page.text, 'html.parser')
 
 # File Methods in Python
 
-One of the final steps in the DigitalOcean tutorial is saving the extracted or scraped content to a CSV file.
+33. One of the final steps in the DigitalOcean tutorial is saving the extracted or scraped content to a CSV file.
 
-Before you work with BeautifulSoup on your own, let's talk more about how Python handles creating, reading, and writing files.
+34. Before you work with BeautifulSoup on your own, let's talk more about how Python handles creating, reading, and writing files.
 
-Specifically, we will be focusing on a few key Python functions for working with files.
+35. Specifically, we will be focusing on a few key Python functions for working with files.
 - `open()`
 - `write()`
 
 ## `open()`
 
-The `open()` function lets us open an existing file or create a new file in Python.
+36. The `open()` function lets us open an existing file or create a new file in Python.
 
-For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
+37. For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
 
-Core syntax for opening an existing file:
+38. Core syntax for opening an existing file:
 
 ```Python
 open(file_name.extension, access_mode)
 ```
 
-The file type extension is the string of characters that follows the period after the file name.
+39. The file type extension is the string of characters that follows the period after the file name.
 
-Examples include `.py`, `.csv`, `.txt`, etc.
+40. Examples include `.py`, `.csv`, `.txt`, etc.
 
-The types of file handling functions we are covering in this lab will generally only support reading and writing plain-text (or machine-readable) files.
+41. The types of file handling functions we are covering in this lab will generally only support reading and writing plain-text (or machine-readable) files.
 
 ## Access Modes
 
-The access mode parameter specifies the types of modifications that can be made to the file. It can also specify the type of data or information contained in the file.
+42. The access mode parameter specifies the types of modifications that can be made to the file. It can also specify the type of data or information contained in the file.
 
-Possible access mode parameters:
+43. Possible access mode parameters:
 
 <table>
  <tr>
@@ -267,7 +267,7 @@ Possible access mode parameters:
  </tr>
  </table>
 
-Additionally, we can specify the type of data contained in the file, or how Python should handle the information in the file.
+44. Additionally, we can specify the type of data contained in the file, or how Python should handle the information in the file.
 
 <table>
  <tr>
@@ -309,17 +309,17 @@ Additionally, we can specify the type of data contained in the file, or how Pyth
  f = open("new_file.csv", "x")
  ```
  
-Each time you run one of these examples, you will see a newly-created file appear in your environment or project workspace. 
+45. Each time you run one of these examples, you will see a newly-created file appear in your environment or project workspace. 
 
 ## `write()`
 
-Now that we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
+46. Now that we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
 
-Let's say we want to create a `.txt` (plain text) file and write a string to that file.
+47. Let's say we want to create a `.txt` (plain text) file and write a string to that file.
 
-We can do that using `write()`.
+48. We can do that using `write()`.
 
-An example:
+49. An example:
 
 ```Python
 # creates new txt file with write permission
@@ -332,9 +332,9 @@ f.write("Hello world!")
 f.close()
 ```
 
-NOTE: It is ***very important*** to `close()` the file once you are done writing content or making modifications.
+50. NOTE: It is ***very important*** to `close()` the file once you are done writing content or making modifications.
 
-Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
+51. Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
 
 ```Python
 # creates new txt file with write permission
@@ -350,22 +350,22 @@ f.write(hello_world)
 f.close()
 ```
 
-Open the `new_file.txt` file to see the newly-added content.
+52. Open the `new_file.txt` file to see the newly-added content.
 
-For more on file handling methods in Python:
+53. For more on file handling methods in Python:
 - [Python File Handling, W3Schools](https://www.w3schools.com/python/python_file_handling.asp)
 - [Python File Write, W3Schools](https://www.w3schools.com/python/python_file_write.asp)
 - [Python open() Function](https://www.w3schools.com/python/ref_func_open.asp)
 
 ## `open()`, `write()`, and `CSV` files
 
-In the Digital Ocean tutorial, we are taking artist names and biographical information and writing that to a `CSV` file.
+54. In the Digital Ocean tutorial, we are taking artist names and biographical information and writing that to a `CSV` file.
 
-`CSV` stands for comma-separated values.
+55. `CSV` stands for comma-separated values.
 
-`CSV` files are the plain-text, machine-readable file type for tabular data (table data, or data in a spreadsheet structure)
+56. `CSV` files are the plain-text, machine-readable file type for tabular data (table data, or data in a spreadsheet structure)
 
-For example, a table that looks like this in a spreadsheet program like Excel or Google Sheets:
+57. For example, a table that looks like this in a spreadsheet program like Excel or Google Sheets:
 <table>
  <tr>
   <th>Parameter</th>
@@ -384,7 +384,7 @@ For example, a table that looks like this in a spreadsheet program like Excel or
  </tr>
  </table>
 
-Would look like this as a CSV:
+58. Would look like this as a CSV:
 
 ```CSV
 Parameter, Name, Description
@@ -392,61 +392,61 @@ Parameter, Name, Description
 "b", Binary, Treats the file as binary data
 ```
 
-So when writing data to a `CSV` file, we need Python to understand the row structure and comma-separated syntax for the file type.
+59. So when writing data to a `CSV` file, we need Python to understand the row structure and comma-separated syntax for the file type.
 
-Specifically, we need Python to understand we are writing individual rows of data to the file, and we need Python to understand that those rows consist of columns of data separated by columns.
+60. Specifically, we need Python to understand we are writing individual rows of data to the file, and we need Python to understand that those rows consist of columns of data separated by columns.
 
 ### The CSV Module
 
-Thankfully, Python has a built-in `CSV` module with specialized functions designed to help with writing `CSV` files.
+61. Thankfully, Python has a built-in [`CSV` module](https://docs.python.org/3/library/csv.html) with specialized functions designed to help with writing `CSV` files.
 
 #### A Quick Detour Into Packages, Modules, and Libraries
 
-We're now starting to encounter language like `package`, `module`, and `library` when working in Python.
+62. We're now starting to encounter language like `package`, `module`, and `library` when working in Python.
 
-All of these terms refer to external Python programs that we can use in our program without having to recreate the entire original code.
+63. All of these terms refer to external Python programs that we can use in our program without having to recreate the entire original code.
 
-We can think of these resources as "expansion packs" for Python that expand or extend the programming language's built-in functionality.
+64. We can think of these resources as "expansion packs" for Python that expand or extend the programming language's built-in functionality.
 
-A few preliminary definitions...
+65. A few preliminary definitions...
 
-A ***module*** is a Python file that typically includes specialized functions and variables. 
+66. A ***module*** is a Python file that typically includes specialized functions and variables. 
 - Modules typically have `.py` file extensions.
 
-A single or simple directory of modules is called a ***package***. 
+67. A single or simple directory of modules is called a ***package***. 
 - Packages are typically a simple directory with multiple modules.
 - They include an `__init__.py` file that provides additional details on how to initialize the package and access its modules.
 - Packages can also contain sub-packages
 
-A ***library*** includes blocks of code that can be reused within a program. Libraries are a collection of modules.
+68. A ***library*** includes blocks of code that can be reused within a program. Libraries are a collection of modules.
 - Libraries can include methods we call using period-method name (`.method_name()`)
 - They have a much more complex directory/sub-directory/etc structure than packages
 
-Some modules, packages, and libraries are built-in to Python and require no additional installation.
+69. Some modules, packages, and libraries are built-in to Python and require no additional installation.
 
-Others have to be installed (typically at the command line, or in the terminal) before you can import and use them in a program.
+70. Others have to be installed (typically at the command line, or in the terminal) before you can import and use them in a program.
 
 #### Back to the `CSV` Module
 
-We'll spend a lot more time with the `CSV` module in a future lab.
+71. We'll spend a lot more time with the `CSV` module in a future lab.
 
-For now, we'll focus on how we can use the module to create and write `CSV` files.
+72. For now, we'll focus on how we can use the module to create and write `CSV` files.
 
-We can create a file using the `open()` function covered in a previous section of the lab.
+73. We can create a file using the `open()` function covered in a previous section of the lab.
 
 ```Python
  # create new CSV file with write privileges
  f = open("new_file.csv", "w")
  ```
  
-The next step is to create the `writer` object using the `csv.writer()` function.
+74. The next step is to create the `writer` object using the `csv.writer()` function.
 
 ```Python
 # create writer object
 outputWriter = csv.writer(f)
 ```
 
-Next, we can use the `.writerow()` method to write individual lists as rows in our `CSV` file.
+75. Next, we can use the `.writerow()` method to write individual lists as rows in our `CSV` file.
 
 ```Python
 # write first row
@@ -459,13 +459,13 @@ outputWriter.writerow(['t', 'Text', 'Treats file as text data; also the default 
 outputWriter.writerow(['b', 'Binary', 'Treats the file as binary data')]
 ```
 
-After we have finished writing new rows of data, we can close the file.
+76. After we have finished writing new rows of data, we can close the file.
 
 ```Python
 f.close()
 ```
 
-Putting that all together:
+77. Putting that all together:
 
 ```Python
  # create new CSV file with write privileges
@@ -487,25 +487,25 @@ outputWriter.writerow(['b', 'Binary', 'Treats the file as binary data')]
 f.close()
 ```
 
-Check out `new_file.csv` to see the newly-created file with rows of data.
+78. Check out `new_file.csv` to see the newly-created file with rows of data.
 
 #### `.writerow()`, loops, and `BeautifulSoup`
 
-The next lab notebook question (Q3) asks you to write a Python program that scrapes data from a webpage and saves it to a plain-text file.
+79. The next lab notebook question (Q3) asks you to write a Python program that scrapes data from a webpage and saves it to a plain-text file.
 
-Depending on the website you choose and the type of data you are working with, you may end up in a situation where you need to find multiple instances of an HTML tag on a web page and write each of those instances to a row in your newly-created CSV file.
+80. Depending on the website you choose and the type of data you are working with, you may end up in a situation where you need to find multiple instances of an HTML tag on a web page and write each of those instances to a row in your newly-created CSV file.
 
-If only there was a way we could iterate through each instance of a specific HTML tag and run `.writerow()` on the contents of that tag....
+81. If only there was a way we could iterate through each instance of a specific HTML tag and run `.writerow()` on the contents of that tag....
 
-Enter `for` loops! 
+82. Enter `for` loops! 
 
-We can use a `for` loop in combination with `.writerow()` to iterate through a list of items or objects, do *something* with each object, and write that output to a CSV file.
+83. We can use a `for` loop in combination with `.writerow()` to iterate through a list of items or objects, do *something* with each object, and write that output to a CSV file.
 
-This workflow becomes especially helpful when working with `BeautifulSoup`.
+84. This workflow becomes especially helpful when working with `BeautifulSoup`.
 
-For example, say you have a webpage with a list of links, and you want to extract the URLs and text for each link as a new row in a CSV file.
+85. For example, say you have a webpage with a list of links, and you want to extract the URLs and text for each link as a new row in a CSV file.
 
-First, we can use the `.find_all()` method within `BeautifulSoup` to have Python find all instances of a specific element or tag.
+86. First, we can use the `.find_all()` method within `BeautifulSoup` to have Python find all instances of a specific element or tag.
 
 ```Python
 # import requests
@@ -530,28 +530,28 @@ f.writerow(['Link_Text', 'URL'])
 links = soup.find_all('a')
 ```
 
-Then, we can use a `for` loop to instruct Python to perform specific `BeautifulSoup` operations on each item in our list, and write that output as a row in the CSV file.
+87. Then, we can use a `for` loop to instruct Python to perform specific `BeautifulSoup` operations on each item in our list, and write that output as a row in the CSV file.
 ```Python
 for link in links:
  SOMETHING WILL HAPPEN HERE
 ```
 
-To get the text for each link:
+88. To get the text for each link:
 ```Python
 names = link.contents
 ```
 
-To get the URL for each link:
+89. To get the URL for each link:
 ```Python
 fullLink = link.get('href')
 ```
 
-And write both values as a row in our CSV file:
+90. And write both values as a row in our CSV file:
 ```Python
 f.writerow([names, fullLink])
 ```
 
-And we can put all of those steps together in a `for` loop:
+91. And we can put all of those steps together in a `for` loop:
 ```Python
 for link in links:
  names = link.contents[0]
@@ -559,7 +559,7 @@ for link in links:
  f.writerow([names, fullLink])
 ```
 
-That whole combined program:
+92. That whole combined program:
 ```Python
 # import requests
 import requests
@@ -592,7 +592,7 @@ for link in links:
 f.close()
 ```
 
-How exactly you combine `BeautifulSoup` and `CSV` module functions with a `for` loop depends on what you are wanting to scrape from a web page as well as the desired output or structure for the file you are creating.
+93. How exactly you combine `BeautifulSoup` and `CSV` module functions with a `for` loop depends on what you are wanting to scrape from a web page as well as the desired output or structure for the file you are creating.
 
 # Additional Lab Notebook Questions
 
