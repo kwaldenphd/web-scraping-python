@@ -498,7 +498,7 @@ f.close()
 
 78. Check out `new_file.csv` to see the newly-created file with rows of data.
 
-#### `.writerow()`, loops, and `BeautifulSoup`
+### `.writerow()`, loops, and `BeautifulSoup`
 
 79. The next lab notebook question (Q3) asks you to write a Python program that scrapes data from a webpage and saves it to a plain-text file.
 
