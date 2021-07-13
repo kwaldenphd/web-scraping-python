@@ -28,6 +28,7 @@ The introductory sections of this lab are based on and adapted from:
 - [More Adventures in Reading Technical Documentation](#more-adventures-in-reading-technical-documentation)
   * [What is Digital Ocean](#what-is-digital-ocean)
   * [Digital Ocean's Education Community](#digital-oceans-education-community)
+- [File Methods in Python](#file-methods-in-python)
 - [Additional Lab Notebook Questions](#additional-lab-notebook-questions)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
@@ -110,6 +111,13 @@ soup = BeautifulSoup(page.text, 'html.parser')
 
 # Identifying HTML Tables
 
+<blockquote>This section of the lab focuses on the tags used to create tables in an HTML document. If you are not familiar with HTML (hyper-text markup language) syntax, a couple of resources that can get you started:
+ <ul>
+  <li><a href="https://www.w3schools.com/html/">W3 Schools HTML Tutorial</a></li>
+  <li><a href="https://www.w3schools.com/css/">W3 Schools CSS Tutorial</a></li>
+ </ul>
+ </blockquote>
+ 
 19. HTML uses a few core tags for web pages that include tables.
 - `table` (marks the start and end of a table
 - `tbody` (marks the start and end of the table body)
@@ -195,6 +203,192 @@ soup = BeautifulSoup(page.text, 'html.parser')
 - Jeri Wieringa, "Intro to Beautiful Soup," *The Programming Historian* 1 (2012), https://doi.org/10.46430/phen0008.
 - Martin Breuss, "Beautiful Soup: Build a Web Scraper With Python" *Real Python*. https://realpython.com/beautiful-soup-web-scraper-python/
 - DataQuest, "Tutorial: Web Scraping With Python Using Beautiful Soup" *DataQuest* (2 September 2020). https://www.dataquest.io/blog/web-scraping-tutorial-python/
+
+# File Methods in Python
+
+One of the final steps in the DigitalOcean tutorial is saving the extracted or scraped content to a CSV file.
+
+Before you work with BeautifulSoup on your own, let's talk more about how Python handles creating, reading, and writing files.
+
+Specifically, we will be focusing on a few key Python functions for working with files.
+- `open()`
+- `write()`
+
+## `open()`
+
+The `open()` function lets us open an existing file or create a new file in Python.
+
+For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
+
+Core syntax for opening an existing file:
+
+```Python
+open(file_name.extension, access_mode)
+```
+
+The file type extension is the string of characters that follows the period after the file name.
+
+Examples include `.py`, `.csv`, `.txt`, etc.
+
+The types of file handling functions we are covering in this lab will generally only support reading and writing plain-text (or machine-readable) files.
+
+## Access Modes
+
+The access mode parameter specifies the types of modifications that can be made to the file. It can also specify the type of data or information contained in the file.
+
+Possible access mode parameters:
+
+<table>
+ <tr>
+  <th>Parameter</th>
+  <th>Name</th>
+  <th>Description</th>
+ </tr>
+ <tr>
+  <td><code>"r"</code></td>
+  <td>Read</td>
+  <td>Opens a file for reading; also the default value</td>
+ </tr>
+ <tr>
+  <td><code>"a"</code></td>
+  <td>Append</td>
+  <td>Opens the file for appending new or additional information; Creates the file if it does not already exist</td>
+ </tr>
+ <tr>
+  <td><code>"w"</code></td>
+  <td>Write</td>
+  <td>Opens the file for writing new information; Creates the file if it does not already exist</td>
+ </tr>
+ <tr>
+  <td><code>"x"</code></td>
+  <td>Create</td>
+  <td>Creates the file if it does not already exist</td>
+ </tr>
+ </table>
+
+Additionally, we can specify the type of data contained in the file, or how Python should handle the information in the file.
+
+<table>
+ <tr>
+  <th>Parameter</th>
+  <th>Name</th>
+  <th>Description</th>
+ </tr>
+ <tr>
+  <td><code>"t"</code></td>
+  <td>Text</td>
+  <td>Treats file as text data; also the default value</td>
+ </tr>
+ <tr>
+  <td><code>"b"</code></td>
+  <td>Binary</td>
+  <td>Treats the file as binary data</td>
+ </tr>
+ </table>
+ 
+ ### `open()` examples
+ 
+ ```Python
+ # opens an existing text (TXT) file with overwrite permission
+ f = open("existing_file.txt", "w")
+ ```
+ 
+ ```Python
+ # opens an existing CSV file and reads the content
+ f = open("existing_file.csv", "r")
+ ```
+ 
+ ```Python
+ # creates new txt file with write permission
+ f = open("new_file.txt", "w")
+ ```
+ 
+ ```Python
+ # creates new CSV file without write privileges
+ f = open("new_file.csv", "x")
+ ```
+ 
+Each time you run one of these examples, you will see a newly-created file appear in your environment or project workspace. 
+
+## `write()`
+
+Now that we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
+
+Let's say we want to create a `.txt` (plain text) file and write a string to that file.
+
+We can do that using `write()`.
+
+An example:
+
+```Python
+# creates new txt file with write permission
+f = open("new_file.txt", "w")
+
+# writes string to new file
+f.write("Hello world!")
+
+# closes file
+f.close()
+```
+
+NOTE: It is ***very important*** to `close()` the file once you are done writing content or making modifications.
+
+Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
+
+```Python
+# creates new txt file with write permission
+f = open("new_file.txt", "w")
+
+# assigns string to variable
+hello_world = "Hello world!"
+
+# writes string variable to new file
+f.write(hello_world)
+
+# closes file
+f.close()
+```
+
+Open the `new_file.txt` file to see the newly-added content.
+
+### `open()`, `write()`, and `CSV` files
+
+In the Digital Ocean tutorial, we are taking artist names and biographical information and writing that to a `CSV` file.
+
+`CSV` stands for comma-separated values.
+
+`CSV` files are the plain-text, machine-readable file type for tabular data (table data, or data in a spreadsheet structure)
+
+For example, a table that looks like this in a spreadsheet program like Excel or Google Sheets:
+<table>
+ <tr>
+  <th>Parameter</th>
+  <th>Name</th>
+  <th>Description</th>
+ </tr>
+ <tr>
+  <td><code>"t"</code></td>
+  <td>Text</td>
+  <td>Treats file as text data; also the default value</td>
+ </tr>
+ <tr>
+  <td><code>"b"</code></td>
+  <td>Binary</td>
+  <td>Treats the file as binary data</td>
+ </tr>
+ </table>
+
+Would look like this as a CSV:
+
+```CSV
+Parameter, Name, Description
+"t", Text, Treats file as text data; also the default value
+"b", Binary, Treats the file as binary data
+```
+
+So when writing data to a `CSV` file, we need Python to understand the row structure and comma-separated syntax for the file type.
+
+
 
 # Additional Lab Notebook Questions
 
