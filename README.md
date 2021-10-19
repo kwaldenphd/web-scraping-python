@@ -457,16 +457,16 @@ f.close()
 
 57. There are a nubmer of tables on this page, but we're going to focus on the `Unranked medal table (sortable)` section of the page.
 
-<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/mail/images/fig1.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/mail/images/fig1.jpg?raw=true" /></a></p>
+<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/main/images/fig1.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/main/images/fig1.jpg?raw=true" /></a></p>
 
 58. Take a look at this table on the public web page, thinking about the rows, columns, and data values we might want to map onto a tabular (table, spreadsheet) data structure.
 
-<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/mail/images/fig2.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/mail/images/fig3.jpg?raw=true" /></a></p>
+<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/main/images/fig2.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/main/images/fig2.jpg?raw=true" /></a></p>
 
 59. Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option.
 - The specific label for this option may differ across browsers and operating systems.
 
-<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/mail/images/fig3.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/mail/images/fig3.jpg?raw=true" /></a></p>
+<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/main/images/fig3.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/main/images/fig3.jpg?raw=true" /></a></p>
 
 60. There's a lot going on here- we're looking at the back-end HTML for the Wikipedia page with the table we want to work with.
 
@@ -1143,7 +1143,7 @@ df.to_csv("df_medals.csv", index=False)
 
 135. For example, head to https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html to explore the College Football Reference page for Notre Dame's 1940 football season.
 
-<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/mail/images/fig4.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/mail/images/fig4.jpg?raw=true" /></a></p>
+<p align="center"><a href="https://github.com/kwaldenphd/pkwaldenphd/web-scraping-python/main/images/fig4.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/main/images/fig4.jpg?raw=true" /></a></p>
 
 136. We can use the `Previous Year` and `Next Year` buttons at the top of the page to look at pre- and post-1940 pages.
 
