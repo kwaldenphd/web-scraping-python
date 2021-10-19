@@ -1588,6 +1588,23 @@ NOTE: You do not need to have working code for all components of this program. T
 
 Q5: What challenges or roadblocks did you face working on Q4? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
+Q6: Describe in your own words how the url generation program covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
+
+```Python
+root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
+
+years = range(1899, 2021, 1)
+
+tag = "-schedule.html"
+
+urls = []
+
+for year in years:
+    urls.append(root + str(year) + tag)
+    
+urls
+```
+
 Q7: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.
 
 A few places to start:
