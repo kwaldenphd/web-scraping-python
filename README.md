@@ -27,12 +27,14 @@ The introductory sections of this lab are based on and adapted from:
 - [HTML Refresh](#html-refresh)
 - [File Methods Refresh](#file-methods-refresh)
 - [Using BeautifulSoup with a Single Web Page](#using-beautifulsoup-with-a-single-web-page)
-  * [Unstructured Text](#unstructured-text)
-  * [Data Table](#data-table)
+  * [Sample For Loops](#sample-for-loops) 
 - [Working With Multiple Pages](#working-with-multiple-pages)
-- [An Alternate Approach: `pandas.read_html()`](#an-alternate-approach-pandasreadhtml)
+- [An Alternate Approach: `pandas.read_html()`](#an-alternate-approach-pandasread_html)
+- [Web Scraping and Unstructured Text](#web-scraping-and-unstructured-text)
+  * [Oh, the Places You Could Go](#oh-the-places-you-could-go) 
+- [Why did we do this?](#why-did-we-do-this)
 - [Lab Notebook Questions](#lab-notebook-questions)
-- [Final Project Prompt](#final-project-prompt)
+- [Final Project Next Steps](#final-project-next-steps)
 
 # Introduction to Beautiful Soup
 
@@ -163,7 +165,7 @@ soup = BeautifulSoup(page.text, 'html.parser')
 
 22. Additional attributes like `align`, `style`, etc. can be used with many of these tags.
 
-Some other tags that we might encounter when trying to parse HTML using `BeautifulSoup`:
+23. Some other tags that we might encounter when trying to parse HTML using `BeautifulSoup`:
 
 <table>
     <tr>
@@ -204,44 +206,44 @@ Some other tags that we might encounter when trying to parse HTML using `Beautif
             </table>
 
 
-For more detail on HTML and CSS:
+24. For more detail on HTML and CSS:
 - [W3Schools HTML Tutorial](https://www.w3schools.com/html)
 - [W3Schools CSS Tutorial](https://www.w3schools.com/css)
 - [EoC HTML/CSS Lab](https://github.com/kwaldenphd/HTML-CSS/tree/EoC1-F20)
             
-When using `BeautifulSoup`, we can isolate information on the webpage through interacting with the HTML syntax.
+25. When using `BeautifulSoup`, we can isolate information on the webpage through interacting with the HTML syntax.
 
 # File Methods Refresh
 
-33. As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`).
+26. As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`).
 
-34. A quick review of how Python handles creating, reading, and writing files, specifically focusing on...
+27. A quick review of how Python handles creating, reading, and writing files, specifically focusing on...
 - `open()`
 - `write()`
 
 ## `open()`
 
-36. The `open()` function lets us open an existing file or create a new file in Python.
+28. The `open()` function lets us open an existing file or create a new file in Python.
 
-37. For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
+29. For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
 
-38. Core syntax for opening an existing file:
+30. Core syntax for opening an existing file:
 
 ```Python
 open(file_name.extension, access_mode)
 ```
 
-39. The file type extension is the string of characters that follows the period after the file name.
+31. The file type extension is the string of characters that follows the period after the file name.
 
-40. Examples include `.py`, `.csv`, `.txt`, etc.
+32. Examples include `.py`, `.csv`, `.txt`, etc.
 
-41. The types of file handling functions we are covering in this lab will generally only support reading and writing plain-text (or machine-readable) files.
+33. The types of file handling functions we are covering in this lab will generally only support reading and writing plain-text (or machine-readable) files.
 
 ## Access Modes
 
-42. The access mode parameter specifies the types of modifications that can be made to the file. It can also specify the type of data or information contained in the file.
+34. The access mode parameter specifies the types of modifications that can be made to the file. It can also specify the type of data or information contained in the file.
 
-43. Possible access mode parameters:
+35. Possible access mode parameters:
 
 <table>
  <tr>
@@ -271,7 +273,7 @@ open(file_name.extension, access_mode)
  </tr>
  </table>
 
-44. Additionally, we can specify the type of data contained in the file, or how Python should handle the information in the file.
+36. Additionally, we can specify the type of data contained in the file, or how Python should handle the information in the file.
 
 <table>
  <tr>
@@ -313,17 +315,17 @@ open(file_name.extension, access_mode)
  f = open("new_file.csv", "x")
  ```
  
-45. If you run these examples, you will see a newly-created file appear in your environment or project workspace. 
+37. If you run these examples, you will see a newly-created file appear in your environment or project workspace. 
 
 ## `write()`
 
-46. Now that we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
+38. Now that we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
 
-47. Let's say we want to create a `.txt` (plain text) file and write a string to that file.
+39. Let's say we want to create a `.txt` (plain text) file and write a string to that file.
 
-48. We can do that using `write()`.
+40. We can do that using `write()`.
 
-49. An example:
+41. An example:
 
 ```Python
 # creates new txt file with write permission
@@ -336,9 +338,7 @@ f.write("Hello world!")
 f.close()
 ```
 
-50. NOTE: It is ***very important*** to `close()` the file once you are done writing content or making modifications.
-
-51. Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
+42. Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
 
 ```Python
 # creates new txt file with write permission
@@ -354,20 +354,20 @@ f.write(hello_world)
 f.close()
 ```
 
-52. Open the `new_file.txt` file to see the newly-added content.
+43. Open the `new_file.txt` file to see the newly-added content.
 
-53. For more on file handling methods in Python:
+44. For more on file handling methods in Python:
 - [Python File Handling, W3Schools](https://www.w3schools.com/python/python_file_handling.asp)
 - [Python File Write, W3Schools](https://www.w3schools.com/python/python_file_write.asp)
 - [Python open() Function](https://www.w3schools.com/python/ref_func_open.asp)
 
 ## `open()`, `write()`, and `CSV` files
 
-54. Later in this lab, we will scrape data from the web and write that to a `CSV` file.
+45. Later in this lab, we will scrape data from the web and write that to a `CSV` file.
 - `CSV` stands for comma-separated values.
 - `CSV` files are the plain-text, machine-readable file type for tabular data (table data, or data in a spreadsheet structure)
 
-57. A reminder that a table that looks like this in a spreadsheet program like Excel or Google Sheets:
+46. A reminder that a table that looks like this in a spreadsheet program like Excel or Google Sheets:
 <table>
  <tr>
   <th>Parameter</th>
@@ -386,7 +386,7 @@ f.close()
  </tr>
  </table>
 
-58. Would look like this as a CSV:
+47. Would look like this as a CSV:
 
 ```CSV
 Parameter, Name, Description
@@ -394,23 +394,25 @@ Parameter, Name, Description
 "b", Binary, Treats the file as binary data
 ```
 
-59. So when writing data to a `CSV` file, we need Python to understand the row structure and comma-separated syntax for the file type.
+48. So when writing data to a `CSV` file, we need Python to understand the row structure and comma-separated syntax for the file type.
 
-60. Specifically, we need Python to understand we are writing individual rows of data to the file, and we need Python to understand that those rows consist of columns of data separated by columns.
+49. Specifically, we need Python to understand we are writing individual rows of data to the file, and we need Python to understand that those rows consist of columns of data separated by columns.
 
-73. We can create a file using the `open()` function covered in a previous section of the lab.
+50. We can create a file using the `open()` function covered in a previous section of the lab.
 
 ```Python
  # create new CSV file with write privileges
  f = open("new_file.csv", "w")
  ```
-74. The next step is to create the `writer` object using the `csv.writer()` function.
+
+51. The next step is to create the `writer` object using the `csv.writer()` function.
 
 ```Python
 # create writer object
 outputWriter = csv.writer(f)
 ```
-75. Next, we can use the `.writerow()` method to write individual lists as rows in our `CSV` file.
+
+52. Next, we can use the `.writerow()` method to write individual lists as rows in our `CSV` file.
 
 ```Python
 # write first row
@@ -423,13 +425,7 @@ outputWriter.writerow(['t', 'Text', 'Treats file as text data; also the default 
 outputWriter.writerow(['b', 'Binary', 'Treats the file as binary data')]
 ```
 
-76. After we have finished writing new rows of data, we can close the file.
-
-```Python
-f.close()
-```
-
-77. Putting that all together:
+53. Putting that all together:
 
 ```Python
 # create new CSV file with write privileges
@@ -451,9 +447,30 @@ outputWriter.writerow(['b', 'Binary', 'Treats the file as binary data')]
 f.close()
 ```
 
-78. Check out `new_file.csv` to see the newly-created file with rows of data.
+54. Check out `new_file.csv` to see the newly-created file with rows of data.
 
 # Using BeautifulSoup With a Single Web Page
+
+Now, we're going to see HTML syntax and file methods at work to develop a web scraping program that takes tabular data on a web page and writes it to a `CSV` file.
+
+Head to https://en.wikipedia.org/wiki/All-time_Olympic_Games_medal_table in a web browser.
+
+There are a nubmer of tables on this page, but we're going to focus on the `Unranked medal table (sortable)` section of the page.
+
+TABLE SCREENSHOT
+
+Take a look at this table on the public web page, thinking about the rows, columns, and data values we might want to map onto a tabular (table, spreadsheet) data structure.
+
+SCREENSHOT OF MENU
+
+Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option (the specific label for this option may differ across browsers and operating systems).
+
+SCREENSHOT OF HTML
+
+There's a lot going on here- we're looking at the back-end HTML for the Wikipedia page with the table we want to work with.
+
+
+
 
 ## Load URL and Create BeautifulSoup Object
 
@@ -1360,3 +1377,5 @@ A preliminary workflow:
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
 
 Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+
+# Final Project Next Steps
