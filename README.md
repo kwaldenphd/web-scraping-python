@@ -1657,3 +1657,47 @@ NOTE: You do not need to have working code for all components of this program. T
 Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 # Final Project Next Steps
+
+189. Our work in the web scraping lab (lab #11) is designed to lay the foundation and serve as a springboard for final project work.
+
+190. Specifically, Q4, Q10, and Q13 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`.
+
+191. Those questions (and other work for this lab) are the starting place for the final project.
+
+192. The final project for this course involves a web-scraping project written in Python. Specifically, the final project allows you to select a web page (or web pages) and write a Python program (or programs) that downloads select content from that web page as a plain-text file (`CSV`, `TXT`, etc). That content could be paragraphs of text, tables of data, etc. 
+
+193. Successful final projects will include two main components:
+- a well-documented, working Python program written in Jupyter Notebooks
+- a written reflection (minimum 300 words) that documents how you approached the final project/what you wanted to accomplish via the final project, resources consulted, how you handled challenges you encountered, key takeaways, etc.
+
+194. That reflection can come at the end of the Jupyter Notebook or be embedded throughout the Jupyter Notebook, if you want to approach authoring the notebook as a type of tutorial or "report".
+
+195. Expect to spend at least 10 hours working on the final project. That includes brainstorming, meeting with instructor/TAs, in-class work time, etc. If you’re working on a project that is not going to take that much time, think about how to add complexity or take on another smaller scale project.
+
+196. Contact the instructor with questions.
+
+197. So where to start? 
+
+198. The instructor and TAs are going to move quickly on getting you feedback on this lab. 
+
+199. But your work in Q4, Q10, and Q13 should be the starting place for how you think about and approach the final project.
+
+200. Specifically, think about the kinds of web content you were able to scrape for these questions and how you might further develop, refine, or expand your work.
+
+201. For example, these questions asked you to develop an outline for specific types of webscraping programs. 
+
+202. One next step for the final project could be selecting 1-2 of these programs and further developing or refining the code.
+
+203. Another next step (especially if you were able to develop working programs for these questions) is to think about how you could expand or extend these workflows to multiple web pages or other web data sources.
+
+204. A third option for next steps would involve thinking expansively about how you could apply the concepts and approaches covered in this lab to a different type of data source/structure. 
+
+205. So in the interim, as you're waiting for feedback on this lab, think about where you could go next with expanding and extending your work in this lab, and start to flesh out or develop some of your own ideas about where you put your time and effort as you work on the final project.
+
+206. Final project timeline:
+- By end of Week #14 (11/23, Thanksgiving Holiday): Lab #11 (web scraping) due on Canvas
+- Week #15 (11/30, 12/2): In-class final project work time
+- By end of Week #15: Final project update/shareout due on Canvas
+- By end of day Friday 12/10 (Week #16, last week of classes/start of exam week): Final project due on Canvas by end of day
+
+207. Again, contact the instructor with questions.
