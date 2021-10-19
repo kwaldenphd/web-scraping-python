@@ -1222,7 +1222,7 @@ urls
 
 145. But if we're dealing with an HTML table that has straightforward formatting, an alternate approach is to use the `.read_html()` function that is part of the `pandas` library.
 
-146. `pd.read_html()` reads any tables on a web page into Python as a list of `DataFrame` objects.
+146. `pd.read_html()` looks for any `<table>` tag on a web page and reads each `<table>`  tag's HTML into Python as a list of `DataFrame` objects.
 
 147. Let's take a look at how we could use `pd.read_html()` for the College Football Reference web page we looked at in the previous section of the lab.
 
