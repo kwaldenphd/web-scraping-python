@@ -451,32 +451,32 @@ f.close()
 
 # Using BeautifulSoup With a Single Web Page
 
-Now, we're going to see HTML syntax and file methods at work to develop a web scraping program that takes tabular data on a web page and writes it to a `CSV` file.
+55. Now, we're going to see HTML syntax and file methods at work to develop a web scraping program that takes tabular data on a web page and writes it to a `CSV` file.
 
-Head to https://en.wikipedia.org/wiki/All-time_Olympic_Games_medal_table in a web browser.
+56. Head to https://en.wikipedia.org/wiki/All-time_Olympic_Games_medal_table in a web browser.
 
-There are a nubmer of tables on this page, but we're going to focus on the `Unranked medal table (sortable)` section of the page.
+57. There are a nubmer of tables on this page, but we're going to focus on the `Unranked medal table (sortable)` section of the page.
 
 TABLE SCREENSHOT
 
-Take a look at this table on the public web page, thinking about the rows, columns, and data values we might want to map onto a tabular (table, spreadsheet) data structure.
+58. Take a look at this table on the public web page, thinking about the rows, columns, and data values we might want to map onto a tabular (table, spreadsheet) data structure.
 
 SCREENSHOT OF MENU
 
-Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option.
+59. Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option.
 - The specific label for this option may differ across browsers and operating systems.
 
 SCREENSHOT OF HTML
 
-There's a lot going on here- we're looking at the back-end HTML for the Wikipedia page with the table we want to work with.
+60. There's a lot going on here- we're looking at the back-end HTML for the Wikipedia page with the table we want to work with.
 
-But we want to figure out what HTML elements are adjacent to the section of the page we want to isolate.
+61. But we want to figure out what HTML elements are adjacent to the section of the page we want to isolate.
 
-Scrolling through the HTML until you see things that look promising is one place to start.
+62. Scrolling through the HTML until you see things that look promising is one place to start.
 
-You can also type `Control-F` (`Command-F` on a Mac) to search for particular words/phrases in the HTML.
+63. You can also type `Control-F` (`Command-F` on a Mac) to search for particular words/phrases in the HTML.
 
-We know one of the country names in the table is `Afghanistan`, so let's search the HTML to see where that term appears.
+64. We know one of the country names in the table is `Afghanistan`, so let's search the HTML to see where that term appears.
 
 ```HTML
 <th style="width:2em;">
@@ -507,11 +507,11 @@ We know one of the country names in the table is `Afghanistan`, so let's search 
 <tr>
 ```
 
-Again, there's still a lot going on, but we can see the table row `<tr>` tag around a section of HTML that includes multiple `<td>` tags with information about the country name (`Afghanistan`) and number values that correspond to the medal counts from that row in the table.
+65. Again, there's still a lot going on, but we can see the table row `<tr>` tag around a section of HTML that includes multiple `<td>` tags with information about the country name (`Afghanistan`) and number values that correspond to the medal counts from that row in the table.
 
-Now, we need to figure out where this table "starts," or what HTML elements mark the beginning/end of the table.
+66. Now, we need to figure out where this table "starts," or what HTML elements mark the beginning/end of the table.
 
-If we scroll up from the `Afghanistan` search results, we can see the section of HTML that marks the start of this table.
+67. If we scroll up from the `Afghanistan` search results, we can see the section of HTML that marks the start of this table.
 
 ```HTML
 <h2><span id="Unranked_medal_table_.28sortable.29"></span><span class="mw-headline" id="Unranked_medal_table_(sortable)">Unranked medal table (sortable)</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=All-time_Olympic_Games_medal_table&amp;action=edit&amp;section=1" title="Edit section: Unranked medal table (sortable)">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
@@ -534,15 +534,16 @@ If we scroll up from the `Afghanistan` search results, we can see the section of
 <th><span title="International Olympic Committee country code" class="rt-commentedText" style="border-bottom:1px dotted">Team (IOC&#160;code)</span>
 </th>
 ```
-Since we're looking for a table, identifying a `<table>` tag is a good place to start.
 
-We can see the line `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
+68. Since we're looking for a table, identifying a `<table>` tag is a good place to start.
 
-This gives us the critical pieces of information we need when working in Python with `BeautifulSoup` to isolate this section of HTML.
+69. We can see the line `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
+
+70. This gives us the critical pieces of information we need when working in Python with `BeautifulSoup` to isolate this section of HTML.
  
 ## Load URL and Create BeautifulSoup Object
 
-The first step in our program is to import the libraries we'll need, load the web page using `requests` and create the `BeautifulSoup` object.
+71. The first step in our program is to import the libraries we'll need, load the web page using `requests` and create the `BeautifulSoup` object.
 
 ```Python
 # import libraries
@@ -563,15 +564,15 @@ soup = BeautifulSoup(page.text, 'html.parser')
 soup
 ```
 
-At this point we have loaded the web page into Python as a `BeautifulSoup` object.
+72. At this point we have loaded the web page into Python as a `BeautifulSoup` object.
 
 ## Extract Medal Table
 
-The next step is to use `BeautifulSoup` to identify and isolate the section of the web page we want to focus on.
+73. The next step is to use `BeautifulSoup` to identify and isolate the section of the web page we want to focus on.
 
-We can do this using the `.find()` or `.find_all()` with our `BeautifulSoup` object.
+74. We can do this using the `.find()` or `.find_all()` with our `BeautifulSoup` object.
 
-`.find()` isolates a single instance of an HTML class or tag, while `.find_all()` creates a list-like object with each instance of a specific tag or class.
+75. `.find()` isolates a single instance of an HTML class or tag, while `.find_all()` creates a list-like object with each instance of a specific tag or class.
 
 ```Python
 # basic syntax for find
@@ -589,39 +590,40 @@ soup.find_all(class_ = "CLASS NAME GOES HERE")
 soup.find_all(class_ = 'wikitable sortable')
 ```
 
-Again, we know the line of HTML `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
+76. Again, we know the line of HTML `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
 
-But we don't know how many instances of the `<table>` tag or `wikitable sortable` class appear in this web page.
+77. But we don't know how many instances of the `<table>` tag or `wikitable sortable` class appear in this web page.
 
-Some more work with `Command-F`/`Control-F` shows us there are 30 instances of the `<table>` tag and 9 instances of the `wikitable sortable` class in this page.
+78. Some more work with `Command-F`/`Control-F` shows us there are 30 instances of the `<table>` tag and 9 instances of the `wikitable sortable` class in this page.
 
-So let's use `.find_all()` with the `wikitable sortable` class and then figure out which of those 9 instances is the table we want to work with.
+79. So let's use `.find_all()` with the `wikitable sortable` class and then figure out which of those 9 instances is the table we want to work with.
 
 ```Python
 # isolate all HTML with wikitable sortable class
 tables = soup.find_all(class_ = 'wikitable sortable')
 ```
-Then, we can use index operators to go through the items in `tables` to see which one has the HTML we want to work with.
+
+80. Then, we can use index operators to go through the items in `tables` to see which one has the HTML we want to work with.
 
 ```Python
 # show first table in tables
 tables[0]
 ```
 
-First table in the list is the medal count, so we can assign that to a variable.
+81. The first table in the list is the medal count, so we can assign that to a variable.
 
 ```Python
 # isolate first table in tables
 medal_table = tables[0]
 ```
 
-Now that we have just the HTML for the table we want to work with, we want to create a list-like object for each row in the table.
+82. Now that we have just the HTML for the table we want to work with, we want to create a list-like object for each row in the table.
 
-So, we can use `.find()` or `.find_all()` again to create a list-like object with all elements that match a particular class or tag.
+83. So, we can use `.find()` or `.find_all()` again to create a list-like object with all elements that match a particular class or tag.
 
-In this case, we want the HTML for each row in the table to be a value or element in the list, so we're going to be looking for the table row `<tr>` tag.
+84. In this case, we want the HTML for each row in the table to be a value or element in the list, so we're going to be looking for the table row `<tr>` tag.
 
-And since this table has multiple rows, we're going to use `.find_all("tr")` to find all instances of the `<tr>` tag and map those onto a list-like structure.
+85. And since this table has multiple rows, we're going to use `.find_all("tr")` to find all instances of the `<tr>` tag and map those onto a list-like structure.
 
 ```Python
 # get all table rows from medal_table
@@ -633,11 +635,11 @@ medal_test
 
 ## Testing On Single Table Row (Single Country)
 
-So now we have the HTML for each row in the table as a list value in our `medal_test` list.
+86. So now we have the HTML for each row in the table as a list value in our `medal_test` list.
 
-We'll eventually want to figure out how to iterate over all the rows in `medal_test`, but for now, let's isolate a single row so we can test our program on a single row.
+87. We'll eventually want to figure out how to iterate over all the rows in `medal_test`, but for now, let's isolate a single row so we can test our program on a single row.
 
-Since the first two rows in the the table have column header information and do not match the structure/format of the country rows, we'll use the third row (first country row) for our single-row testing.
+88. Since the first two rows in the the table have column header information and do not match the structure/format of the country rows, we'll use the third row (first country row) for our single-row testing.
 
 ```Python
 # isolate first country in medal_table
@@ -647,11 +649,11 @@ single_country = medal_test[2]
 single_country
 ```
 
-Now, we have a `single_country` object that includes the entire HTML associated with the `<tr>` tag for `Afghanistan`.
+89. Now, we have a `single_country` object that includes the entire HTML associated with the `<tr>` tag for `Afghanistan`.
 
-As before, we want to create a list-like object for each cell or column in the table.
+90. As before, we want to create a list-like object for each cell or column in the table.
 
-Since there are multiple cells in each row, we'll use `.find_all()` to look for the table cell `<td>` tag and map those values onto a list-like structure.
+91. Since there are multiple cells in each row, we'll use `.find_all()` to look for the table cell `<td>` tag and map those values onto a list-like structure.
 
 ```Python
 # get all cells in single_country
@@ -661,15 +663,15 @@ single_country = single_country.find_all("td")
 single_country
 ```
 
-Now we have a list of cells (`<td>` tags) for a single row of HTML in the original table.
+92. Now we have a list of cells (`<td>` tags) for a single row of HTML in the original table.
 
-The next step is to figure out how we work within that list of `<td>` tag contents to isolate the specific values we want to eventually write to each row in our `CSV` file.
+93. The next step is to figure out how we work within that list of `<td>` tag contents to isolate the specific values we want to eventually write to each row in our `CSV` file.
 
-At this point, before we start writing code to extract these values, it's useful to stop and think about the endpoint for the data scraping process. 
+94. At this point, before we start writing code to extract these values, it's useful to stop and think about the endpoint for the data scraping process. 
 
-Specifically, thinking about what columns we have in mind for the ultimate data structure helps us keep the end goal in mind as we start working through each aspect of the program.
+95. Specifically, thinking about what columns we have in mind for the ultimate data structure helps us keep the end goal in mind as we start working through each aspect of the program.
 
-For this table, we might want a data structure with the following columns:
+96. For this table, we might want a data structure with the following columns:
 - `Country_Name`
 - `Country URL`
 - `Number of Summer Olympic Appearances`
@@ -688,11 +690,11 @@ For this table, we might want a data structure with the following columns:
 - `Combined Number of Bronze Medals`
 - `Total Combined Number of Medals`
 
-So let's figure out how we can isolate each of those values.
+97. So let's figure out how we can isolate each of those values.
 
 ### Get Country Name
 
-To get the country name, we can isolate the first cell (`<td>` tag) in the `single_country` list of cells.
+98. To get the country name, we can isolate the first cell (`<td>` tag) in the `single_country` list of cells.
 
 ```Python
 # isolate first cell in single_country
@@ -702,7 +704,7 @@ country_name = single_country[0]
 country_name
 ```
 
-Then, we can use `.contents[]` (part of `BeautifulSoup`) to get the contents of that first cell.
+99. Then, we can use `.contents[]` (part of `BeautifulSoup`) to get the contents of that first cell.
 
 ```Python
 # isolate country name using contents and index
@@ -712,15 +714,15 @@ country_name = country_name.contents[0]
 country_name
 ```
 
-So now we have the HTML associated with the first `<td>` tag, but there's still a lot of extraneous markup we want to remove to get just the country name.
+100. So now we have the HTML associated with the first `<td>` tag, but there's still a lot of extraneous markup we want to remove to get just the country name.
 
 ```HTML
 <span id="AFG"><img alt="" class="thumbborder" data-file-height="600" data-file-width="900" decoding="async" height="15" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/22px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/33px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/44px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 2x" width="22"/> <a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a> <span style="font-size:90%;">(AFG)</span></span>
 ```
 
-If we drill down into this HTML, we can see the `<a href...>` tag is the HTML element closest to the country name we want to extract.
+101. If we drill down into this HTML, we can see the `<a href...>` tag is the HTML element closest to the country name we want to extract.
 
-So let's use `.find()` to get just the `a` tag HTML.
+102. So let's use `.find()` to get just the `a` tag HTML.
 
 ```Python
 # get HTML with a tag
@@ -730,9 +732,9 @@ name_tag = country_name.find('a')
 name_tag
 ```
 
-Now with just the `a` tag (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we can use `.contents[]` again to get the tag contents.
+103. Now with just the `a` tag (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we can use `.contents[]` again to get the tag contents.
 
-Remember an index value goes in the brackets for `.contents[]`.
+104. Remember an index value goes in the brackets for `.contents[]`.
 
 ```Python
 # get contents of a href tag
@@ -742,7 +744,7 @@ sample_name = name_tag.contents[0]
 sample_name
 ```
 
-Voila! The country name. 
+105. Voila! The country name. 
 
 ### Get Country URL
 
@@ -750,9 +752,9 @@ Voila! The country name.
 <span id="AFG"><img alt="" class="thumbborder" data-file-height="600" data-file-width="900" decoding="async" height="15" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/22px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/33px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/44px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 2x" width="22"/> <a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a> <span style="font-size:90%;">(AFG)</span></span>
 ```
 
-If we look at the HTML associated with `country_name`, we can see that the country's Wikipedia URL is also in this section of HTML, as part of the `<a href...>` tag.
+106. If we look at the HTML associated with `country_name`, we can see that the country's Wikipedia URL is also in this section of HTML, as part of the `<a href...>` tag.
 
-So we can again use `.find()` to isolate the `<a>` tag's contents.
+107. So we can again use `.find()` to isolate the `<a>` tag's contents.
 
 ```Python
 # get first/only instance of a link tag in HTML for single country
@@ -762,13 +764,13 @@ link_test = country_name.find('a')
 link_test
 ```
 
-Now, looking at the `link_test` piece of HTML (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we want to extract the URL associated with the `href` attribute.
+108. Now, looking at the `link_test` piece of HTML (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we want to extract the URL associated with the `href` attribute.
 
-We were able to use `.contents[]` to get the contents of this HTML tag, but we'll need a different approach for getting the `href` attribute value.
+109. We were able to use `.contents[]` to get the contents of this HTML tag, but we'll need a different approach for getting the `href` attribute value.
 
-`BeautifulSoup` includes a `.get()` command that lets us isolate the value associated with an HTML attribute.
+110. `BeautifulSoup` includes a `.get()` command that lets us isolate the value associated with an HTML attribute.
 
-So we can use `.get('href')` to isolate the URL.
+111. So we can use `.get('href')` to isolate the URL.
 
 ```Python
 # get the contents of the url from the href attribute
@@ -778,11 +780,11 @@ sample_link = link_test.get('href')
 sample_link
 ```
 
-But wait! `/wiki/Afghanistan_at_the_Olympics` doesn't look like a full url...
+112. But wait! `/wiki/Afghanistan_at_the_Olympics` doesn't look like a full url...
 
-That's because it isn't. Wikipedia is using an internal link with the `<a href...>` tag to connect to another Wikipedia page, which means they don't have to use the full URL for the link to work.
+113. That's because it isn't. Wikipedia is using an internal link with the `<a href...>` tag to connect to another Wikipedia page, which means they don't have to use the full URL for the link to work.
 
-But, we can use concatenation to recreate the full link, since all English-language Wikipedia pages start with the same root URL: `https://en.wikipedia.org`
+114. But, we can use concatenation to recreate the full link, since all English-language Wikipedia pages start with the same root URL: `https://en.wikipedia.org`
 
 ```Python
 # use contenation to get full url
@@ -792,16 +794,16 @@ full_link = "https://en.wikipedia.org" + sample_link
 full_link
 ```
 
-Great! Now we have the full link.
+115. Great! Now we have the full link.
 
 ### Medal Counts
 
-If we take a look at the original Wikipedia table, we notice there are three column "groupings":
+116. If we take a look at the original Wikipedia table, we notice there are three column "groupings":
 - `Summer Olympic Games`
 - `Winter Olympic Games`
 - `Combined total`
 
-We can extract medal counts within each of these column groups by selecting the cell and then getting the value of that cell using `contents[]` and index values.
+117. We can extract medal counts within each of these column groups by selecting the cell and then getting the value of that cell using `contents[]` and index values.
 
 ```Python
 # number of summer olympic appearances
@@ -947,15 +949,17 @@ total_no_combined_medals = total_no_combined_medals.strip()
 total_no_combined_medals
 ```
 
+118. Now we have working code that extracts each piece of data from a row in the table.
+
 # Sample For Loops
 
-Now, we have working code that will extract each piece of data as a variable. We want to run these lines of code on each country in the table to get the data in each column.
+119. Now, we have working code that will extract each piece of data as a variable. We want to run these lines of code on each country in the table to get the data in each column.
 
-We can do this using a `for` loop that iterates through each row in the table.
+120. We can do this using a `for` loop that iterates through each row in the table.
 
-But before we throw iteration into the mix, we want to remove the first two items in `medal_test`, since they have the column header information and don't match the format/structure of the rest of the table.
+121. But before we throw iteration into the mix, we want to remove the first two items in `medal_test`, since they have the column header information and don't match the format/structure of the rest of the table.
 
-We can do this using `del` statements.
+122. We can do this using `del` statements.
 
 ```Python
 # remove first row
@@ -972,9 +976,9 @@ del medal_test[0]
 medal_test
 ```
 
-Now we're ready to iterate over each country (table row) using the code we tested on a single country.
+123. Now we're ready to iterate over each country (table row) using the code we tested on a single country.
 
-We can create a list with each row's values and append that list as a sublist or nested list to an empty list.
+124. We can create a list with each row's values and append that list as a sublist or nested list to an empty list.
 
 ```Python
 # create empty list for data
@@ -1065,13 +1069,14 @@ for row in medal_test:
 # show list
 test_list
 ```
-Each row of data in the table is a list value, or sublist/nested list in `test_list`.
 
-In this program `try` and `except` instruct Python to `try` to run the lines nested under `try`, but if it runs into an error (`except`), `continue` iterating over the values in the `tags` list.
+125. Each row of data in the table is a list value, or sublist/nested list in `test_list`.
 
-Using `try` and `except` can be dangerous if you don't know if or how a program is working- in this case, we've tested the program and got it working on a single row that matches the pattern for all the rows we want to scrape data frame.
+126. In this program `try` and `except` instruct Python to `try` to run the lines nested under `try`, but if it runs into an error (`except`), `continue` iterating over the values in the `tags` list.
 
-Now that we know the iteration is working, we can take `test_list` and write each item in the list (which itself is a row of data) to a row in a `CSV` file.
+127. Using `try` and `except` can be dangerous if you don't know if or how a program is working- in this case, we've tested the program and got it working on a single row that matches the pattern for all the rows we want to scrape data frame.
+
+128. Now that we know the iteration is working, we can take `test_list` and write each item in the list (which itself is a row of data) to a row in a `CSV` file.
 
 ```Python
 # create new csv file
@@ -1088,11 +1093,11 @@ for row in test_list:
     f.writerow(row)
 ```
 
-We can also use `test_list` and `headers` to create a `pandas` `DataFrame`.
+129. We can also use `test_list` and `headers` to create a `pandas` `DataFrame`.
 
-`pandas` will map each value in the list (nested list or sublist with single row of data) to a row in the `DataFrame`.
+130. `pandas` will map each value in the list (nested list or sublist with single row of data) to a row in the `DataFrame`.
 
-And the `headers` list we created for writing the first row of the `medals` CSV file can be used to set the `DataFrame` column names.
+131. And the `headers` list we created for writing the first row of the `medals` CSV file can be used to set the `DataFrame` column names.
 
 ```Python
 # import pandas
@@ -1105,7 +1110,7 @@ df = pd.DataFrame(test_list, columns=headers)
 df
 ```
 
-Then we could use `pd.to_csv` to write the `DataFrame` to a `CSV` file.
+132. Then we could use `pd.to_csv` to write the `DataFrame` to a `CSV` file.
 
 ```Python
 # write df to csv file
@@ -1131,23 +1136,23 @@ df.to_csv("df_medals.csv", index=False)
 
 # Working With Multiple Pages
 
-In the previous example of a Wikipedia page with Olympic medal counts, we were scraping data from a single web page.
+133. In the previous example of a Wikipedia page with Olympic medal counts, we were scraping data from a single web page.
 
-But we can also imagine a scenario where we might want to scrape data from multiple web pages or a series of web pages that have the same HTML structure or format.
+134. But we can also imagine a scenario where we might want to scrape data from multiple web pages or a series of web pages that have the same HTML structure or format.
 
-For example, head to https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html to explore the College Football Reference page for Notre Dame's 1940 football season.
+135. For example, head to https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html to explore the College Football Reference page for Notre Dame's 1940 football season.
 
 FIGURE
 
-We can use the `Previous Year` and `Next Year` buttons at the top of the page to look at pre- and post-1940 pages.
+136. We can use the `Previous Year` and `Next Year` buttons at the top of the page to look at pre- and post-1940 pages.
 
-Take a look at page URLs as you change years- the start (or root) of the url `https://www.sports-reference.com/cfb/schools/notre-dame/` and the end (or tag) of the url `-schedule.html` remain the same, while only the year value changes.
+137. Take a look at page URLs as you change years- the start (or root) of the url `https://www.sports-reference.com/cfb/schools/notre-dame/` and the end (or tag) of the url `-schedule.html` remain the same, while only the year value changes.
 
-Since the data format/structure is fairly consistent across the different season pages, if we get a program working for one season/page, it stands to reason we could run that program on multiple pages by iterating over a list of URLs.
+138. Since the data format/structure is fairly consistent across the different season pages, if we get a program working for one season/page, it stands to reason we could run that program on multiple pages by iterating over a list of URLs.
 
-Let's take a look at how we could get a list of URLs for the College Football Reference Notre Dame pages.
+139. Let's take a look at how we could get a list of URLs for the College Football Reference Notre Dame pages.
 
-First, we would assign the URL root and tag to named variables.
+140. First, we would assign the URL root and tag to named variables.
 
 ```Python
 # root url
@@ -1157,14 +1162,14 @@ root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
 tag = "-schedule.html"
 ```
 
-Then, we could use `range` to create a list of years spanning the dates we want to cover.
+141. Then, we could use `range` to create a list of years spanning the dates we want to cover.
 
 ```Python
 # year range
 years = range(1899, 2021, 1)
 ```
 
-Then, we could use concatenation and a `for` loop to generate a list of full URLs for the seasons we want to cover.
+142. Then, we could use concatenation and a `for` loop to generate a list of full URLs for the seasons we want to cover.
 
 ```Python
 # empty list for urls
@@ -1178,7 +1183,7 @@ for year in years:
 urls
 ```
 
-With the `urls` list, we could write a program that works for a single page and then use a `for` loop to iterate over each url in the `urls` list.
+143. With the `urls` list, we could write a program that works for a single page and then use a `for` loop to iterate over each url in the `urls` list.
 
 <blockquote>Q6: Describe in your own words how the url generation program covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?</blockquote>
 
@@ -1212,13 +1217,13 @@ urls
 
 # An Alternate Approach: pandas.read_html()
 
-`BeautifulSoup` is an incredibly powerful package that lets us drill down into the structure of an HTML document to isolate the pieces of information we need or want to work with.
+144. `BeautifulSoup` is an incredibly powerful package that lets us drill down into the structure of an HTML document to isolate the pieces of information we need or want to work with.
 
-But if we're dealing with an HTML table that has straightforward formatting, an alternate approach is to use the `.read_html()` function that is part of the `pandas` library.
+145. But if we're dealing with an HTML table that has straightforward formatting, an alternate approach is to use the `.read_html()` function that is part of the `pandas` library.
 
-`pd.read_html()` reads any tables on a web page into Python as a list of `DataFrame` objects.
+146. `pd.read_html()` reads any tables on a web page into Python as a list of `DataFrame` objects.
 
-Let's take a look at how we could use `pd.read_html()` for the College Football Reference web page we looked at in the previous section of the lab.
+147. Let's take a look at how we could use `pd.read_html()` for the College Football Reference web page we looked at in the previous section of the lab.
 
 ```Python
 # import pandas
@@ -1234,30 +1239,30 @@ dfs = pd.read_html(url)
 dfs
 ```
 
-At first glance, `dfs` doesn't seem to have clear data tables, but remember `dfs` is a list of `DataFrames` created from any HTML `table` content on the page.
+148. At first glance, `dfs` doesn't seem to have clear data tables, but remember `dfs` is a list of `DataFrames` created from any HTML `table` content on the page.
 
 ```Python
 # number of elements in dfs list
 len(dfs)
 ```
 
-Since there are only two elements in the `dfs` list, let's isolate each one.
+149. Since there are only two elements in the `dfs` list, let's isolate each one.
 
 ```Python
 # show first dataframe in dfs
 dfs[0]
 ```
 
-These values correspond to the `AP Poll Summary` table on the page.
+150. These values correspond to the `AP Poll Summary` table on the page.
 
 ```Python
 # show second dataframe in dfs
 dfs[1]
 ```
 
-These values correspond to the `9 Games` schedule table on the page.
+151. These values correspond to the `9 Games` schedule table on the page.
 
-We could create a single `DataFrame` by selecting the second element in `dfs`.
+152. We could create a single `DataFrame` by selecting the second element in `dfs`.
 
 ```Python
 # create new dataframe 
@@ -1267,9 +1272,9 @@ schedule_df = dfs[1]
 schedule_df
 ```
 
-College Football Reference schedule pages for pre-1936 Notre Dame do not have the first `AP Poll` table.
+153. College Football Reference schedule pages for pre-1936 Notre Dame do not have the first `AP Poll` table.
 
-As an example, the 1935 schedule page: https://www.sports-reference.com/cfb/schools/notre-dame/1935-schedule.html
+154. As an example, the 1935 schedule page: https://www.sports-reference.com/cfb/schools/notre-dame/1935-schedule.html
 
 ```Python
 # load url
@@ -1282,7 +1287,7 @@ dfs = pd.read_html(url)
 len(dfs)
 ```
 
-Only one table here, so we can isolate that table as a `DataFrame`.
+155. Only one table here, so we can isolate that table as a `DataFrame`.
 
 ```Python
 # create new dataframe 
@@ -1292,11 +1297,11 @@ schedule_df = dfs[0]
 schedule_df
 ```
 
-If we were ultimately going to do further work with analyzing/visualizing this data, we would probably want to spend some more time standardizing column names and values. 
+156. If we were ultimately going to do further work with analyzing/visualizing this data, we would probably want to spend some more time standardizing column names and values. 
 
-And if we were going to scrape this table across multiple pages, we would need to find some way to get the year or season represented in the `DataFrame`.
+157. And if we were going to scrape this table across multiple pages, we would need to find some way to get the year or season represented in the `DataFrame`.
 
-But for now, if we wanted to write the `DataFrame` we created using `pd.read_html()` to a `CSV`...
+158. But for now, if we wanted to write the `DataFrame` we created using `pd.read_html()` to a `CSV`...
 
 ```Python
 schedule_df.to_csv("sample_cfb_schedule.csv", index=False)
@@ -1318,17 +1323,17 @@ schedule_df.to_csv("sample_cfb_schedule.csv", index=False)
 
 # Web Scraping and Unstructured Text
 
-So far, this lab has focused on approaches for scraping structured data from the web using Python.
+159. So far, this lab has focused on approaches for scraping structured data from the web using Python.
 
-But there are other contexts and use cases when we might want to be able to scrape unstructured text from the web and be able to work with that "data" in Python (or write it to a plain-text `.txt` file).
+160. But there are other contexts and use cases when we might want to be able to scrape unstructured text from the web and be able to work with that "data" in Python (or write it to a plain-text `.txt` file).
 
-For example, take a look at a recent *Observer* article: https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/
+161. For example, take a look at a recent *Observer* article: https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/
 
-Imagine we wanted to use Python to analyze the words or terms used in this article.
+162. Imagine we wanted to use Python to analyze the words or terms used in this article.
 
-The first step would be to get a plain-text `.txt` version of the article text.
+163. The first step would be to get a plain-text `.txt` version of the article text.
 
-We would start with the same `BeautifulSoup` workflow we've used previously:
+164. We would start with the same `BeautifulSoup` workflow we've used previously:
 - Load URL
 - Create `BeautifulSoup` object
 - Isolate section of HTML with article text
@@ -1343,14 +1348,66 @@ soup = BeautifulSoup(page.text, 'html.parser')
 # show BeautifulSoup object
 soup
 ```
+Next, we want to isolate the section of the page that includes the article text.
+
+```HTML
+<article class="section news">
+<div class="title-container">
+<h2 class="topic"><span class="title">news</span></h2>
+<ul class="see-social addthis_toolbox" addthis:url="https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/" addthis:title="South Bend community leaders discuss role of Notre Dame in fight for Black civil rights" addthis:description="South Bend community leaders discuss role of Notre Dame in fight for Black civil rights">
+<li><a class="addthis_button_email email"></a></li>
+<li><a class="addthis_button_facebook facebook"></a></li>
+<li><a class="addthis_button_twitter twitter"></a></li>
+</ul> 
+</div> 
+<div class="content-header">
+<h3>South Bend community leaders discuss role of Notre Dame in fight for Black civil rights</h3>
+<p class="info"><a href="https://ndsmcobserver.com/author/vortiz2/" title="Posts by Valeria Ortiz" class="author url fn" rel="author">Valeria Ortiz</a> | Friday, October 15, 2021</p>
+
+</div> 
+<span id="outstream-unit" style="width:100%;height:550px;padding:0.5em 0"></span>
+<div class="content-body">
+<p>The Notre Dame Initiative on Race and Resilience hosted a panel Wednesday in DeBartolo Hall on Black civil rights in South Bend, featuring some of South Bend’s prominent community leaders.</p>
+<p>The panel, which intended to explore the immense social inequalities facing South Bend’s Black residents, included Trina Robinson, president of NAACP-South Bend; Regina Williams-Preston, president of Community Action for Education and former South Bend Common Council representative; Jorden Giger, co-founder of Black Lives Matter South Bend and Deacon Mel Tardy, deacon of St. Augustine Parish and an advising faculty at the University.</p>
+<figure id="attachment_234452" class="wp-caption aligncenter" style="width: 700px"> <div class="media-credit-container aligncenter" style="max-width: 710px">
+<img data-attachment-id="234452" data-permalink="https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/screen-shot-2021-10-15-at-8-36-39-pm/" data-orig-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=726%2C538&amp;ssl=1" data-orig-size="726,538" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2021-10-15 at 8.36.39 PM" data-image-description="" data-medium-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" data-large-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" class="wp-image-234452 size-medium" src="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&#038;ssl=1" alt="" width="700" height="519" srcset="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&amp;ssl=1 700w, https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?w=726&amp;ssl=1 726w" sizes="(max-width: 700px) 100vw, 700px" data-recalc-dims="1" /><span class="media-credit">Valeria Ortiz | The Observer</span> </div>
+<figcaption class="wp-caption-text">In a Wednesday panel, community activists encouraged the University to give to local Black-owned businesses to support inclusion and business growth.</figcaption></figure>
+```
+
+From taking a look at the page source, we can see `<div class="content-header">` that marks the article title and `<div class="content-body">` that marks the start of the article text.
+
+And we can use a `Control-F`/`Command-F` search to see that the `content-body` class appears only once in the page.
+
+This means we can use `.find_all()` to extract this section of the page.
 
 ```Python
 # isolate HTML with content-body class
 article = soup.find_all(class_ = "content-body")
 
+# isolate article text
+article_text = article[0]
+
 # show article HTML
-article
+article_text
 ```
+
+165. Now we have the section of HTML with the article text isolated.
+
+```HTML
+<p>The Notre Dame Initiative on Race and Resilience hosted a panel Wednesday in DeBartolo Hall on Black civil rights in South Bend, featuring some of South Bend’s prominent community leaders.</p>
+<p>The panel, which intended to explore the immense social inequalities facing South Bend’s Black residents, included Trina Robinson, president of NAACP-South Bend; Regina Williams-Preston, president of Community Action for Education and former South Bend Common Council representative; Jorden Giger, co-founder of Black Lives Matter South Bend and Deacon Mel Tardy, deacon of St. Augustine Parish and an advising faculty at the University.</p>
+<figure id="attachment_234452" class="wp-caption aligncenter" style="width: 700px"> <div class="media-credit-container aligncenter" style="max-width: 710px">
+<img data-attachment-id="234452" data-permalink="https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/screen-shot-2021-10-15-at-8-36-39-pm/" data-orig-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=726%2C538&amp;ssl=1" data-orig-size="726,538" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2021-10-15 at 8.36.39 PM" data-image-description="" data-medium-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" data-large-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" class="wp-image-234452 size-medium" src="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&#038;ssl=1" alt="" width="700" height="519" srcset="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&amp;ssl=1 700w, https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?w=726&amp;ssl=1 726w" sizes="(max-width: 700px) 100vw, 700px" data-recalc-dims="1" /><span class="media-credit">Valeria Ortiz | The Observer</span> </div>
+<figcaption class="wp-caption-text">In a Wednesday panel, community activists encouraged the University to give to local Black-owned businesses to support inclusion and business growth.</figcaption></figure>
+<p>The panelists offered their experiences and recommendations toward a stronger future for civil rights within the local community. They called for action to combat systemic racism — a historical pattern of denying opportunity to fair education, health and housing opportunities in South Bend.</p>
+<p>“He who wins the war gets to tell the story, so now we believe it all right. Here we are today seeing how that history gets uncovered,” Williams-Preston said.</p>
+```
+
+166. The next step is to create a list-like object with the sections of text that make up the article.
+
+167. For this web page, those sections are marked by paragraph (`<p>`) tags.
+
+168. We can use `.find_all("p")` to create a list-like object with each `<p>` tag's content as a list item.
 
 ```Python
 # isolate article text
@@ -1358,7 +1415,13 @@ article_text = article[0]
 
 # isolate paragraph tags
 article_paragraphs = article_text.find_all("p")
+```
 
+169. The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list.
+
+170. Since the output of `BeautifulSoup`'s `.contents[]` command is still a `BeautifulSoup` object type, we can use the `str()` function to convert the value to a string before appending it to a list.
+
+```Python
 # create empty list for paragraphs
 text_list = []
 
@@ -1371,7 +1434,7 @@ for paragraph in article_paragraphs:
 text_list
 ```
 
-Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
+171. Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
 
 ```Python
 # create new txt file
@@ -1426,7 +1489,7 @@ for paragraph in article_paragraphs:
     
 <blockquote>Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
 
-Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
+172. Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
 
 ```Python
 # load file
@@ -1442,7 +1505,7 @@ wordlist = text.split()
 print((wordlist[0:120]))
 ```
 
-Then, we could use the list of words `wordlist` to count term frequency.
+173. Then, we could use the list of words `wordlist` to count term frequency.
 
 ```Python
 # create empty list for word frequency
@@ -1467,31 +1530,30 @@ word_count
 
 ## Oh, the Places You Could Go
 
-
-With normalized textual data, you could use Python to do things like:
+174. With normalized textual data, you could use Python to do things like:
 - count word frequency
   * William J. Turkel and Adam Crymble, "Counting Word Frequencies with Python," The Programming Historian 1 (2012), https://programminghistorian.org/en/lessons/counting-frequencies.
 - analyze keywords in contact using n-grams
   * William J. Turkel and Adam Crymble, "Keywords in Context (Using n-grams) with Python," The Programming Historian 1 (2012), https://programminghistorian.org/en/lessons/keywords-in-context-using-n-grams.
 
-Why go to all this  trouble? 
+175. Why go to all this  trouble? 
 
-Computational text analysis or other kinds of natural language processing allow us to see patterns and detect change over time in large bodies of textual materials.
+176. Computational text analysis or other kinds of natural language processing allow us to see patterns and detect change over time in large bodies of textual materials.
 
-A few projects that do this with speeches given by U.S. presidents:
+177. A few projects that do this with speeches given by U.S. presidents:
 - [Google News Lab's Inaugurate project](http://inauguratespeeches.com/) that looks at the subjects of inauguration speeches
 - ["The Language of the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) an interactive project from the *Atlantic*'s Ben Schmidt and Mitch Fraas that "reveals how the words presidents use reflect the twists and turns of American history"
 - ["Mapping the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/), also from Schmidt and Fraas, that "shows the 1,410 different spots on the globe presidents have referenced in 224 speeches"
 
 # Why did we do this?
 
-At this point, your brain probably hurts. Mine does.
+178. At this point, your brain probably hurts. Mine does.
 
-Why go to all the trouble of building a Python program when we could just copy and paste the text from an *Observer* article into a `.txt` file, or copy and paste data from Sports Reference into an Excel file or Google Sheet document? Why write a program when we could just remove the markup ourselves through manual data manipulation?
+179. Why go to all the trouble of building a Python program when we could just copy and paste the text from an *Observer* article into a `.txt` file, or copy and paste data from Sports Reference into an Excel file or Google Sheet document? Why write a program when we could just remove the markup ourselves through manual data manipulation?
 
-That's a fair question.
+180. That's a fair question.
 
-Scientific disciplines value research that can be reproduced and replicated. A 2013 editorial in *PLOS Computational Biology* outlines the value of reproducible computational research:
+181. Scientific disciplines value research that can be reproduced and replicated. A 2013 editorial in *PLOS Computational Biology* outlines the value of reproducible computational research:
 
 - "The importance of replication and reproducibility has recently been exemplified through studies showing that scientific papers commonly leave out experimental details essential for reproduction, studies showing difficulties with replicating published experimental results, an increase in retracted papers, and through a high number of failing clinical trials.
 
@@ -1501,9 +1563,9 @@ Scientific disciplines value research that can be reproduced and replicated. A 2
 
 <em>Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013) Ten Simple Rules for Reproducible Computational Research. PLOS Computational Biology 9(10): e1003285. https://doi.org/10.1371/journal.pcbi.1003285.</em>
 
-Manually wrangling or manipulating data makes it difficult for colleagues (and future you) to understand how you got from point A to point B with your data. It also increases the likelihood of human error. In the *PLOS Computational Biology* article, one of the ten rules the authors outline is "Avoid Manual Data Manipulation Steps."
+182. Manually wrangling or manipulating data makes it difficult for colleagues (and future you) to understand how you got from point A to point B with your data. It also increases the likelihood of human error. In the *PLOS Computational Biology* article, one of the ten rules the authors outline is "Avoid Manual Data Manipulation Steps."
 
-The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
+183. The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
 
 # Lab Notebook Questions
 
