@@ -1275,7 +1275,7 @@ schedule_df
 
 153. College Football Reference schedule pages for pre-1936 Notre Dame do not have the first `AP Poll` table.
 
-154. As an example, the 1935 schedule page: https://www.sports-reference.com/cfb/schools/notre-dame/1935-schedule.html
+154. We can use the 1935 schedule page (https://www.sports-reference.com/cfb/schools/notre-dame/1935-schedule.html) as an example.
 
 ```Python
 # load url
@@ -1349,7 +1349,7 @@ soup = BeautifulSoup(page.text, 'html.parser')
 # show BeautifulSoup object
 soup
 ```
-Next, we want to isolate the section of the page that includes the article text.
+165. Next, we want to isolate the section of the page that includes the article text.
 
 ```HTML
 <article class="section news">
@@ -1375,11 +1375,11 @@ Next, we want to isolate the section of the page that includes the article text.
 <figcaption class="wp-caption-text">In a Wednesday panel, community activists encouraged the University to give to local Black-owned businesses to support inclusion and business growth.</figcaption></figure>
 ```
 
-From taking a look at the page source, we can see `<div class="content-header">` that marks the article title and `<div class="content-body">` that marks the start of the article text.
+166. From taking a look at the page source, we can see `<div class="content-header">` that marks the article title and `<div class="content-body">` that marks the start of the article text.
 
-And we can use a `Control-F`/`Command-F` search to see that the `content-body` class appears only once in the page.
+167. And we can use a `Control-F`/`Command-F` search to see that the `content-body` class appears only once in the page.
 
-This means we can use `.find_all()` to extract this section of the page.
+168. This means we can use `.find_all()` to extract this section of the page.
 
 ```Python
 # isolate HTML with content-body class
@@ -1392,7 +1392,7 @@ article_text = article[0]
 article_text
 ```
 
-165. Now we have the section of HTML with the article text isolated.
+169. Now we have the section of HTML with the article text isolated.
 
 ```HTML
 <p>The Notre Dame Initiative on Race and Resilience hosted a panel Wednesday in DeBartolo Hall on Black civil rights in South Bend, featuring some of South Bend’s prominent community leaders.</p>
@@ -1404,23 +1404,20 @@ article_text
 <p>“He who wins the war gets to tell the story, so now we believe it all right. Here we are today seeing how that history gets uncovered,” Williams-Preston said.</p>
 ```
 
-166. The next step is to create a list-like object with the sections of text that make up the article.
+170. The next step is to create a list-like object with the sections of text that make up the article.
 
-167. For this web page, those sections are marked by paragraph (`<p>`) tags.
+171. For this web page, those sections are marked by paragraph (`<p>`) tags.
 
-168. We can use `.find_all("p")` to create a list-like object with each `<p>` tag's content as a list item.
+172. We can use `.find_all("p")` to create a list-like object with each `<p>` tag's content as a list item.
 
 ```Python
-# isolate article text
-article_text = article[0]
-
 # isolate paragraph tags
 article_paragraphs = article_text.find_all("p")
 ```
 
-169. The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list.
+173. The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list.
 
-170. Since the output of `BeautifulSoup`'s `.contents[]` command is still a `BeautifulSoup` object type, we can use the `str()` function to convert the value to a string before appending it to a list.
+174. Since the output of `BeautifulSoup`'s `.contents[]` command is still a `BeautifulSoup` object type, we can use the `str()` function to convert the value to a string before appending it to a list.
 
 ```Python
 # create empty list for paragraphs
@@ -1435,7 +1432,7 @@ for paragraph in article_paragraphs:
 text_list
 ```
 
-171. Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
+175. Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
 
 ```Python
 # create new txt file
@@ -1490,7 +1487,9 @@ for paragraph in article_paragraphs:
     
 <blockquote>Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
 
-172. Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
+## Oh, the Places You Could Go
+
+176. Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
 
 ```Python
 # load file
@@ -1506,7 +1505,7 @@ wordlist = text.split()
 print((wordlist[0:120]))
 ```
 
-173. Then, we could use the list of words `wordlist` to count term frequency.
+177. Then, we could use the list of words `wordlist` to count term frequency.
 
 ```Python
 # create empty list for word frequency
@@ -1519,7 +1518,8 @@ for word in wordlist:
 # create nested list or lists with sublists that include word and number of appearances
 str(list(zip(wordlist, wordfreq)))
 ```
-Or, we could connect the terms and frequency count using a dictionary's key-value pairs.
+
+178. Or, we could connect the terms and frequency count using a dictionary's key-value pairs.
 
 ```Python
 # convert lists to dictionary using dictionary comprehension
@@ -1529,32 +1529,30 @@ word_count = {wordlist[i]: wordfreq[i] for i in range(len(wordlist))}
 word_count
 ```
 
-## Oh, the Places You Could Go
-
-174. With normalized textual data, you could use Python to do things like:
+179. With normalized textual data, you could use Python to do things like:
 - count word frequency
   * William J. Turkel and Adam Crymble, "Counting Word Frequencies with Python," The Programming Historian 1 (2012), https://programminghistorian.org/en/lessons/counting-frequencies.
 - analyze keywords in contact using n-grams
   * William J. Turkel and Adam Crymble, "Keywords in Context (Using n-grams) with Python," The Programming Historian 1 (2012), https://programminghistorian.org/en/lessons/keywords-in-context-using-n-grams.
 
-175. Why go to all this  trouble? 
+180. Why go to all this  trouble? 
 
-176. Computational text analysis or other kinds of natural language processing allow us to see patterns and detect change over time in large bodies of textual materials.
+181. Computational text analysis or other kinds of natural language processing allow us to see patterns and detect change over time in large bodies of textual materials.
 
-177. A few projects that do this with speeches given by U.S. presidents:
+182. A few projects that do this with speeches given by U.S. presidents:
 - [Google News Lab's Inaugurate project](http://inauguratespeeches.com/) that looks at the subjects of inauguration speeches
 - ["The Language of the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) an interactive project from the *Atlantic*'s Ben Schmidt and Mitch Fraas that "reveals how the words presidents use reflect the twists and turns of American history"
 - ["Mapping the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/), also from Schmidt and Fraas, that "shows the 1,410 different spots on the globe presidents have referenced in 224 speeches"
 
 # Why did we do this?
 
-178. At this point, your brain probably hurts. Mine does.
+183. At this point, your brain probably hurts. Mine does.
 
-179. Why go to all the trouble of building a Python program when we could just copy and paste the text from an *Observer* article into a `.txt` file, or copy and paste data from Sports Reference into an Excel file or Google Sheet document? Why write a program when we could just remove the markup ourselves through manual data manipulation?
+184. Why go to all the trouble of building a Python program when we could just copy and paste the text from an *Observer* article into a `.txt` file, or copy and paste data from Sports Reference into an Excel file or Google Sheet document? Why write a program when we could just remove the markup ourselves through manual data manipulation?
 
-180. That's a fair question.
+185. That's a fair question.
 
-181. Scientific disciplines value research that can be reproduced and replicated. A 2013 editorial in *PLOS Computational Biology* outlines the value of reproducible computational research:
+186. Scientific disciplines value research that can be reproduced and replicated. A 2013 editorial in *PLOS Computational Biology* outlines the value of reproducible computational research:
 
 - "The importance of replication and reproducibility has recently been exemplified through studies showing that scientific papers commonly leave out experimental details essential for reproduction, studies showing difficulties with replicating published experimental results, an increase in retracted papers, and through a high number of failing clinical trials.
 
@@ -1564,9 +1562,9 @@ word_count
 
 <em>Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013) Ten Simple Rules for Reproducible Computational Research. PLOS Computational Biology 9(10): e1003285. https://doi.org/10.1371/journal.pcbi.1003285.</em>
 
-182. Manually wrangling or manipulating data makes it difficult for colleagues (and future you) to understand how you got from point A to point B with your data. It also increases the likelihood of human error. In the *PLOS Computational Biology* article, one of the ten rules the authors outline is "Avoid Manual Data Manipulation Steps."
+187. Manually wrangling or manipulating data makes it difficult for colleagues (and future you) to understand how you got from point A to point B with your data. It also increases the likelihood of human error. In the *PLOS Computational Biology* article, one of the ten rules the authors outline is "Avoid Manual Data Manipulation Steps."
 
-183. The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
+188. The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
 
 # Lab Notebook Questions
 
