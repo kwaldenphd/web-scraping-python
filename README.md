@@ -463,16 +463,86 @@ Take a look at this table on the public web page, thinking about the rows, colum
 
 SCREENSHOT OF MENU
 
-Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option (the specific label for this option may differ across browsers and operating systems).
+Then, right click on the page (`Control-click` on a Mac) and select the `View Page Source` option.
+- The specific label for this option may differ across browsers and operating systems.
 
 SCREENSHOT OF HTML
 
 There's a lot going on here- we're looking at the back-end HTML for the Wikipedia page with the table we want to work with.
 
+But we want to figure out what HTML elements are adjacent to the section of the page we want to isolate.
 
+Scrolling through the HTML until you see things that look promising is one place to start.
 
+You can also type `Control-F` (`Command-F` on a Mac) to search for particular words/phrases in the HTML.
 
+We know one of the country names in the table is `Afghanistan`, so let's search the HTML to see where that term appears.
+
+```HTML
+<th style="width:2em;">
+<p><span title="Combined total number of all Medals won by each country" class="rt-commentedText" style="border-bottom:1px dotted">Total</span>
+</p>
+</th></tr>
+<tr>
+<td align="left"><span id="AFG"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/22px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png" decoding="async" width="22" height="15" class="thumbborder" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/33px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/44px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 2x" data-file-width="900" data-file-height="600" />&#160;<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>&#160;<span style="font-size:90%;">(AFG)</span></span>
+</td>
+<td style="background:#f2f2ce;">15</td>
+<td style="background:#f2f2ce;">0</td>
+<td style="background:#f2f2ce;">0</td>
+<td style="background:#f2f2ce;">2</td>
+<td style="background:#f2f2ce;">2
+</td>
+<td style="background:#cedff2;">0</td>
+<td style="background:#cedff2;">0</td>
+<td style="background:#cedff2;">0</td>
+<td style="background:#cedff2;">0</td>
+<td style="background:#cedff2;">0
+</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2
+</td></tr>
+<tr>
+```
+
+Again, there's still a lot going on, but we can see the table row `<tr>` tag around a section of HTML that includes multiple `<td>` tags with information about the country name (`Afghanistan`) and number values that correspond to the medal counts from that row in the table.
+
+Now, we need to figure out where this table "starts," or what HTML elements mark the beginning/end of the table.
+
+If we scroll up from the `Afghanistan` search results, we can see the section of HTML that marks the start of this table.
+
+```HTML
+<h2><span id="Unranked_medal_table_.28sortable.29"></span><span class="mw-headline" id="Unranked_medal_table_(sortable)">Unranked medal table (sortable)</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=All-time_Olympic_Games_medal_table&amp;action=edit&amp;section=1" title="Edit section: Unranked medal table (sortable)">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>The table is pre-sorted by the name of each Olympic Committee, but can be displayed as sorted by any other column, such as the total number of <a href="/wiki/Gold_medal" title="Gold medal">gold medals</a> or total number of overall medals. To sort by gold, silver, and then bronze, sort first by the bronze column, then the silver, and then the gold. The table does not include revoked medals (e.g., due to <a href="/wiki/Doping_in_sport" title="Doping in sport">doping</a>).
+</p><p>Medal totals in this table are current through the <a href="/wiki/2020_Summer_Olympics" title="2020 Summer Olympics">2020 Summer Olympics</a> in <a href="/wiki/Tokyo" title="Tokyo">Tokyo</a>, Japan, and all <a href="/wiki/List_of_stripped_Olympic_medals" title="List of stripped Olympic medals">changes in medal standings</a> due to doping cases and medal redistributions up to 8 August 2021 are taken into account.
+</p>
+<style data-mw-deduplicate="TemplateStyles:r981673959">.mw-parser-output .legend{page-break-inside:avoid;break-inside:avoid-column}.mw-parser-output .legend-color{display:inline-block;min-width:1.25em;height:1.25em;line-height:1.25;margin:1px 0;text-align:center;border:1px solid black;background-color:transparent;color:black}.mw-parser-output .legend-text{}</style><div class="legend"><span class="legend-color" style="background-color:lightblue; color:black;">&#160;</span>&#160;Special delegation, not an actual nation</div> 
+<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">
+
+<tbody><tr>
+<th>Team
+</th>
+<th align="center" style="background-color:#f2f2ce;" colspan="5"><a href="/wiki/Summer_Olympic_Games" title="Summer Olympic Games">Summer Olympic Games</a>
+</th>
+<th align="center" style="background-color:#cedff2;" colspan="5"><a href="/wiki/Winter_Olympic_Games" title="Winter Olympic Games">Winter Olympic Games</a>
+</th>
+<th align="center" colspan="5"><a href="/wiki/Olympic_Games" title="Olympic Games">Combined total</a>
+</th></tr>
+<tr>
+<th><span title="International Olympic Committee country code" class="rt-commentedText" style="border-bottom:1px dotted">Team (IOC&#160;code)</span>
+</th>
+```
+Since we're looking for a table, identifying a `<table>` tag is a good place to start.
+
+We can see the line `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
+
+This gives us the critical pieces of information we need when working in Python with `BeautifulSoup` to isolate this section of HTML.
+ 
 ## Load URL and Create BeautifulSoup Object
+
+The first step in our program is to import the libraries we'll need, load the web page using `requests` and create the `BeautifulSoup` object.
 
 ```Python
 # import libraries
@@ -493,20 +563,65 @@ soup = BeautifulSoup(page.text, 'html.parser')
 soup
 ```
 
+At this point we have loaded the web page into Python as a `BeautifulSoup` object.
+
 ## Extract Medal Table
+
+The next step is to use `BeautifulSoup` to identify and isolate the section of the web page we want to focus on.
+
+We can do this using the `.find()` or `.find_all()` with our `BeautifulSoup` object.
+
+`.find()` isolates a single instance of an HTML class or tag, while `.find_all()` creates a list-like object with each instance of a specific tag or class.
+
+```Python
+# basic syntax for find
+soup.find("HTML TAG  GOES HERE")
+
+# a specific example with the p tag
+soup.find("p")
+```
+
+```Python
+# basic syntax for find_all, this time using a class instead of a tag
+soup.find_all(class_ = "CLASS NAME GOES HERE")
+
+# a specific example using the wikitable sortable class
+soup.find_all(class_ = 'wikitable sortable')
+```
+
+Again, we know the line of HTML `<table class="wikitable sortable" style="margin-top:0; text-align:center; font-size:90%;">` marks the start of the medal count table.
+
+But we don't know how many instances of the `<table>` tag or `wikitable sortable` class appear in this web page.
+
+Some more work with `Command-F`/`Control-F` shows us there are 30 instances of the `<table>` tag and 9 instances of the `wikitable sortable` class in this page.
+
+So let's use `.find_all()` with the `wikitable sortable` class and then figure out which of those 9 instances is the table we want to work with.
 
 ```Python
 # isolate all HTML with wikitable sortable class
 tables = soup.find_all(class_ = 'wikitable sortable')
+```
+Then, we can use index operators to go through the items in `tables` to see which one has the HTML we want to work with.
 
+```Python
 # show first table in tables
 tables[0]
 ```
+
+First table in the list is the medal count, so we can assign that to a variable.
 
 ```Python
 # isolate first table in tables
 medal_table = tables[0]
 ```
+
+Now that we have just the HTML for the table we want to work with, we want to create a list-like object for each row in the table.
+
+So, we can use `.find()` or `.find_all()` again to create a list-like object with all elements that match a particular class or tag.
+
+In this case, we want the HTML for each row in the table to be a value or element in the list, so we're going to be looking for the table row `<tr>` tag.
+
+And since this table has multiple rows, we're going to use `.find_all("tr")` to find all instances of the `<tr>` tag and map those onto a list-like structure.
 
 ```Python
 # get all table rows from medal_table
@@ -518,6 +633,12 @@ medal_test
 
 ## Testing On Single Table Row (Single Country)
 
+So now we have the HTML for each row in the table as a list value in our `medal_test` list.
+
+We'll eventually want to figure out how to iterate over all the rows in `medal_test`, but for now, let's isolate a single row so we can test our program on a single row.
+
+Since the first two rows in the the table have column header information and do not match the structure/format of the country rows, we'll use the third row (first country row) for our single-row testing.
+
 ```Python
 # isolate first country in medal_table
 single_country = medal_test[2]
@@ -525,6 +646,12 @@ single_country = medal_test[2]
 # show first country
 single_country
 ```
+
+Now, we have a `single_country` object that includes the entire HTML associated with the `<tr>` tag for `Afghanistan`.
+
+As before, we want to create a list-like object for each cell or column in the table.
+
+Since there are multiple cells in each row, we'll use `.find_all()` to look for the table cell `<td>` tag and map those values onto a list-like structure.
 
 ```Python
 # get all cells in single_country
@@ -534,18 +661,66 @@ single_country = single_country.find_all("td")
 single_country
 ```
 
+Now we have a list of cells (`<td>` tags) for a single row of HTML in the original table.
+
+The next step is to figure out how we work within that list of `<td>` tag contents to isolate the specific values we want to eventually write to each row in our `CSV` file.
+
+At this point, before we start writing code to extract these values, it's useful to stop and think about the endpoint for the data scraping process. 
+
+Specifically, thinking about what columns we have in mind for the ultimate data structure helps us keep the end goal in mind as we start working through each aspect of the program.
+
+For this table, we might want a data structure with the following columns:
+- `Country_Name`
+- `Country URL`
+- `Number of Summer Olympic Appearances`
+- `Number of Summer Olympic Gold Medals`
+- `Number of Summer Olympic Silver Medals`
+- `Number of Summer Olympic Bronze Medals`
+- `Total Number of Summer Olympic Medals`
+- `Number of Winter Olympic Appearances`
+- `Number of Winter Olympic Gold Medals`
+- `Number of Winter Olympic Silver Medals`
+- `Number of Winter Olympic Bronze Medals`
+- `Total Number of Winter Olympic Medals`
+- `Combined Number of Olympic Appearances`
+- `Combined Number of Gold Medals`
+- `Combined Number of Silver Medals`
+- `Combined Number of Bronze Medals`
+- `Total Combined Number of Medals`
+
+So let's figure out how we can isolate each of those values.
+
 ### Get Country Name
+
+To get the country name, we can isolate the first cell (`<td>` tag) in the `single_country` list of cells.
 
 ```Python
 # isolate first cell in single_country
 country_name = single_country[0]
 
+# show first cell
+country_name
+```
+
+Then, we can use `.contents[]` (part of `BeautifulSoup`) to get the contents of that first cell.
+
+```Python
 # isolate country name using contents and index
 country_name = country_name.contents[0]
 
 # show country_name HTML
 country_name
 ```
+
+So now we have the HTML associated with the first `<td>` tag, but there's still a lot of extraneous markup we want to remove to get just the country name.
+
+```HTML
+<span id="AFG"><img alt="" class="thumbborder" data-file-height="600" data-file-width="900" decoding="async" height="15" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/22px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/33px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/44px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 2x" width="22"/> <a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a> <span style="font-size:90%;">(AFG)</span></span>
+```
+
+If we drill down into this HTML, we can see the `<a href...>` tag is the HTML element closest to the country name we want to extract.
+
+So let's use `.find()` to get just the `a` tag HTML.
 
 ```Python
 # get HTML with a tag
@@ -555,6 +730,10 @@ name_tag = country_name.find('a')
 name_tag
 ```
 
+Now with just the `a` tag (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we can use `.contents[]` again to get the tag contents.
+
+Remember an index value goes in the brackets for `.contents[]`.
+
 ```Python
 # get contents of a href tag
 sample_name = name_tag.contents[0]
@@ -563,7 +742,17 @@ sample_name = name_tag.contents[0]
 sample_name
 ```
 
+Voila! The country name. 
+
 ### Get Country URL
+
+```HTML
+<span id="AFG"><img alt="" class="thumbborder" data-file-height="600" data-file-width="900" decoding="async" height="15" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/22px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/33px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg/44px-Flag_of_Afghanistan_%282013%E2%80%932021%29.svg.png 2x" width="22"/> <a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a> <span style="font-size:90%;">(AFG)</span></span>
+```
+
+If we look at the HTML associated with `country_name`, we can see that the country's Wikipedia URL is also in this section of HTML, as part of the `<a href...>` tag.
+
+So we can again use `.find()` to isolate the `<a>` tag's contents.
 
 ```Python
 # get first/only instance of a link tag in HTML for single country
@@ -573,6 +762,14 @@ link_test = country_name.find('a')
 link_test
 ```
 
+Now, looking at the `link_test` piece of HTML (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we want to extract the URL associated with the `href` attribute.
+
+We were able to use `.contents[]` to get the contents of this HTML tag, but we'll need a different approach for getting the `href` attribute value.
+
+`BeautifulSoup` includes a `.get()` command that lets us isolate the value associated with an HTML attribute.
+
+So we can use `.get('href')` to isolate the URL.
+
 ```Python
 # get the contents of the url from the href attribute
 sample_link = link_test.get('href')
@@ -581,6 +778,12 @@ sample_link = link_test.get('href')
 sample_link
 ```
 
+But wait! `/wiki/Afghanistan_at_the_Olympics` doesn't look like a full url...
+
+That's because it isn't. Wikipedia is using an internal link with the `<a href...>` tag to connect to another Wikipedia page, which means they don't have to use the full URL for the link to work.
+
+But, we can use concatenation to recreate the full link, since all English-language Wikipedia pages start with the same root URL: `https://en.wikipedia.org`
+
 ```Python
 # use contenation to get full url
 full_link = "https://en.wikipedia.org" + sample_link
@@ -588,6 +791,8 @@ full_link = "https://en.wikipedia.org" + sample_link
 # show full link
 full_link
 ```
+
+Great! Now we have the full link.
 
 ### Medal Counts
 
@@ -769,6 +974,8 @@ medal_test
 
 Now we're ready to iterate over each country (table row) using the code we tested on a single country.
 
+We can create a list with each row's values and append that list as a sublist or nested list to an empty list.
+
 ```Python
 # create empty list for data
 test_list = []
@@ -858,8 +1065,13 @@ for row in medal_test:
 # show list
 test_list
 ```
+Each row of data in the table is a list value, or sublist/nested list in `test_list`.
 
-Now that we know the iteration is working, we can take `test_list` and write each item in the list to a row in a `CSV` file.
+In this program `try` and `except` instruct Python to `try` to run the lines nested under `try`, but if it runs into an error (`except`), `continue` iterating over the values in the `tags` list.
+
+Using `try` and `except` can be dangerous if you don't know if or how a program is working- in this case, we've tested the program and got it working on a single row that matches the pattern for all the rows we want to scrape data frame.
+
+Now that we know the iteration is working, we can take `test_list` and write each item in the list (which itself is a row of data) to a row in a `CSV` file.
 
 ```Python
 # create new csv file
@@ -877,6 +1089,10 @@ for row in test_list:
 ```
 
 We can also use `test_list` and `headers` to create a `pandas` `DataFrame`.
+
+`pandas` will map each value in the list (nested list or sublist with single row of data) to a row in the `DataFrame`.
+
+And the `headers` list we created for writing the first row of the `medals` CSV file can be used to set the `DataFrame` column names.
 
 ```Python
 # import pandas
