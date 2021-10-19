@@ -1129,6 +1129,7 @@ df.to_csv("df_medals.csv", index=False)
         <li>Isolate section of HTML with your table (either directly or extract from list)</li>
         <li>Isolate table row elements (create list where each element is a table row)</li>
         <li>Extract contents from row (isolate the pieces of information from each row)</li>
+        <li>Create Pandas DataFrame</li>
         <li>Write extracted row contents to CSV file</li>
     </ul><br>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
     
@@ -1582,6 +1583,7 @@ A preliminary workflow:
 - Isolate section of HTML with your table (either directly or extract from list)
 - Isolate table row elements (create list where each element is a table row)
 - Extract contents from row (isolate the pieces of information from each row)
+- Create Pandas DataFrame
 - Write extracted row contents to CSV file
 
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
