@@ -1675,7 +1675,7 @@ Q16: What challenges or roadblocks did you face working on Q15? What parts of th
 
 # Final Project Next Steps
 
-189. Our work in the web scraping lab (lab #11) is designed to lay the foundation and serve as a springboard for final project work.
+189. Our work in this lab is designed to lay the foundation and serve as a springboard for final project work.
 
 190. Specifically, Q4, Q10, and Q13 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`.
 
