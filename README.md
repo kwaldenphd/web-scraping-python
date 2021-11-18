@@ -1712,8 +1712,10 @@ Q16: What challenges or roadblocks did you face working on Q15? What parts of th
 205. So in the interim, as you're waiting for feedback on this lab, think about where you could go next with expanding and extending your work in this lab, and start to flesh out or develop some of your own ideas about where you put your time and effort as you work on the final project.
 
 206. Final project timeline:
-- By end of Week #14 (11/23, Thanksgiving Holiday): Web scraping lab due on Canvas
-- Week #15 (11/30, 12/2): In-class final project work time
+- Week #14 (11/23): In-class work time
+- Week #15 (11/30, 12/2):
+  * Initial version of lab due end of day Tuesday 11/30
+  * In-class work time both days
 - By end of Week #15: Final project update/shareout due on Canvas
 - By end of day Friday 12/10 (Week #16, last week of classes/start of exam week): Final project due on Canvas by end of day
 
