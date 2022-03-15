@@ -823,9 +823,8 @@ name
 
 105. Voila! The country name. 
 
-Combined program for country name:
-
 ```Python
+# combined program for country name
 name = cells.contents[0].find('a').contents[0]
 ```
 
@@ -879,9 +878,8 @@ link
 
 115. Great! Now we have the full link.
 
-Combined program for getting the full link:
-
 ```Python
+# combined program for link
 link = name.find('a').get('href')
 link = "https://en.wikipedia.org" + link
 ```
@@ -1014,18 +1012,35 @@ medals_total
 
 ```Python
 # remove first row
-del table[0]
+del rows[0]
 ```
 
 ```Python
 # remove new first row
-del table[0]
+del rows[0]
 ```
 
 ```Python
 # show updated table
-table
+rows
 ```
+
+Alternate workflow that uses list comprehension to subset `rows`:
+
+```Python
+# recreate list of rows
+rows = table.find_all('tr')
+
+# subset rows to drop first two
+index_list = [0, 1]
+
+# use list comprehension to subset list
+rows = [rows[i] for i in index_list]
+
+# show updated list of rows
+rows
+```
+For more on list comprehension: https://www.w3schools.com/python/python_lists_comprehension.asp
 
 123. Now we're ready to iterate over each country (table row) using the code we tested on a single country.
 
@@ -1125,6 +1140,8 @@ df
 df.to_csv("output.csv", index=False)
 ```
 
+## Lab Notebook Questions 1-5
+
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
@@ -1132,24 +1149,25 @@ df.to_csv("output.csv", index=False)
   </tr>
   </table>
 
-<blockquote>Q1: Describe the general approach to loading a web page in Python using <code>requests</code> and isolating the section of HTML you need using <code>BeautifulSoup</code>. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?</blockquote>
+Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
 
-<blockquote>Q2: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?</blockquote>
+Q2: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
 
-<blockquote>Q3: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.</blockquote>
+Q3: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
 
-<blockquote>Q4: Develop an outline for a Python program that scrapes data from the web page you selected. A preliminary workflow:
-    <ul>
-        <li>Load URL and create BeautifulSoup object</li>
-        <li>Isolate section of HTML with your table (either directly or extract from list)</li>
-        <li>Isolate table row elements (create list where each element is a table row)</li>
-        <li>Extract contents from row (isolate the pieces of information from each row)</li>
-        <li>Create Pandas DataFrame</li>
-        <li>Write extracted row contents to CSV file</li>
-    </ul></blockquote>
-	<blockquote>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
+Q4: Develop an outline for a Python program that scrapes data from the web page you selected. 
 
-<blockquote>Q5: What challenges or roadblocks did you face working on Q4? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
+A preliminary workflow:
+- Load URL and create BeautifulSoup object
+- Isolate section of HTML with your table (either directly or extract from list)
+- Isolate table row elements (create list where each element is a table row)
+- Extract contents from row (isolate the pieces of information from each row)
+- Create Pandas DataFrame
+- Write extracted row contents to CSV file
+
+NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+Q5: What challenges or roadblocks did you face working on Q4? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 # Working With Multiple Pages
 
@@ -1190,7 +1208,7 @@ tag = "-schedule.html"
 
 ```Python
 # year range
-years = range(1899, 2021, 1)
+years = list(range(1899, 2021, 1))
 ```
 
 142. Then, we could use concatenation and a `for` loop to generate a list of full URLs for the seasons we want to cover.
@@ -1214,7 +1232,7 @@ urls
 ```Python
 root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
 
-years = range(1899, 2021, 1)
+years = list(range(1899, 2021, 1))
 
 tag = "-schedule.html"
 
@@ -1226,19 +1244,27 @@ for year in years:
 urls
 ```
 
-<blockquote>Q7: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.<br><br>A few places to start:
-    <ul>
-        <li>Baseball Reference season web pages have the following URL pattern: <code>https://www.baseball-reference.com/teams/</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.shtml</code></li>
-        <li>Basketball Reference season web pages have a similar pattern for NBA teams: <code>https://www.basketball-reference.com/teams</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.html</code></li>
-        <li>Basketball Reference uses a slightly different pattern for its WNBA pages: <code>https://www.basketball-reference.com/wnba/teams</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.html</code></li>
-        <li>College Basketball Reference pages also follow a pattern: <code>https://www.sports-reference.com/cbb/schools</code>, <code>SCHOOL ABBREVIATION</code>, <code>SEASON</code>, <code>.html</code></li>
-        <li>For Hockey Reference pages: <code>https://www.hockey-reference.com/teams</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.html</code></li>
-        <li>Football Reference pages follow the same pattern for men's and women's teams: <code>https://fbref.com/en/squads/</code>, <code>SQUAD ID</code>, <code>SEASON</code>, <code>TEAM NAME</code></li>
-        <li>Pro Football Reference pages also have a pattern: <code>https://www.pro-football-reference.com/teams/</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.htm</code></li>
-    </ul>
-	</blockquote>
-	<blockquote>NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range.
-    </blockquote>
+## Lab Notebook Question 7
+
+Q7: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.
+
+A few places to start:
+- Baseball Reference season web pages have the following URL pattern:
+  * `https://www.baseball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.shtml`
+- Basketball Reference season web pages have a similar pattern for NBA teams:
+  * `https://www.basketball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- Basketball Reference uses a slightly different pattern for its WNBA pages:
+  * `https://www.basketball-reference.com/wnba/teams`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- College Basketball Reference pages also follow a pattern: 
+  * `https://www.sports-reference.com/cbb/schools`, `SCHOOL ABBREVIATION`, `SEASON`, `.html`
+- For Hockey Reference pages: 
+  * `https://www.hockey-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- Football Reference pages follow the same pattern for men's and women's teams:
+  * `https://fbref.com/en/squads/`, `SQUAD ID`, `SEASON`, `TEAM NAME`
+- Pro Football Reference pages also have a pattern: 
+  * `https://www.pro-football-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.htm`
+
+NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range. 
 
 # An Alternate Approach: pandas.read_html()
 
@@ -1351,6 +1377,9 @@ df
 ```Python
 df.to_csv("output.csv", index=False)
 ```
+
+## Lab Notebook Questions 8-11
+
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
@@ -1358,22 +1387,27 @@ df.to_csv("output.csv", index=False)
   </tr>
   </table>
   
-<blockquote>Q8: Describe the general approach to loading a web page in Python using <code>pd.read_html()</code>. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?</blockquote> 
+Q8: Describe the general approach to loading a web page in Python using `pd.read_html()`. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?
 
-<blockquote>Q9: For Q7, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered.
-<ul><li>Do these pages have the same pattern in terms of number and order of tables?</li>
-<li>For one of these pages, what table or tables would you want to be able to extract and work with?</li></ul></blockquote>
+Q9: For Q7, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered.
 
-<blockquote>Q10: Develop an outline for a Python program that uses <code>pd.read_html()</code> to scrape data from one of the web pages you select in Q9. A preliminary workflow:
-    <ul>
-        <li>Use <code>pd.read_html()</code> to create a list of DataFrame objects</li>
-        <li>Identify which DataFrame object in the list is the table you want to work with</li>
-        <li>Isolate the list element to create a new DataFrame</li>
-		<li>Write the new DataFrame to a CSV file</li></ul></blockquote>
+Do these pages have the same pattern in terms of number and order of tables?
 
-<blockquote>NOTE: For Q4, you did not need to have working code for all components of this program. Since <code>pd.read_html()</code> has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.<br><br>ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use <code>pd.read_html()</code>. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use <code>pd.read_html()</code>.</blockquote>
+For one of these pages, what table or tables on these pages would you want to be able to extract and work with?
 
-<blockquote>Q11: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear.</blockquote>
+Q10: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from one of the web pages you select in Q9.
+
+A preliminary workflow:
+- Use `pd.read_html()` to create a list of DataFrame objects
+- Identify which DataFrame object in the list is the table you want to work with
+- Isolate the list element to create a new DataFrame
+- Write the new DataFrame to a CSV file
+
+NOTE: For Q4, you did not need to have working code for all components of this program. Since `pd.read_html()` has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
+
+Q11: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
 
 # Web Scraping and Unstructured Text
 
@@ -1500,6 +1534,8 @@ for paragraph in paragraph_list:
     f.write(text)
 ```
 
+## Lab Notebook Questions 12-16
+
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
@@ -1507,7 +1543,7 @@ for paragraph in paragraph_list:
   </tr>
   </table>
 
-<blockquote>Q12: Describe in your own words how program for scraping unstructured text covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?</blockquote>
+Q12: Describe in your own words how program for scraping unstructured text covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
 
 ```Python
 page = requests.get("https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/")
@@ -1525,29 +1561,29 @@ for paragraph in paragraphs:
     f.write(text)
 ```
 
-<blockquote>Q13: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?<br><br>A few places to start for unstructured text:
-<ul>
-    <li><a href="https://ndsmcobserver.com/">The Observer!</a> (or another news publication of your choosing)</li>
-    <li><a href="https://en.wikisource.org/wiki/Main_Page">WikiSource</a>, a library of texts that are not covered by copyright</li>
-    <ul><li><a href="https://en.wikisource.org/wiki/Portal:State_of_the_Union_Speeches_by_United_States_Presidents">U.S. Presidential State of the Union Addresses</a></li>
-        <li><a href="https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents">U.S. Presidential Inaugural Speeches</a></li></ul>
-    <li><a href="https://www.gutenberg.org/">Project Gutenberg</a>, a library of literary works or texts that are not covered by copyright</li>
-    </ul>
-</blockquote>
+Q13: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
-<blockquote>Q14: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.</blockquote>
+A few places to start for unstructured text:
+- [The Observer!](https://ndsmcobserver.com) (or another news publication of your choosing)
+- [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
+  * [U.S. Presidential State of the Union Addresses](https://en.wikisource.org/wiki/Portal:State_of_the_Union_Speeches_by_United_States_Presidents)
+  * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
+- [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
 
-<blockquote>Q15: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. A preliminary workflow:
-    <ul>
-        <li>Load URL and create BeautifulSoup object</li>
-        <li>Isolate section of HTML with your text (either directly or extract from list)</li>
-        <li>IF NEEDED: Isolate text elements (create list where each element is a section of text)</li>
-        <li>IF NEEDED: Extract text contents (isolate text from each section/paragraph)</li>
-        <li>Write text to TXT file</li>
-		</ul></blockquote>
-		<blockquote>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
-    
-<blockquote>Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
+Q14: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+
+Q15: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+
+A preliminary workflow:
+- Load URL and create BeautifulSoup object
+- Isolate section of HTML with your text (either directly or extract from list)
+- IF NEEDED: Isolate text elements (create list where each element is a section of text)
+- IF NEEDED: Extract text contents (isolate text from each section/paragraph)
+- Write text to TXT file
+
+NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 ## Oh, the Places You Could Go
 
@@ -1674,7 +1710,7 @@ Q6: Describe in your own words how the url generation program covered in the pre
 ```Python
 root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
 
-years = range(1899, 2021, 1)
+years = list(range(1899, 2021, 1))
 
 tag = "-schedule.html"
 
@@ -1729,6 +1765,22 @@ ANOTHER NOTE: For many Sports Reference pages, tables further down the page are 
 Q11: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
 
 Q12: Describe in your own words how program for scraping unstructured text covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
+
+```Python
+page = requests.get("https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/")
+
+soup = BeautifulSoup(page.text, 'html.parser')
+
+article = soup.find(class_ = "content-body")
+
+paragraphs = article.find_all("p")
+
+f = open("output.txt", "a")
+
+for paragraph in paragraphs:
+    text = str(paragraph.contents[0])
+    f.write(text)
+```
 
 Q13: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
