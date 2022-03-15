@@ -7,6 +7,20 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 This lab provides an introduction and overview to parsing HTML in Python using `beautifulsoup` and `pandas`.
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c49fc924-268d-4f3b-a0cc-ade900293029">Lab overview</a></td>
+  </tr>
+  </table>
+  
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=134db1ac-7685-4fce-b121-adea01531389">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
+  
 ## Acknowledgements
 
 The author consulted the following materials when building this lab:
@@ -20,6 +34,8 @@ The introductory sections of this lab are based on and adapted from:
 
 # Table of Contents
 
+- [Lecture and Live Coding](#lecture-and-live-coding)
+- [Lab Notebook Template](#lab-notebook-template)
 - [Introduction to Beautiful Soup](#introduction-to-beautiful-soup)
 - [Installing Beautiful Soup](#installing-beautiful-soup)
 - [Loading URLs in Python](#loading-urls-in-python)
@@ -36,7 +52,45 @@ The introductory sections of this lab are based on and adapted from:
 - [Lab Notebook Questions](#lab-notebook-questions)
 - [Final Project Next Steps](#final-project-next-steps)
 
+[Link to lab procedure as a Jupyter Notebook](https://drive.google.com/file/d/19QQITSkk3x8ckrUS7Gw6mBroBYD7at8F/view?usp=sharing)
+
+# Lecture and Live Coding
+
+Throughout this lab, you will see a Panopto icon at the start of select sections.
+
+This icon indicates there is lecture/live coding asynchronous content that accompanies this section of the lab. 
+
+You can click the link in the figure caption to access these materials (ND users only).
+
+Example:
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c49fc924-268d-4f3b-a0cc-ade900293029">Lab overview</a></td>
+  </tr>
+  </table>
+  
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=134db1ac-7685-4fce-b121-adea01531389">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
+
+# Lab Notebook Template
+
+Lab notebook template:
+- [Jupyter Notebook](https://drive.google.com/file/d/1LRsbOC11-8YrPUNBJNAzJDiIM_CQJ3go/view?usp=sharing)
+
 # Introduction to Beautiful Soup
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab460bfe-4adc-40a4-8072-ade9002b5fa6">Getting Started With Beautiful Soup</a></td>
+  </tr>
+  </table>
 
 1. What is Beautiful Soup? 
 
@@ -112,7 +166,15 @@ soup = BeautifulSoup(page.text, 'html.parser')
 
 18. Now, we are ready to parse the web page's HTML using `BeautifulSoup`.
 
-# HTML  Refresh
+# HTML Refresh
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1ed9a128-e2f1-4415-a8ea-ade9002f2f98">HTML Refresh</a></td>
+  </tr>
+  </table>
+
 
 19. HTML uses a few core tags for web pages that include tables.
 - `table` (marks the start and end of a table
@@ -215,6 +277,13 @@ soup = BeautifulSoup(page.text, 'html.parser')
 
 # File Methods Refresh
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1ed9a128-e2f1-4415-a8ea-ade9002f2f98">File Methods Refresh</a></td>
+  </tr>
+  </table>
+
 26. As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`).
 
 27. A quick review of how Python handles creating, reading, and writing files, specifically focusing on...
@@ -295,25 +364,25 @@ open(file_name.extension, access_mode)
  
  ### `open()` examples
  
- ```Python
+```Python
  # opens an existing text (TXT) file with overwrite permission
  f = open("existing_file.txt", "w")
- ```
+```
  
- ```Python
+```Python
  # opens an existing CSV file and reads the content
  f = open("existing_file.csv", "r")
- ```
+```
  
- ```Python
+```Python
  # creates new txt file with write permission
  f = open("new_file.txt", "w")
- ```
+```
  
- ```Python
+````Python
  # creates new CSV file without write privileges
  f = open("new_file.csv", "x")
- ```
+```
  
 37. If you run these examples, you will see a newly-created file appear in your environment or project workspace. 
 
@@ -403,7 +472,7 @@ Parameter, Name, Description
 ```Python
  # create new CSV file with write privileges
  f = open("new_file.csv", "w")
- ```
+```
 
 51. The next step is to create the `writer` object using the `csv.writer()` function.
 
@@ -450,6 +519,14 @@ f.close()
 54. Check out `new_file.csv` to see the newly-created file with rows of data.
 
 # Using BeautifulSoup With a Single Web Page
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c33c1d07-578e-464b-85ac-ade900316fc1">BeautifulSoup and a Single Web page</a></td>
+  </tr>
+  </table>
+
 
 55. Now, we're going to see HTML syntax and file methods at work to develop a web scraping program that takes tabular data on a web page and writes it to a `CSV` file.
 
@@ -546,7 +623,7 @@ f.close()
 71. The first step in our program is to import the libraries we'll need, load the web page using `requests` and create the `BeautifulSoup` object.
 
 ```Python
-# import libraries
+# import statements
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -614,7 +691,7 @@ tables[0]
 
 ```Python
 # isolate first table in tables
-medal_table = tables[0]
+table = tables[0]
 ```
 
 82. Now that we have just the HTML for the table we want to work with, we want to create a list-like object for each row in the table.
@@ -627,10 +704,10 @@ medal_table = tables[0]
 
 ```Python
 # get all table rows from medal_table
-medal_test = medal_table.find_all("tr")
+rows = table.find_all("tr")
 
 # show table rows
-medal_test
+rows
 ```
 
 ## Testing On Single Table Row (Single Country)
@@ -643,10 +720,10 @@ medal_test
 
 ```Python
 # isolate first country in medal_table
-single_country = medal_test[2]
+row = rows[2]
 
 # show first country
-single_country
+row
 ```
 
 89. Now, we have a `single_country` object that includes the entire HTML associated with the `<tr>` tag for `Afghanistan`.
@@ -657,10 +734,10 @@ single_country
 
 ```Python
 # get all cells in single_country
-single_country = single_country.find_all("td")
+cells = row.find_all("td")
 
 # show single country
-single_country
+cells
 ```
 
 92. Now we have a list of cells (`<td>` tags) for a single row of HTML in the original table.
@@ -698,7 +775,7 @@ single_country
 
 ```Python
 # isolate first cell in single_country
-country_name = single_country[0]
+country_name = cells[0]
 
 # show first cell
 country_name
@@ -708,10 +785,10 @@ country_name
 
 ```Python
 # isolate country name using contents and index
-country_name = country_name.contents[0]
+name = cells.contents[0]
 
 # show country_name HTML
-country_name
+name
 ```
 
 100. So now we have the HTML associated with the first `<td>` tag, but there's still a lot of extraneous markup we want to remove to get just the country name.
@@ -726,10 +803,10 @@ country_name
 
 ```Python
 # get HTML with a tag
-name_tag = country_name.find('a')
+name = name.find('a')
 
 # show name_tag
-name_tag
+name
 ```
 
 103. Now with just the `a` tag (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we can use `.contents[]` again to get the tag contents.
@@ -738,13 +815,19 @@ name_tag
 
 ```Python
 # get contents of a href tag
-sample_name = name_tag.contents[0]
+name = name.contents[0]
 
 # show country
-sample_name
+name
 ```
 
 105. Voila! The country name. 
+
+Combined program for country name:
+
+```Python
+name = cells.contents[0].find('a').contents[0]
+```
 
 ### Get Country URL
 
@@ -758,10 +841,10 @@ sample_name
 
 ```Python
 # get first/only instance of a link tag in HTML for single country
-link_test = country_name.find('a')
+link = name.find('a')
 
 # show link
-link_test
+link
 ```
 
 108. Now, looking at the `link_test` piece of HTML (`<a href="/wiki/Afghanistan_at_the_Olympics" title="Afghanistan at the Olympics">Afghanistan</a>`), we want to extract the URL associated with the `href` attribute.
@@ -774,10 +857,10 @@ link_test
 
 ```Python
 # get the contents of the url from the href attribute
-sample_link = link_test.get('href')
+link = link.get('href')
 
 # show href contents
-sample_link
+link
 ```
 
 112. But wait! `/wiki/Afghanistan_at_the_Olympics` doesn't look like a full url...
@@ -788,13 +871,20 @@ sample_link
 
 ```Python
 # use contenation to get full url
-full_link = "https://en.wikipedia.org" + sample_link
+link = "https://en.wikipedia.org" + link
 
 # show full link
-full_link
+link
 ```
 
 115. Great! Now we have the full link.
+
+Combined program for getting the full link:
+
+```Python
+link = name.find('a').get('href')
+link = "https://en.wikipedia.org" + link
+```
 
 ### Medal Counts
 
@@ -807,146 +897,107 @@ full_link
 
 ```Python
 # number of summer olympic appearances
-no_summer_olympics = single_country[1]
+summer = cells[1].contents[0]
 
-no_summer_olympics = no_summer_olympics.contents[0]
-
-no_summer_olympics
+summer
 ```
 
 ```Python
 # number of summer gold medals
-no_summer_gold = single_country[2]
+summer_gold = cells[2].contents[0]
 
-no_summer_gold = no_summer_gold.contents[0]
-
-no_summer_gold
+summer_gold
 ```
 
 ```Python
 # number of summer silver medals
-no_summer_silver = single_country[3]
+summer_silver = cells[3].contents[0]
 
-no_summer_silver = no_summer_silver.contents[0]
-
-no_summer_silver
+summer_silver
 ```
 
 ```Python
 # number of summer bronze medals
-no_summer_bronze = single_country[4]
+summer_bronze = cells[4].contents[0]
 
-no_summer_bronze = no_summer_bronze.contents[0]
-
-no_summer_bronze
+summer_bronze
 ```
 
 ```Python
-# total number of summer olympics medals
-total_no_summer_medals = single_country[5]
+# total number of summer olympics medals, using strip() to remove line break
+summer_medals = cells[5].contents[0].strip()
 
-total_no_summer_medals = total_no_summer_medals.contents[0]
-
-# use strip() to remove line break
-total_no_summer_medals = total_no_summer_medals.strip()
-
-total_no_summer_medals
+summer_medals
 ```
 
 ```Python
 # total number of winter olympic appearances
-no_winter_olympics = single_country[6]
+winter = cells[6].contents[0]
 
-no_winter_olympics = no_winter_olympics.contents[0]
-
-no_winter_olympics
+winter
 ```
 
 ```Python
 # number of winter gold medals
-no_winter_gold = single_country[7]
+winter_gold = cells[7].contents[0]
 
-no_winter_gold = no_winter_gold.contents[0]
-
-no_winter_gold
+winter_gold
 ```
 
 ```Python
 # number of winter silver
-no_winter_silver = single_country[8]
+winter_silver = cells[8].contents[0]
 
-no_winter_silver = no_winter_silver.contents[0]
-
-no_winter_silver
+winter_silver
 ```
 
 ```Python
 # number of winter bronze
-no_winter_bronze = single_country[9]
+winter_bronze = cells[9].contents[0]
 
-no_winter_bronze = no_winter_bronze.contents[0]
-
-no_winter_bronze
+winter_bronze
 ```
 
 ```Python
 # total number of winter medals
-total_no_winter_medals = single_country[10]
+winter_medals = cells[10].contents[0].strip()
 
-total_no_winter_medals = total_no_winter_medals.contents[0]
-
-# use strip() to remove line break
-total_no_winter_medals = total_no_winter_medals.strip()
-
-total_no_winter_medals
+winter_medals
 ```
 
 ```Python
 # total number combined olympic appearances
-no_combined_olympics = single_country[11]
+combined_olympics = cells[11].strip()
 
-no_combined_olympics = no_combined_olympics.contents[0]
-
-no_combined_olympics
+combined_olympics
 ```
 
 ```Python
 # total number gold medals
-no_combined_gold = single_country[12]
+gold_total = cells[12].contents[0]
 
-no_combined_gold = no_combined_gold.contents[0]
-
-no_combined_gold
+gold_total
 ```
 
 ```Python
 # total number silver medals
-no_combined_silver = single_country[13]
+silver_total = cells[13].contents[0]
 
-no_combined_silver = no_combined_silver.contents[0]
-
-no_combined_silver
+silver_total
 ```
 
 ```Python
 # total number bronze medals
-no_combined_bronze = single_country[14]
+bronze_total = cells[14].contents[0]
 
-no_combined_bronze = no_combined_bronze.contents[0]
-
-no_combined_bronze
+bronze_total
 ```
 
 ```Python
 # total number of medals, combined
-total_no_combined_medals = single_country[15]
+medals_total = cells[15].contents[0].strip()
 
-total_no_combined_medals = total_no_combined_medals.contents[0]
-
-# use strip() to remove line break
-total_no_combined_medals = total_no_combined_medals.strip()
-
-total_no_combined_medals
+medals_total
 ```
 
 118. Now we have working code that extracts each piece of data from a row in the table.
@@ -963,17 +1014,17 @@ total_no_combined_medals
 
 ```Python
 # remove first row
-del medal_test[0]
+del table[0]
 ```
 
 ```Python
 # remove new first row
-del medal_test[0]
+del table[0]
 ```
 
 ```Python
-# show updated medal_test
-medal_test
+# show updated table
+table
 ```
 
 123. Now we're ready to iterate over each country (table row) using the code we tested on a single country.
@@ -981,96 +1032,50 @@ medal_test
 124. We can create a list with each row's values and append that list as a sublist or nested list to an empty list.
 
 ```Python
-# create empty list for data
-test_list = []
+table_rows = [] # empty list for data
 
-for row in medal_test:
-    
-    # create empty list for td tags in single row
-    tags = []
-    
-    # isolate td elements
-    test = row.find_all("td")
-    
-    # append tags to tag list
-    tags.append(test)
-    
-    for single_country in tags:
-        
-        try:
-            # gets country name
-            country_name = single_country[0].contents[0]
-            name_tag = country_name.find('a')
-            sample_name = name_tag.contents[0]
-
-            # get first/only instance of a link tag in HTML for single country
-            link_test = country_name.find('a')
-
-            # get contents of url from href attribute
-            sample_link = link_test.get('href')
-
-            # use concatenation to get full url
-            full_link = "https://en.wikipedia.org" + sample_link
-
-            # get number of summer olympic appearances
-            no_summer_olympics = single_country[1].contents[0]
-
-            # get number of summer gold medals
-            no_summer_gold = single_country[2].contents[0]
-
-            # get number of summer silver medals
-            no_summer_silver = single_country[3].contents[0]
-
-            # get number of summer bronze medals
-            no_summer_bronze = single_country[4].contents[0]
-
-            # total number of summer olympics medals
-            total_no_summer_medals = single_country[5].contents[0].strip()
-
-            # total number of winter olympic appearances
-            no_winter_olympics = single_country[6].contents[0]
-
-            # number of winter gold medals
-            no_winter_gold = single_country[7].contents[0]
-
-            # number of winter silver medals
-            no_winter_silver = single_country[8].contents[0]
-
-            # number of winter bronze medals
-            no_winter_bronze = single_country[9].contents[0]
-
-            # total number of winter medals
-            total_no_winter_medals = single_country[10].contents[0].strip()
-
-            # total number combined olympic appearances
-            no_combined_olympics = single_country[11].contents[0]
-
-            # total number gold medals
-            no_combined_gold = single_country[12].contents[0]
-
-            # total number silver medals
-            no_combined_silver = single_country[13].contents[0]
-
-            # total number bronze medals
-            no_combined_bronze = single_country[14].contents[0]
-
-            # total number of medals, combined
-            total_no_combined_medals = single_country[15].contents[0].strip()
+for row in medal_test: # for loop that iterates over rows
+	tag_list = [] # create empty list for td tags in single row
+	
+	cells = row.find_all('td') # isolate cells, td elements
+	
+	tag_list.append(cells) # append tags to tag list
+	
+	for cells in tags: # for loop that iterates over cells in row
+		try:
+			name = cells.contents[0].find('a').contents[0] # name
+			link = name.find('a').get('href') # link
+			link = "https://en.wikipedia.org" + link
+			summer = cells[1].contents[0] # number of summer olympic appearances
+			summer_gold = cells[2].contents[0] # number of summer gold medals
+			summer_silver = cells[3].contents[0] # number of summer silver medals
+			summer_bronze = cells[4].contents[0] # number of summer bronze medal
+			summer_medals = cells[5].contents[0].strip() # total number of summer olympics medals, using strip() to remove line break
+			winter = cells[6].contents[0] # total number of winter olympic appearances
+			winter_gold = cells[7].contents[0] # number of winter gold medals
+			winter_silver = cells[8].contents[0] # number of winter silver
+			winter_bronze = cells[9].contents[0] # number of winter bronze
+			winter_medals = cells[10].contents[0].strip() # total number of winter medals
+			combined_olympics = cells[11].strip() # total number combined olympic appearances
+			gold_total = cells[12].contents[0] # total number gold medals
+			silver_total = cells[13].contents[0] # total number silver medals
+			bronze_total = cells[14].contents[0] # total number bronze medals
+			medals_total = cells[15].contents[0].strip() # total number of medals, combined
 
             # creates list of values from each data element
-            row_data = [sample_name, full_link, no_summer_olympics, no_summer_gold, no_summer_silver, no_summer_bronze, total_no_summer_medals, no_winter_olympics, no_winter_gold, no_winter_silver, no_winter_bronze, total_no_winter_medals, no_combined_olympics, no_combined_gold, no_combined_silver, no_combined_bronze, total_no_combined_medals]
+            row_data = [name, link, summer, summer_gold, summer_silver, summer_bronze, summer_medals, winter, winter_gold, winter_silver, winter_bronze, winter_medals, combined_olympics, gold_total, silver_total, bronze_total, medals_total]
 
             # append row_data to test_list
-            test_list.append(row_data)
+            table_rows.append(row_data)
             
         except:
             continue
     
 # show list
-test_list
+table_rows
 ```
 
-125. Each row of data in the table is a list value, or sublist/nested list in `test_list`.
+125. Each row of data in the table is a list value, or sublist/nested list in `tag_list`.
 
 126. In this program `try` and `except` instruct Python to `try` to run the lines nested under `try`, but if it runs into an error (`except`), `continue` iterating over the values in the `tags` list.
 
@@ -1082,14 +1087,14 @@ test_list
 # create new csv file
 f = csv.writer(open('medals.csv', 'w'))
 
-# assign headers
+# list of strings with headers
 headers = ["country_name", "link", "no_summer_olympics", "no_summer_gold", "no_summer_silver", "no_summer_bronze", "total_no_summer_medals", "no_winter_olympics", "no_winter_gold", "no_winter_silver", "no_winter_bronze", "total_no_winter_medals", "no_combined_olympics", "no_combined_gold", "no_combined_silver", "no_combined_bronze", "total_no_combined_medals"]
 
 # write header row or first row for CSV file
 f.writerow(headers)
 
 # for loop that assigns each element in test_list to a new row
-for row in test_list:
+for row in table_rows:
     f.writerow(row)
 ```
 
@@ -1103,8 +1108,11 @@ for row in test_list:
 # import pandas
 import pandas as pd
 
+# list of strings with headers
+headers = ["country_name", "link", "no_summer_olympics", "no_summer_gold", "no_summer_silver", "no_summer_bronze", "total_no_summer_medals", "no_winter_olympics", "no_winter_gold", "no_winter_silver", "no_winter_bronze", "total_no_winter_medals", "no_combined_olympics", "no_combined_gold", "no_combined_silver", "no_combined_bronze", "total_no_combined_medals"]
+
 # create data frame 
-df = pd.DataFrame(test_list, columns=headers)
+df = pd.DataFrame(table_rows, columns=headers)
 
 # show df
 df
@@ -1114,8 +1122,15 @@ df
 
 ```Python
 # write df to csv file
-df.to_csv("df_medals.csv", index=False)
+df.to_csv("output.csv", index=False)
 ```
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=81459156-8f91-4897-8af4-ade9004561f8">Lab Notebook Questions 1-5</a></td>
+  </tr>
+  </table>
 
 <blockquote>Q1: Describe the general approach to loading a web page in Python using <code>requests</code> and isolating the section of HTML you need using <code>BeautifulSoup</code>. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?</blockquote>
 
@@ -1131,11 +1146,19 @@ df.to_csv("df_medals.csv", index=False)
         <li>Extract contents from row (isolate the pieces of information from each row)</li>
         <li>Create Pandas DataFrame</li>
         <li>Write extracted row contents to CSV file</li>
-    </ul><br>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
-    
+    </ul></blockquote>
+	<blockquote>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
+
 <blockquote>Q5: What challenges or roadblocks did you face working on Q4? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
 
 # Working With Multiple Pages
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=86675173-9734-4f0f-8a06-ade900486927">Working With Multiple Pages</a></td>
+  </tr>
+  </table>
 
 133. In the previous example of a Wikipedia page with Olympic medal counts, we were scraping data from a single web page.
 
@@ -1143,7 +1166,7 @@ df.to_csv("df_medals.csv", index=False)
 
 135. For example, head to https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html to explore the College Football Reference page for Notre Dame's 1940 football season.
 
-<p align="center"><a href="https://github.com/kwaldenphd/web-scraping-python/blob/main/images/fig4.jpg?raw=true"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/blob/main/images/fig4.jpg?raw=true" /></a></p>
+<p align="center"><img class="aligncenter" src="https://github.com/kwaldenphd/web-scraping-python/blob/main/images/fig4.jpg?raw=true"/></p>
 
 136. We can use the `Previous Year` and `Next Year` buttons at the top of the page to look at pre- and post-1940 pages.
 
@@ -1213,10 +1236,18 @@ urls
         <li>Football Reference pages follow the same pattern for men's and women's teams: <code>https://fbref.com/en/squads/</code>, <code>SQUAD ID</code>, <code>SEASON</code>, <code>TEAM NAME</code></li>
         <li>Pro Football Reference pages also have a pattern: <code>https://www.pro-football-reference.com/teams/</code>, <code>TEAM ABBREVIATION</code>, <code>SEASON</code>, <code>.htm</code></li>
     </ul>
-    <br><br>NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range.
+	</blockquote>
+	<blockquote>NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range.
     </blockquote>
 
 # An Alternate Approach: pandas.read_html()
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=94cac193-ae03-43e8-890e-ade9004d9a17">pandas.read_html()</a></td>
+  </tr>
+  </table>
 
 144. `BeautifulSoup` is an incredibly powerful package that lets us drill down into the structure of an HTML document to isolate the pieces of information we need or want to work with.
 
@@ -1235,6 +1266,19 @@ url = "https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.htm
 
 # create list of dataframes from url using .read_html()
 dfs = pd.read_html(url)
+
+# show dfs list
+dfs
+```
+
+We could also the URL directly to `pd.read_html()`:
+
+```Python
+# import pandas
+import pandas as pd
+
+# create list of dataframes from url using .read_html()
+dfs = pd.read_html("https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html")
 
 # show dfs list
 dfs
@@ -1266,11 +1310,11 @@ dfs[1]
 152. We could create a single `DataFrame` by selecting the second element in `dfs`.
 
 ```Python
-# create new dataframe 
-schedule_df = dfs[1]
+# select single dataframe 
+df = dfs[1]
 
 # show new dataframe
-schedule_df
+df
 ```
 
 153. College Football Reference schedule pages for pre-1936 Notre Dame do not have the first `AP Poll` table.
@@ -1291,11 +1335,11 @@ len(dfs)
 155. Only one table here, so we can isolate that table as a `DataFrame`.
 
 ```Python
-# create new dataframe 
-schedule_df = dfs[0]
+# select single dataframe 
+df = dfs[0]
 
 # show new dataframe
-schedule_df
+df
 ```
 
 156. If we were ultimately going to do further work with analyzing/visualizing this data, we would probably want to spend some more time standardizing column names and values. 
@@ -1305,24 +1349,40 @@ schedule_df
 158. But for now, if we wanted to write the `DataFrame` we created using `pd.read_html()` to a `CSV`...
 
 ```Python
-schedule_df.to_csv("sample_cfb_schedule.csv", index=False)
+df.to_csv("output.csv", index=False)
 ```
-
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=73a9d3b1-4a1e-4923-ae1c-ade900503cb8">Lab Notebook Questions 8-11</a></td>
+  </tr>
+  </table>
+  
 <blockquote>Q8: Describe the general approach to loading a web page in Python using <code>pd.read_html()</code>. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?</blockquote> 
 
-<blockquote>Q9: For Q7, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered.<br><br>Do these pages have the same pattern in terms of number and order of tables?<br><br>For one of these pages, what table or tables would you want to be able to extract and work with?</blockquote>
+<blockquote>Q9: For Q7, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered.
+<ul><li>Do these pages have the same pattern in terms of number and order of tables?</li>
+<li>For one of these pages, what table or tables would you want to be able to extract and work with?</li></ul></blockquote>
 
 <blockquote>Q10: Develop an outline for a Python program that uses <code>pd.read_html()</code> to scrape data from one of the web pages you select in Q9. A preliminary workflow:
     <ul>
         <li>Use <code>pd.read_html()</code> to create a list of DataFrame objects</li>
         <li>Identify which DataFrame object in the list is the table you want to work with</li>
         <li>Isolate the list element to create a new DataFrame</li>
-        <li>Write the new DataFrame to a CSV file</li>
-    </ul><br><br>NOTE: For Q4, you did not need to have working code for all components of this program. Since <code>pd.read_html()</code> has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.<br><br>ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use <code>pd.read_html()</code>. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use <code>pd.read_html()</code>.</blockquote>
-    
-<blockquote>Q11: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?</blockquote>
+		<li>Write the new DataFrame to a CSV file</li></ul></blockquote>
+
+<blockquote>NOTE: For Q4, you did not need to have working code for all components of this program. Since <code>pd.read_html()</code> has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.<br><br>ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use <code>pd.read_html()</code>. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use <code>pd.read_html()</code>.</blockquote>
+
+<blockquote>Q11: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear.</blockquote>
 
 # Web Scraping and Unstructured Text
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8218edd5-5c66-4f2e-9fe6-ade90052aa96">Unstructured Text</a></td>
+  </tr>
+  </table>
 
 159. So far, this lab has focused on approaches for scraping structured data from the web using Python.
 
@@ -1379,17 +1439,14 @@ soup
 
 167. And we can use a `Control-F`/`Command-F` search to see that the `content-body` class appears only once in the page.
 
-168. This means we can use `.find_all()` to extract this section of the page.
+168. This means we can use `.find()` to extract this section of the page.
 
 ```Python
 # isolate HTML with content-body class
-article = soup.find_all(class_ = "content-body")
-
-# isolate article text
-article_text = article[0]
+article = soup.find(class_ = "content-body")
 
 # show article HTML
-article_text
+article
 ```
 
 169. Now we have the section of HTML with the article text isolated.
@@ -1412,7 +1469,7 @@ article_text
 
 ```Python
 # isolate paragraph tags
-article_paragraphs = article_text.find_all("p")
+paragraphs = article.find_all("p")
 ```
 
 173. The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list.
@@ -1421,28 +1478,34 @@ article_paragraphs = article_text.find_all("p")
 
 ```Python
 # create empty list for paragraphs
-text_list = []
+paragraph_list = []
 
 # for loop that removes HTML markup for each paragraph or instance of "p" tag
-for paragraph in article_paragraphs:
-    paragraph = str(paragraph.contents[0])
-    text_list.append(paragraph)
+for paragraph in paragraphs:
+    paragraph_list.append(str(paragraph.contents[0]))
     
 # show list of plain-text paragraphs
-text_list
+paragraph_list
 ```
 
 175. Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
 
 ```Python
 # create new txt file
-f = open("observer_text.txt", "a")
+f = open("output.txt", "a")
 
 # for loop that removes HTML markup for each paragraph or instance of "p" tag
-for paragraph in article_paragraphs:
+for paragraph in paragraph_list:
     text = str(paragraph.contents[0])
     f.write(text)
 ```
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1b6546d8-c040-4186-b5a5-ade90056af7a">Lab Notebook Questions 12-16</a></td>
+  </tr>
+  </table>
 
 <blockquote>Q12: Describe in your own words how program for scraping unstructured text covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?</blockquote>
 
@@ -1451,15 +1514,13 @@ page = requests.get("https://ndsmcobserver.com/2021/10/south-bend-community-lead
 
 soup = BeautifulSoup(page.text, 'html.parser')
 
-article = soup.find_all(class_ = "content-body")
+article = soup.find(class_ = "content-body")
 
-article_text = article[0]
+paragraphs = article.find_all("p")
 
-article_paragraphs = article_text.find_all("p")
+f = open("output.txt", "a")
 
-f = open("observer_text.txt", "a")
-
-for paragraph in article_paragraphs:
+for paragraph in paragraphs:
     text = str(paragraph.contents[0])
     f.write(text)
 ```
@@ -1483,17 +1544,26 @@ for paragraph in article_paragraphs:
         <li>IF NEEDED: Isolate text elements (create list where each element is a section of text)</li>
         <li>IF NEEDED: Extract text contents (isolate text from each section/paragraph)</li>
         <li>Write text to TXT file</li>
-    </ul><br>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
+		</ul></blockquote>
+		<blockquote>NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.</blockquote>
     
 <blockquote>Q16: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?</blockquote>
 
 ## Oh, the Places You Could Go
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=915f2e6c-5f80-45c3-b44f-ade90058e01f">Oh the Places You Could Go</a></td>
+  </tr>
+  </table>
+
+
 176. Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
 
 ```Python
 # load file
-text = open("observer_text.txt", 'r')
+text = open("output.txt", 'r')
 
 # read file to string
 text = text.read()
@@ -1546,6 +1616,14 @@ word_count
 
 # Why did we do this?
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=32080574-8fa5-4a3b-93a6-ade9005afdca">Why Did We Do This</a></td>
+  </tr>
+  </table>
+
+
 183. At this point, your brain probably hurts. Mine does.
 
 184. Why go to all the trouble of building a Python program when we could just copy and paste the text from an *Observer* article into a `.txt` file, or copy and paste data from Sports Reference into an Excel file or Google Sheet document? Why write a program when we could just remove the markup ourselves through manual data manipulation?
@@ -1567,6 +1645,9 @@ word_count
 188. The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
 
 # Lab Notebook Questions
+
+Lab notebook template:
+- [Jupyter Notebook](https://drive.google.com/file/d/1LRsbOC11-8YrPUNBJNAzJDiIM_CQJ3go/view?usp=sharing)
 
 Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
 
@@ -1675,6 +1756,13 @@ Q16: What challenges or roadblocks did you face working on Q15? What parts of th
 
 # Final Project Next Steps
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cc961b6a-ef23-4329-a570-ade9005d8411">Final Project Next Steps</a></td>
+  </tr>
+  </table>
+
 189. Our work in this lab is designed to lay the foundation and serve as a springboard for final project work.
 
 190. Specifically, Q4, Q10, and Q13 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`.
@@ -1711,12 +1799,4 @@ Q16: What challenges or roadblocks did you face working on Q15? What parts of th
 
 205. So in the interim, as you're waiting for feedback on this lab, think about where you could go next with expanding and extending your work in this lab, and start to flesh out or develop some of your own ideas about where you put your time and effort as you work on the final project.
 
-206. Final project timeline:
-- Week #14 (11/23): In-class work time
-- Week #15 (11/30, 12/2):
-  * Initial version of lab due end of day Tuesday 11/30
-  * In-class work time both days
-- By end of Week #15: Final project update/shareout due on Canvas
-- By end of day Friday 12/10 (Week #16, last week of classes/start of exam week): Final project due on Canvas by end of day
-
-207. Again, contact the instructor with questions.
+206. Contact the instructor with questions.
