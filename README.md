@@ -1077,14 +1077,14 @@ for row in medal_test: # for loop that iterates over rows
 			bronze_total = cells[14].contents[0] # total number bronze medals
 			medals_total = cells[15].contents[0].strip() # total number of medals, combined
 
-            # creates list of values from each data element
-            row_data = [name, link, summer, summer_gold, summer_silver, summer_bronze, summer_medals, winter, winter_gold, winter_silver, winter_bronze, winter_medals, combined_olympics, gold_total, silver_total, bronze_total, medals_total]
+            		# creates list of values from each data element
+            		row_data = [name, link, summer, summer_gold, summer_silver, summer_bronze, summer_medals, winter, winter_gold, winter_silver, winter_bronze, winter_medals, combined_olympics, gold_total, silver_total, bronze_total, medals_total]
 
-            # append row_data to test_list
-            table_rows.append(row_data)
+            		# append row_data to test_list
+            		table_rows.append(row_data)
             
-        except:
-            continue
+        	except:
+            		continue
     
 # show list
 table_rows
