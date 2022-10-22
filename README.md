@@ -10,14 +10,14 @@ This lab provides an introduction and overview to parsing HTML in Python using `
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c49fc924-268d-4f3b-a0cc-ade900293029">Lab overview</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a11358d5-c0a6-4bf1-a405-af36017212dc">Lab overview</a></td>
   </tr>
   </table>
   
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=134db1ac-7685-4fce-b121-adea01531389">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=05f99aec-b0ee-4816-b1e8-af3601753e5b">Lecture/live coding playlist</a></td>
   </tr>
   </table>
   
@@ -62,14 +62,14 @@ Example:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c49fc924-268d-4f3b-a0cc-ade900293029">Lab overview</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a11358d5-c0a6-4bf1-a405-af36017212dc">Lab overview</a></td>
   </tr>
   </table>
   
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=134db1ac-7685-4fce-b121-adea01531389">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=05f99aec-b0ee-4816-b1e8-af3601753e5b">Lecture/live coding playlist</a></td>
   </tr>
   </table>
 
@@ -87,7 +87,7 @@ INTRO TO WEB SCRAPING, WHY ARE WE DOING THIS
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab460bfe-4adc-40a4-8072-ade9002b5fa6">Getting Started With Beautiful Soup</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7d13378f-8395-40b1-89d0-af3601723136">Getting Started With Beautiful Soup</a></td>
   </tr>
   </table>
   
@@ -166,15 +166,16 @@ Table of contents for this section:
 
 ## Concept Refresh
 
-### HTML Tables
 
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1ed9a128-e2f1-4415-a8ea-ade9002f2f98">HTML Refresh</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a0385ece-2d22-4fd7-84a3-af36017254d6">HTML & File Methods Refresh</a></td>
   </tr>
   </table>
-  
+
+### HTML Tables
+ 
 When using `BeautifulSoup`, we can isolate information on the webpage through interacting with the HTML syntax. HTML uses a few core tags for web pages that include tables.
 - `table` (marks the start and end of a table
 - `tbody` (marks the start and end of the table body)
@@ -272,13 +273,6 @@ For more detail on HTML and CSS:
 
 ### File I/O
 
-<table>
- <tr><td>
-<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1ed9a128-e2f1-4415-a8ea-ade9002f2f98">File Methods Refresh</a></td>
-  </tr>
-  </table>
-
 As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`). A quick review of how Python handles creating, reading, and writing files, specifically focusing on...
 - `open()`
 - `write()`
@@ -368,7 +362,7 @@ f.close()
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c33c1d07-578e-464b-85ac-ade900316fc1">BeautifulSoup and a Single Web page</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3ee96582-1e15-40e2-b31d-af3601727e35">BeautifulSoup and a Single Web page</a></td>
   </tr>
   </table>
 
@@ -891,7 +885,7 @@ df.to_csv("output.csv", index=False)
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=81459156-8f91-4897-8af4-ade9004561f8">Lab Notebook Questions 1-5</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b7e2f787-47cf-4f61-af59-af3601729e4d">Lab Notebook Questions 1-2</a></td>
   </tr>
   </table>
 
@@ -920,7 +914,7 @@ Q2D: What challenges or roadblocks did you face working on Q2C? What parts of th
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=86675173-9734-4f0f-8a06-ade900486927">Working With Multiple Pages</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=93e01715-dc47-4182-b6a8-af360172c76d">Working With Multiple Pages</a></td>
   </tr>
   </table>
 
@@ -1009,7 +1003,7 @@ NOTE: You DO NOT need to write a program that scrapes data from these pages for 
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=94cac193-ae03-43e8-890e-ade9004d9a17">pandas.read_html()</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f02d35d9-bb7f-4503-9f79-af360172f44e">pandas.read_html()</a></td>
   </tr>
   </table>
 
@@ -1107,7 +1101,7 @@ df.to_csv("output.csv", index=False)
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=73a9d3b1-4a1e-4923-ae1c-ade900503cb8">Lab Notebook Questions 8-11</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234b8c5b-7641-47bf-a61c-af3601731318">Lab Notebook Questions 5-7</a></td>
   </tr>
   </table>
   
@@ -1134,7 +1128,7 @@ Q7B: What challenges or roadblocks did you face working on Q7B? What parts of th
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8218edd5-5c66-4f2e-9fe6-ade90052aa96">Unstructured Text</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=13f5e27a-d21f-48a8-883b-af360173332a">Unstructured Text</a></td>
   </tr>
   </table>
 
@@ -1293,7 +1287,7 @@ with open("output.txt", "a") as f: # with statement that creates new txt file in
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1b6546d8-c040-4186-b5a5-ade90056af7a">Lab Notebook Questions 12-16</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ee5be045-9655-4f34-a03e-af36017356f3">Lab Notebook Question 8</a></td>
   </tr>
   </table>
 
@@ -1326,7 +1320,7 @@ Q8D: What challenges or roadblocks did you face working on Q8C? What parts of th
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=915f2e6c-5f80-45c3-b44f-ade90058e01f">Oh the Places You Could Go</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b27a90ce-1247-4f24-bf63-af3601737891">Oh the Places You Could Go</a></td>
   </tr>
   </table>
 
@@ -1388,7 +1382,7 @@ A few projects that do this with speeches given by U.S. presidents:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=32080574-8fa5-4a3b-93a6-ade9005afdca">Why Did We Do This</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=30d2c0df-f48c-466a-bfa8-af3601739408">Why Did We Do This</a></td>
   </tr>
   </table>
 
@@ -1502,7 +1496,7 @@ Q8D: What challenges or roadblocks did you face working on Q8C? What parts of th
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cc961b6a-ef23-4329-a570-ade9005d8411">Final Project Next Steps</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d0206a3-4f08-47da-9cd9-af360173b157">Final Project Next Steps</a></td>
   </tr>
   </table>
 
