@@ -36,7 +36,6 @@ The introductory sections of this lab are based on and adapted from:
 
 - [Lecture & Live Coding](#lecture--live-coding)
 - [Lab Notebook Template](#lab-notebook-template)
-- [Overview](#overview)
 - [Beautiful Soup Overview](#beautiful-soup-overview)
 - [Beautiful Soup & Structured Data](#beautiful-soup--structured-data)
 - [Working With Multiple Pages](#working-with-multiple-pages)
@@ -76,11 +75,7 @@ Example:
 # Lab Notebook Template
 
 Lab notebook template:
-- [Jupyter Notebook](https://drive.google.com/file/d/1LRsbOC11-8YrPUNBJNAzJDiIM_CQJ3go/view?usp=sharing)
-
-# Overview
-
-INTRO TO WEB SCRAPING, WHY ARE WE DOING THIS
+- [Jupyter Notebook]()
 
 # Beautiful Soup Overview
 
