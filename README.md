@@ -46,7 +46,7 @@ The introductory sections of this lab are based on and adapted from:
 - [Lab Notebook Questions](#lab-notebook-questions)
 - [Final Project Next Steps](#final-project-next-steps)
 
-[Link to lab procedure as a Jupyter Notebook]()
+[Link to lab procedure as a Jupyter Notebook](https://colab.research.google.com/drive/1Wymv50jxQl3u64qpL8kjDFu4LxUlTiz8?usp=sharing)
 
 # Lecture & Live Coding
 
@@ -74,8 +74,7 @@ Example:
 
 # Lab Notebook Template
 
-Lab notebook template:
-- [Jupyter Notebook]()
+[Click here](https://colab.research.google.com/drive/1-2ahHpMdSzYFSVLnZGfldEoAuyRs5wj7?usp=sharing) to access the lab notebook template as a Jupyter Notebook (Google Colab, ND Users).
 
 # Beautiful Soup Overview
 
@@ -1399,8 +1398,7 @@ Manually wrangling or manipulating data makes it difficult for colleagues (and f
 
 # Lab Notebook Questions
 
-Lab notebook template:
-- [Jupyter Notebook](https://drive.google.com/file/d/1LRsbOC11-8YrPUNBJNAzJDiIM_CQJ3go/view?usp=sharing)
+[Click here](https://colab.research.google.com/drive/1-2ahHpMdSzYFSVLnZGfldEoAuyRs5wj7?usp=sharing) to access the lab notebook template as a Jupyter Notebook (Google Colab, ND Users).
 
 Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
 
