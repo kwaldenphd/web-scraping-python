@@ -37,18 +37,9 @@ The introductory sections of this lab are based on and adapted from:
 - [Lecture & Live Coding](#lecture--live-coding)
 - [Lab Notebook Template](#lab-notebook-template)
 - [Overview](#overview)
-- [Beautiful Soup](#beautiful-soup)
-  * [Introduction to Beautiful Soup](#introduction-to-beautiful-soup)
-  * [Installing Beautiful Soup](#installing-beautiful-soup)
-  * [Loading URLs in Python](#loading-urls-in-python)
-  * [Creating a Beautiful Soup Object](#creating-a-beautiful-soup-object)
+- [Beautiful Soup Overview](#beautiful-soup-overview)
 - [Beautiful Soup & Structured Data](#beautiful-soup--structured-data)
-  * [Concept Refresh](#concept-refresh)
-    * [HTML Refresh](#html-refresh)
-    * [File Methods Refresh](#file-methods-refresh)
-  * [Using BeautifulSoup with a Single Web Page](#using-beautifulsoup-with-a-single-web-page)
-    * [Sample For Loops](#sample-for-loops)
-  * [Working With Multiple Pages](#working-with-multiple-pages)
+- [Working With Multiple Pages](#working-with-multiple-pages)
 - [An Alternate Approach: `pandas.read_html()`](#an-alternate-approach-pandasread_html)
 - [Beautiful Soup & Unstructured Text](#beautiful-soup---unstructured-text)
   * [Oh, the Places You Could Go](#oh-the-places-you-could-go) 
@@ -91,7 +82,7 @@ Lab notebook template:
 
 INTRO TO WEB SCRAPING, WHY ARE WE DOING THIS
 
-# Beautiful Soup
+# Beautiful Soup Overview
 
 <table>
  <tr><td>
@@ -101,6 +92,12 @@ INTRO TO WEB SCRAPING, WHY ARE WE DOING THIS
   </table>
   
 ## Introduction to Beautiful Soup
+
+Table of contents for this section:
+- [Introduction to Beautiful Soup](#introduction-to-beautiful-soup)
+- [Installing Beautiful Soup](#installing-beautiful-soup)
+- [Loading URLs in Python](#loading-urls-in-python)
+- [Creating a Beautiful Soup Object](#creating-a-beautiful-soup-object)
 
 What is Beautiful Soup? "Beautiful Soup is a Python library for pulling data out of HTML and XML files. It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree. It commonly saves programmers hours or days of work" ([Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)) The library name is an allusion to the song Lewis Carroll character the Mock Turtle sings in Chapter 10 of *Alice's Adventures in Wonderland*.
 
@@ -156,9 +153,20 @@ Now, we are ready to parse the web page's HTML using `BeautifulSoup`.
 
 # Beautiful Soup & Structured Data
 
+Table of contents for this section:
+- [Concept Refresh](#concept-refresh)
+  * [HTML Tables](#html-tables)
+  * [File Methods](#file-methods)
+- [Using BeautifulSoup with a Single Web Page](#using-beautifulsoup-with-a-single-web-page)
+  * [Finding a Table](#finding-a-table)
+  * [Extracting the Medal Table](#extract-medal-table)
+  * [Testing on a Single Table Row (Single Country)](#testing-on-single-table-row-single-country)
+  * [Iterating Over Multiple Rows](#iterating-over-multiple-rows)
+- [Application](#application)
+
 ## Concept Refresh
 
-### HTML Refresh
+### HTML Tables
 
 <table>
  <tr><td>
@@ -262,7 +270,7 @@ For more detail on HTML and CSS:
 - [W3Schools CSS Tutorial](https://www.w3schools.com/css)
 - [EoC HTML/CSS Lab](https://github.com/kwaldenphd/HTML-CSS/tree/EoC1-F20)
 
-### File Methods Refresh
+### File I/O
 
 <table>
  <tr><td>
@@ -518,6 +526,11 @@ rows
 
 ### Testing On Single Table Row (Single Country)
 
+Table of contents for this section:
+- [Country Name](#country-name)
+- [Country URL](#country-url)
+- [Medal Counts](#medal-counts)
+
 So now we have the HTML for each row in the table as a list value in our `medal_test` list. To recap:
 - Load url using `requests.get()` 
 - Creat `BeautifulSoup` object using `BeautifulSoup()
@@ -752,7 +765,6 @@ To recap our workflow so far:
 - Develop program that works on single row using combination of index values, `.get()`, `.find()`, and `.contents[]`
 - Create list from extracted values
 
-
 Now that we have working code that will extract each piece of data as a variable, we want to run these lines of code on each country in the table to get the data in each column. We can do this using a `for` loop that iterates over each row in the table. 
 
 But before we throw iteration into the mix, we might want to remove or exclude rows in the table that don't follow the pattern or structure of the rows with data. Specifically for this table, the first two rows have the column header information and don't match the format/structure of the rest of the table. One option for removing these rows would be `del` statements.
@@ -901,7 +913,7 @@ A preliminary workflow:
 
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
 
-Q2D: What challenges or roadblocks did you face working on Q4? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+Q2D: What challenges or roadblocks did you face working on Q2C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 # Working With Multiple Pages
 
@@ -1115,7 +1127,7 @@ NOTE: For Q3, you did not need to have working code for all components of this p
 
 ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
 
-Q7B: What challenges or roadblocks did you face working on Q10? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
+Q7B: What challenges or roadblocks did you face working on Q7B? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
 
 # `Beautiful Soup` & Unstructured Text
 
@@ -1143,6 +1155,7 @@ soup = BeautifulSoup(page.text, 'html.parser')
 # show BeautifulSoup object
 soup
 ```
+
 Next, we want to isolate the section of the page that includes the article text.
 
 ```HTML
@@ -1306,7 +1319,7 @@ A preliminary workflow:
 
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
 
-Q8D: What challenges or roadblocks did you face working on Q15? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+Q8D: What challenges or roadblocks did you face working on Q8C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 ## Oh, the Places You Could Go
 
@@ -1400,6 +1413,89 @@ Manually wrangling or manipulating data makes it difficult for colleagues (and f
 Lab notebook template:
 - [Jupyter Notebook](https://drive.google.com/file/d/1LRsbOC11-8YrPUNBJNAzJDiIM_CQJ3go/view?usp=sharing)
 
+Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
+
+Q2A: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
+
+Q2B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
+
+Q2C: Develop an outline for a Python program that scrapes data from the web page you selected. 
+
+A preliminary workflow:
+- Load URL and create BeautifulSoup object
+- Isolate section of HTML with your table (either directly or extract from list)
+- Isolate table row elements (create list where each element is a table row)
+- Extract contents from row (isolate the pieces of information from each row)
+- Create Pandas DataFrame
+- Write extracted row contents to CSV file
+
+NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+Q2D: What challenges or roadblocks did you face working on Q2C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+
+Q3: Describe in your own words how the url generation program covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
+
+Q4: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.
+
+A few places to start:
+- Baseball Reference season web pages have the following URL pattern:
+  * `https://www.baseball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.shtml`
+- Basketball Reference season web pages have a similar pattern for NBA teams:
+  * `https://www.basketball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- Basketball Reference uses a slightly different pattern for its WNBA pages:
+  * `https://www.basketball-reference.com/wnba/teams`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- College Basketball Reference pages also follow a pattern: 
+  * `https://www.sports-reference.com/cbb/schools`, `SCHOOL ABBREVIATION`, `SEASON`, `.html`
+- For Hockey Reference pages: 
+  * `https://www.hockey-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
+- Football Reference pages follow the same pattern for men's and women's teams:
+  * `https://fbref.com/en/squads/`, `SQUAD ID`, `SEASON`, `TEAM NAME`
+- Pro Football Reference pages also have a pattern: 
+  * `https://www.pro-football-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.htm`
+
+NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range. 
+
+Q5: Describe the general approach to loading a web page in Python using `pd.read_html()`. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?
+
+Q6: For Q4, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered. Do these pages have the same pattern in terms of number and order of tables? For one of these pages, what table or tables on these pages would you want to be able to extract and work with?
+
+Q7A: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from one of the web pages you select in Q6.
+
+A preliminary workflow:
+- Use `pd.read_html()` to create a list of DataFrame objects
+- Identify which DataFrame object in the list is the table you want to work with
+- Isolate the list element to create a new DataFrame
+- Write the new DataFrame to a CSV file
+
+NOTE: For Q3, you did not need to have working code for all components of this program. Since `pd.read_html()` has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
+
+Q7B: What challenges or roadblocks did you face working on Q7A? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
+
+Q8A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
+
+A few places to start for unstructured text:
+- [The Observer!](https://ndsmcobserver.com) (or another news publication of your choosing)
+- [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
+  * [U.S. Presidential State of the Union Addresses](https://en.wikisource.org/wiki/Portal:State_of_the_Union_Speeches_by_United_States_Presidents)
+  * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
+- [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
+
+Q8B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+
+Q8C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+
+A preliminary workflow:
+- Load URL and create BeautifulSoup object
+- Isolate section of HTML with your text (either directly or extract from list)
+- IF NEEDED: Isolate text elements (create list where each element is a section of text)
+- IF NEEDED: Extract text contents (isolate text from each section/paragraph)
+- Write text to TXT file
+
+NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+
+Q8D: What challenges or roadblocks did you face working on Q8C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
 
 # Final Project Next Steps
 
@@ -1410,9 +1506,9 @@ Lab notebook template:
   </tr>
   </table>
 
-Our work in this lab is designed to lay the foundation and serve as a springboard for final project work. Specifically, Q4, Q10, and Q13 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`. Those questions (and other work for this lab) are the starting place for the final project.
+Our work in this lab is designed to lay the foundation and serve as a springboard for final project work. Specifically, Q2, Q7, and Q8 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`. Those questions (and other work for this lab) are the starting place for the final project.
 
-The final project for this course involves a web-scraping project written in Python. Specifically, the final project allows you to select a web page (or web pages) and write a Python program (or programs) that downloads select content from that web page as a plain-text file (`CSV`, `TXT`, etc). That content could be paragraphs of text, tables of data, etc. 
+The final project for this course involves a web-scraping project written in Python. Specifically, the final project allows you to select a web page (or web pages) and write a Python program (or programs) that downloads select content from that web page as a plain-text file (`.csv`, `.txt`, etc). That content could be paragraphs of text, tables of data, etc. 
 
 Successful final projects will include two main components:
 - a well-documented, working Python program written in Jupyter Notebooks
@@ -1423,7 +1519,7 @@ Expect to spend at least 10 hours working on the final project. That includes br
 
 Contact the instructor with questions.
 
-So where to start? The instructor and TAs are going to move quickly on getting you feedback on this lab. But your work in Q4, Q10, and Q13 should be the starting place for how you think about and approach the final project. Specifically, think about the kinds of web content you were able to scrape for these questions and how you might further develop, refine, or expand your work.
+So where to start? The instructor and TAs are going to move quickly on getting you feedback on this lab. But your work in Q2, Q7, and Q8 should be the starting place for how you think about and approach the final project. Specifically, think about the kinds of web content you were able to scrape for these questions and how you might further develop, refine, or expand your work.
 
 For example, these questions asked you to develop an outline for specific types of webscraping programs. 
 - One next step for the final project could be selecting 1-2 of these programs and further developing or refining the code.
