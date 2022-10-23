@@ -584,7 +584,7 @@ Then, we can use `.contents[]` (part of `BeautifulSoup`) to get the contents of 
 
 ```Python
 # isolate country name using contents and index
-name = cells.contents[0]
+name = cells[0].contents[0]
 
 # show country_name HTML
 name
@@ -620,7 +620,7 @@ Voila! The country name. Putting that all together:
 
 ```Python
 # combined program for country name
-name = cells.contents[0].find('a').contents[0]
+name = cells[0].contents[0].find('a').contents[0]
 ```
 
 ### Country URL
@@ -633,7 +633,7 @@ If we look at the HTML associated with `country_name`, we can see that the count
 
 ```Python
 # get first/only instance of a link tag in HTML for single country
-link = name.find('a')
+link = cells[0].find('a')
 
 # show link
 link
@@ -663,8 +663,9 @@ Great! Now we have the full link.
 
 ```Python
 # combined program for link
-link = name.find('a').get('href')
+link = cells[0].find('a').get('href')
 link = "https://en.wikipedia.org" + link
+print(link)
 ```
 
 #### Medal Counts
@@ -708,7 +709,7 @@ winter_bronze = cells[9].contents[0]
 winter_medals = cells[10].contents[0].strip()
 
 # total number combined olympic appearances
-combined_olympics = cells[11].strip()
+combined_olympics = cells[11].contents[0].strip()
 
 # total number gold medals
 gold_total = cells[12].contents[0]
@@ -733,8 +734,8 @@ We could also create a list with the medal data and the country names + links we
 
 ```Python
 # add country name and URL to medals list
-medals.insert(country_name, 0)
-medals.insert(link, 1)
+medals.insert(0, name)
+medals.insert(1, link)
 
 # show updated list
 print(medals)
@@ -768,65 +769,47 @@ del rows[0]
 print(rows)
 ```
 
-Alternate workflow that uses list comprehension to subset `rows`:
-
-```Python
-# recreate list of rows
-rows = table.find_all('tr')
-
-# subset rows to drop first two
-index_list = [0, 1]
-
-# use list comprehension to subset list
-rows = [rows[i] for i in index_list]
-
-# show updated list of rows
-rows
-```
-
-<blockquote>For more on list comprehension: https://www.w3schools.com/python/python_lists_comprehension.asp</blockquote>
-
 Now we're ready to iterate over each country (table row) using the code we tested on a single country. We can create a list with each row's values and append that list as a sublist or nested list to an empty list.
 
 ```Python
 table_rows = [] # empty list for data
 
-for row in table: # for loop that iterates over rows
-	tags = [] # create empty list for td tags in single row
+for row in rows: # for loop that iterates over rows
+  tags = [] # create empty list for td tags in single row
 	
-	cells = row.find_all('td') # isolate cells, td elements
+  cells = row.find_all('td') # isolate cells, td elements
 	
-	tags.append(cells) # append tags to tag list
+  tags.append(cells) # append tags to tag list
 	
-	for cells in tags: # for loop that iterates over cells in row
-		try:
-			name = cells.contents[0].find('a').contents[0] # name
-			link = name.find('a').get('href') # link
-			link = "https://en.wikipedia.org" + link
-			summer = cells[1].contents[0] # number of summer olympic appearances
-			summer_gold = cells[2].contents[0] # number of summer gold medals
-			summer_silver = cells[3].contents[0] # number of summer silver medals
-			summer_bronze = cells[4].contents[0] # number of summer bronze medal
-			summer_medals = cells[5].contents[0].strip() # total number of summer olympics medals, using strip() to remove line break
-			winter = cells[6].contents[0] # total number of winter olympic appearances
-			winter_gold = cells[7].contents[0] # number of winter gold medals
-			winter_silver = cells[8].contents[0] # number of winter silver
-			winter_bronze = cells[9].contents[0] # number of winter bronze
-			winter_medals = cells[10].contents[0].strip() # total number of winter medals
-			combined_olympics = cells[11].strip() # total number combined olympic appearances
-			gold_total = cells[12].contents[0] # total number gold medals
-			silver_total = cells[13].contents[0] # total number silver medals
-			bronze_total = cells[14].contents[0] # total number bronze medals
-			medals_total = cells[15].contents[0].strip() # total number of medals, combined
+  for cells in tags:
+    try:
+      name = cells[0].contents[0].find('a').contents[0] # combined program for country name
+      link = cells[0].find('a').get('href') # for loop that iterates over cells in row
+      link = "https://en.wikipedia.org" + link
+      summer = cells[1].contents[0] # number of summer olympic appearances
+      summer_gold = cells[2].contents[0] # number of summer gold medals
+      summer_silver = cells[3].contents[0] # number of summer silver medals
+      summer_bronze = cells[4].contents[0] # number of summer bronze medals
+      summer_medals = cells[5].contents[0].strip() # total number of summer olympics medals, using strip() to remove line break
+      winter = cells[6].contents[0] # total number of winter olympic appearances
+      winter_gold = cells[7].contents[0] # number of winter gold medals
+      winter_silver = cells[8].contents[0] # number of winter silver
+      winter_bronze = cells[9].contents[0] # number of winter bronze
+      winter_medals = cells[10].contents[0].strip() # total number of winter medals
+      combined_olympics = cells[11].contents[0].strip() # total number combined olympic appearances
+      gold_total = cells[12].contents[0] # total number gold medals
+      silver_total = cells[13].contents[0] # total number silver medals
+      bronze_total = cells[14].contents[0] # total number bronze medals
+      medals_total = cells[15].contents[0].strip() # total number of medals, combined
 
-            		# creates list of values from each data element
-            		row_data = [name, link, summer, summer_gold, summer_silver, summer_bronze, summer_medals, winter, winter_gold, winter_silver, winter_bronze, winter_medals, combined_olympics, gold_total, silver_total, bronze_total, medals_total]
-
-            		# append row_data to test_list
-            		table_rows.append(row_data)
+      # creates list of values from each data element
+      row_data = [name, link, summer, summer_gold, summer_silver, summer_bronze, summer_medals, winter, winter_gold, winter_silver, winter_bronze, winter_medals, combined_olympics, gold_total, silver_total, bronze_total, medals_total]
+      
+      # append row_data to test_list
+      table_rows.append(row_data)
             
-        	except:
-            		continue
+    except:
+      continue
     
 # show list
 table_rows
