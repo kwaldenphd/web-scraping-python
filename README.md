@@ -40,7 +40,7 @@ The introductory sections of this lab are based on and adapted from:
 - [Beautiful Soup & Structured Data](#beautiful-soup--structured-data)
 - [Working With Multiple Pages](#working-with-multiple-pages)
 - [An Alternate Approach: `pandas.read_html()`](#an-alternate-approach-pandasread_html)
-- [Beautiful Soup & Unstructured Text](#beautiful-soup---unstructured-text)
+- [Beautiful Soup & Unstructured Text](#beautiful-soup--unstructured-text)
   * [Oh, the Places You Could Go](#oh-the-places-you-could-go) 
 - [Why did we do this?](#why-did-we-do-this)
 - [Lab Notebook Questions](#lab-notebook-questions)
