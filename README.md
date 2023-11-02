@@ -1,7 +1,6 @@
 # Web Scraping in Python
 
-<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
-This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>This tutorial was written by Katherine Walden and is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 
 ## Lab Overview
 
@@ -42,8 +41,8 @@ The introductory sections of this lab are based on and adapted from:
 - [Beautiful Soup & Unstructured Text](#beautiful-soup--unstructured-text)
   * [Oh, the Places You Could Go](#oh-the-places-you-could-go) 
 - [Why did we do this?](#why-did-we-do-this)
+- [How to Submit This Lab (and show your work)](#how-to-submit-this-lab-and-show-your-work)
 - [Lab Notebook Questions](#lab-notebook-questions)
-- [Final Project Next Steps](#final-project-next-steps)
 
 [Link to lab procedure as a Jupyter Notebook](https://colab.research.google.com/drive/1Wymv50jxQl3u64qpL8kjDFu4LxUlTiz8?usp=sharing)
 
@@ -74,6 +73,23 @@ Example:
 # Lab Notebook Template
 
 [Click here](https://colab.research.google.com/drive/1-2ahHpMdSzYFSVLnZGfldEoAuyRs5wj7?usp=sharing) to access the lab notebook template as a Jupyter Notebook (Google Colab, ND Users).
+
+## How to submit this lab (and show your work)
+
+Moving forward, we're going to be submitting lab notebooks using Jupyter Notebook templates.
+- If working in JupyterLab (or another desktop IDE), download the `.ipynb` file to your local computer
+  * `File` - `Download` - `Download as .ipynb`
+- If working in Google Colaboratory, MAKE SURE you save a copy to your local drive. Otherwise your changes will not be saved.
+  * `File` - `Save a copy in Drive`
+
+The lab notebook template includes all of the questions as well as pre-created markdown cells for narrative text answers and pre-created code cells for any programs you may need to create. 
+- Double click on these cells to edit and add your own content
+- If questions do not require a code component, you can ignore those cells
+- If questions to not require a narrative component, you can ignore those cells
+
+If working in JupyterLab or another desktop IDE, upload the lab notebook template `.ipynb` file to Canvas as your lab submission.
+
+If working in Google Colaboratory, submit the link to your notebook (checking sharing permissions, similar with Google Docs).
 
 # Beautiful Soup Overview
 
@@ -1234,6 +1250,23 @@ Scientific disciplines value research that can be reproduced and replicated. A 2
 <em>Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013) Ten Simple Rules for Reproducible Computational Research. PLOS Computational Biology 9(10): e1003285. https://doi.org/10.1371/journal.pcbi.1003285.</em></blockquote>
 
 Manually wrangling or manipulating data makes it difficult for colleagues (and future you) to understand how you got from point A to point B with your data. It also increases the likelihood of human error. In the *PLOS Computational Biology* article, one of the ten rules the authors outline is "Avoid Manual Data Manipulation Steps." The Python workflows we're covering in this lab move in the direction of automating the data scraping/manipulation process, creating a template or workflow others could implement or adapt. 
+
+# How to submit this lab (and show your work)
+
+Moving forward, we're going to be submitting lab notebooks using Jupyter Notebook templates.
+- If working in JupyterLab (or another desktop IDE), download the `.ipynb` file to your local computer
+  * `File` - `Download` - `Download as .ipynb`
+- If working in Google Colaboratory, MAKE SURE you save a copy to your local drive. Otherwise your changes will not be saved.
+  * `File` - `Save a copy in Drive`
+
+The lab notebook template includes all of the questions as well as pre-created markdown cells for narrative text answers and pre-created code cells for any programs you may need to create. 
+- Double click on these cells to edit and add your own content
+- If questions do not require a code component, you can ignore those cells
+- If questions to not require a narrative component, you can ignore those cells
+
+If working in JupyterLab or another desktop IDE, upload the lab notebook template `.ipynb` file to Canvas as your lab submission.
+
+If working in Google Colaboratory, submit the link to your notebook (checking sharing permissions, similar with Google Docs).
 
 # Lab Notebook Questions
 
