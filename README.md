@@ -38,7 +38,6 @@ The introductory sections of this lab are based on and adapted from:
 - [Lab Notebook Template](#lab-notebook-template)
 - [Beautiful Soup Overview](#beautiful-soup-overview)
 - [Beautiful Soup & Structured Data](#beautiful-soup--structured-data)
-- [Working With Multiple Pages](#working-with-multiple-pages)
 - [An Alternate Approach: `pandas.read_html()`](#an-alternate-approach-pandasread_html)
 - [Beautiful Soup & Unstructured Text](#beautiful-soup--unstructured-text)
   * [Oh, the Places You Could Go](#oh-the-places-you-could-go) 
@@ -267,89 +266,11 @@ For more detail on HTML and CSS:
 
 ### File I/O
 
-As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`). A quick review of how Python handles creating, reading, and writing files, specifically focusing on...
+As part of our work in this lab, we'll be saving the content we have scraped from a web page to a plain-text file (either `.txt` or `.csv`), focusing on...
 - `open()`
 - `write()`
 
-#### `open()`
-
-The `open()` function lets us open an existing file or create a new file in Python. For either version of `open()` (new file or existing file), we need to specify the file name (with the file type extension) and access mode.
-
-```Python
- # creates new txt file with write permission
- f = open("new_file.txt", "w")
-```
- 
-```Python
- # creates new CSV file with write privileges
- f = open("new_file.csv", "w")
-```
-
-[Click here](https://github.com/kwaldenphd/python-structured-data#file-io--access-modes) To review file I/O and access modes in Python.
- 
-#### `write()`
-
-Once we have a newly-created file in Python, we can use the `write()` function to ***write*** content to that file.
-
-```Python
-# creates new txt file with write permission
-f = open("new_file.txt", "w")
-
-# writes string to new file
-f.write("Hello world!")
-
-# closes file
-f.close()
-```
-
-Another example where we have assigned a string to a variable and write the variable to the `.txt` file:
-
-```Python
-# creates new txt file with write permission
-f = open("new_file.txt", "w")
-
-# assigns string to variable
-hello_world = "Hello world!"
-
-# writes string variable to new file
-f.write(hello_world)
-
-# closes file
-f.close()
-```
-
-#### `open()`, `write()`, and `.csv` files
-
-A quick review:
-- `CSV` stands for comma-separated values.
-- `CSV` files are the plain-text, machine-readable file type for tabular data (table data, or data in a spreadsheet structure)
-
-An overview of the workflow for creating a CSV file using the `csv` module:
-- Create a file using the `open()` function
-- Create the `writer` object using the `writer()` function.
-- Use the `.writerow()` method to write individual lists as rows
-
-Putting that all together:
-
-```Python
-# create new CSV file with write privileges
-f = open("new_file.csv", "w")
- 
-# create writer object
-outputWriter = csv.writer(f)
-
-# write first row
-outputWriter.writerow(['Parameter', 'Name', 'Description')]
-
-# write second row
-outputWriter.writerow(['t', 'Text', 'Treats file as text data; also the default value'])
-
-# write third row
-outputWriter.writerow(['b', 'Binary', 'Treats the file as binary data')]
-
-# close file
-f.close()
-```
+[Click here](https://github.com/kwaldenphd/python-structured-data#file-io--access-modes) to review file I/O and access modes in Python.
 
 ## Using BeautifulSoup With a Single Web Page
 
@@ -866,13 +787,11 @@ df.to_csv("output.csv", index=False)
   </tr>
   </table>
 
-Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
+Q1A: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
 
-Q2A: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
+Q1B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
 
-Q2B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
-
-Q2C: Develop an outline for a Python program that scrapes data from the web page you selected. 
+Q1C: Develop an outline for a Python program that scrapes data from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -882,98 +801,9 @@ A preliminary workflow:
 - Create Pandas DataFrame
 - Write extracted row contents to CSV file
 
-NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q2D: What challenges or roadblocks did you face working on Q2C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
-
-# Working With Multiple Pages
-
-<table>
- <tr><td>
-<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=93e01715-dc47-4182-b6a8-af360172c76d">Working With Multiple Pages</a></td>
-  </tr>
-  </table>
-
-In the previous example of a Wikipedia page with Olympic medal counts, we were scraping data from a single web page. But we can also imagine a scenario where we might want to scrape data from multiple web pages or a series of web pages that have the same HTML structure or format. For example, head to https://www.sports-reference.com/cfb/schools/notre-dame/1940-schedule.html to explore the College Football Reference page for Notre Dame's 1940 football season.
-
-<p align="center"><img src="https://github.com/kwaldenphd/web-scraping-python/blob/main/images/fig4.jpg?raw=true"></p>
-
-We can use the `Previous Year` and `Next Year` buttons at the top of the page to look at pre- and post-1940 pages. Take a look at page URLs as you change years- the start (or root) of the url `https://www.sports-reference.com/cfb/schools/notre-dame/` and the end (or tag) of the url `-schedule.html` remain the same, while only the year value changes. Since the data format/structure is fairly consistent across the different season pages, if we get a program working for one season/page, it stands to reason we could run that program on multiple pages by iterating over a list of URLs.
-
-Let's take a look at how we could get a list of URLs programmatically for the College Football Reference Notre Dame pages. First, we would assign the URL root and tag to named variables.
-
-```Python
-# root url
-root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
-
-# url tag
-tag = "-schedule.html"
-```
-
-Then, we could use `range` to create a list of years spanning the dates we want to cover.
-
-```Python
-# year range
-years = list(range(1899, 2021, 1))
-```
-
-Then, we could use concatenation and a `for` loop to generate a list of full URLs for the seasons we want to cover.
-
-```Python
-# empty list for urls
-urls = []
-
-# for loop that concatenates full url
-for year in years:
-    urls.append(root + str(year) + tag)
-    
-# show list of urls
-urls
-```
-
-With the `urls` list, we could write a program that works for a single page and then use a `for` loop to iterate over each url in the `urls` list.
-
-Putting that all together:
-
-```Python
-root = "https://www.sports-reference.com/cfb/schools/notre-dame/"
-
-years = list(range(1899, 2021, 1))
-
-tag = "-schedule.html"
-
-urls = []
-
-for year in years:
-    urls.append(root + str(year) + tag)
-    
-urls
-```
-
-### Application
-
-Q3: Describe in your own words how the url generation program covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
-
-Q4: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.
-
-A few places to start:
-- Baseball Reference season web pages have the following URL pattern:
-  * `https://www.baseball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.shtml`
-- Basketball Reference season web pages have a similar pattern for NBA teams:
-  * `https://www.basketball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- Basketball Reference uses a slightly different pattern for its WNBA pages:
-  * `https://www.basketball-reference.com/wnba/teams`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- College Basketball Reference pages also follow a pattern: 
-  * `https://www.sports-reference.com/cbb/schools`, `SCHOOL ABBREVIATION`, `SEASON`, `.html`
-- For Hockey Reference pages: 
-  * `https://www.hockey-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- Football Reference pages follow the same pattern for men's and women's teams:
-  * `https://fbref.com/en/squads/`, `SQUAD ID`, `SEASON`, `TEAM NAME`
-- Pro Football Reference pages also have a pattern: 
-  * `https://www.pro-football-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.htm`
-
-NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range. 
+Q1D: What challenges or roadblocks did you face working on Q1C? How did you start to tackle or solve them? 
 
 # An Alternate Approach: pandas.read_html()
 
@@ -1082,11 +912,8 @@ df.to_csv("output.csv", index=False)
   </tr>
   </table>
   
-Q5: Describe the general approach to loading a web page in Python using `pd.read_html()`. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?
-
-Q6: For Q4, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered. Do these pages have the same pattern in terms of number and order of tables? For one of these pages, what table or tables on these pages would you want to be able to extract and work with?
-
-Q7A: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from one of the web pages you select in Q6.
+Q2A: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from a web page of your choosing.
+- *Wikipedia tables are fair game, but folks interested in sport data may want to head over to a [Sports Reference](https://www.sports-reference.com/) site.*
 
 A preliminary workflow:
 - Use `pd.read_html()` to create a list of DataFrame objects
@@ -1094,11 +921,11 @@ A preliminary workflow:
 - Isolate the list element to create a new DataFrame
 - Write the new DataFrame to a CSV file
 
-NOTE: For Q3, you did not need to have working code for all components of this program. Since `pd.read_html()` has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: Even though `pd.read_html()` has an easier learning curve than `BeautifulSoup`, this program will have a few moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
 ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
 
-Q7B: What challenges or roadblocks did you face working on Q7B? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
+Q3B: What challenges or roadblocks did you face working on Q3A? How did you start to tackle or solve them? 
 
 # `Beautiful Soup` & Unstructured Text
 
@@ -1109,16 +936,18 @@ Q7B: What challenges or roadblocks did you face working on Q7B? What parts of th
   </tr>
   </table>
 
-So far, this lab has focused on approaches for scraping structured data from the web using Python. But there are other contexts and use cases when we might want to be able to scrape unstructured text from the web and be able to work with that "data" in Python (or write it to a plain-text `.txt` file). For example, take a look at Fall 2021 *Observer* article: https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/
+So far, this lab has focused on approaches for scraping structured data from the web using Python. But there are other contexts and use cases when we might want to be able to scrape unstructured text from the web and be able to work with that "data" in Python (or write it to a plain-text `.txt` file). 
 
-Imagine we wanted to use Python to analyze the words or terms used in this article. The first step would be to get a plain-text `.txt` version of the article text.  We would start with the same `BeautifulSoup` workflow we've used previously:
+For example, take a look at U.S. President John F. Kennedy's 1961 inaugural address: https://en.wikisource.org/wiki/John_F._Kennedy%27s_Inaugural_Address
+
+Imagine we wanted to use Python to analyze the words or terms used in this text. The first step would be to get a plain-text `.txt` version of the article text.  We would start with the same `BeautifulSoup` workflow we've used previously:
 - Load URL
 - Create `BeautifulSoup` object
-- Isolate section of HTML with article text
+- Isolate section of HTML with speech text
 
 ```Python
 # get page
-page = requests.get("https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/")
+page = requests.get("https://en.wikisource.org/wiki/John_F._Kennedy%27s_Inaugural_Address")
 
 # create BeautifulSoup object
 soup = BeautifulSoup(page.text, 'html.parser')
@@ -1130,133 +959,118 @@ soup
 Next, we want to isolate the section of the page that includes the article text.
 
 ```HTML
-<article class="section news">
-<div class="title-container">
-<h2 class="topic"><span class="title">news</span></h2>
-<ul class="see-social addthis_toolbox" addthis:url="https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/" addthis:title="South Bend community leaders discuss role of Notre Dame in fight for Black civil rights" addthis:description="South Bend community leaders discuss role of Notre Dame in fight for Black civil rights">
-<li><a class="addthis_button_email email"></a></li>
-<li><a class="addthis_button_facebook facebook"></a></li>
-<li><a class="addthis_button_twitter twitter"></a></li>
-</ul> 
-</div> 
-<div class="content-header">
-<h3>South Bend community leaders discuss role of Notre Dame in fight for Black civil rights</h3>
-<p class="info"><a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/author/vortiz2/" title="Posts by Valeria Ortiz" class="author url fn" rel="author">Valeria Ortiz</a> | Friday, October 15, 2021</p>
-
-</div> 
-<span id="outstream-unit" style="width:100%;height:550px;padding:0.5em 0"></span>
-<div class="content-body">
-<p>The Notre Dame Initiative on Race and Resilience hosted a panel Wednesday in DeBartolo Hall on Black civil rights in South Bend, featuring some of South Bend’s prominent community leaders.</p>
-<p>The panel, which intended to explore the immense social inequalities facing South Bend’s Black residents, included Trina Robinson, president of NAACP-South Bend; Regina Williams-Preston, president of Community Action for Education and former South Bend Common Council representative; Jorden Giger, co-founder of Black Lives Matter South Bend and Deacon Mel Tardy, deacon of St. Augustine Parish and an advising faculty at the University.</p>
-<figure id="attachment_234452" class="wp-caption aligncenter" style="width: 700px"> <div class="media-credit-container aligncenter" style="max-width: 710px">
-<img data-attachment-id="234452" data-permalink="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/screen-shot-2021-10-15-at-8-36-39-pm/" data-orig-file="https://web.archive.org/web/20211016150109/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=726%2C538&amp;ssl=1" data-orig-size="726,538" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2021-10-15 at 8.36.39 PM" data-image-description="" data-medium-file="https://web.archive.org/web/20211016150109/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" data-large-file="https://web.archive.org/web/20211016150109/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" class="wp-image-234452 size-medium" src="https://web.archive.org/web/20211016150109im_/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&amp;ssl=1" alt="" width="700" height="519" srcset="https://web.archive.org/web/20211016150109im_/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&amp;ssl=1 700w, https://web.archive.org/web/20211016150109im_/https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?w=726&amp;ssl=1 726w" sizes="(max-width: 700px) 100vw, 700px" data-recalc-dims="1"/><span class="media-credit">Valeria Ortiz | The Observer</span> </div>
-<figcaption class="wp-caption-text">In a Wednesday panel, community activists encouraged the University to give to local Black-owned businesses to support inclusion and business growth.</figcaption></figure>
-<p>The panelists offered their experiences and recommendations toward a stronger future for civil rights within the local community. They called for action to combat systemic racism — a historical pattern of denying opportunity to fair education, health and housing opportunities in South Bend.</p>
-<p>“He who wins the war gets to tell the story, so now we believe it all right. Here we are today seeing how that history gets uncovered,” Williams-Preston said.</p>
-<p>For more than a century, Tardy explained, African Americans have been moving to the north with the intention of looking for jobs after the Great Migration.</p>
-<p>“We have about 27% of [the] African American population,” Tardy said.</p>
-<p>However, the promise of labor has quickly shifted to the lack of job opportunities for people of color.</p>
-<p>“A lot of the families are having difficulty getting places to stay where there is some sort of consistency,” Tardy said.</p>
-<p>As mentioned in the panel, South Bend’s eviction rate is three times the national average. Low wages, prejudiced state policies and lack of affordable housing are the three main explanations for the city’s drastic increase in evictions, Williams Preston explained — and many citizens being displaced are people of color.</p>
-<p>In addition to the struggles people of color face in finding jobs, Robinson said the systematic racism that exists won’t let these communities break out of that endless loop of neglect.</p>
-<p>Panelists then discussed the ongoing disparities in the racial education gap, agreeing that the first step in improving the system is acknolwedging that there is an issue: Systematic racism leads to academic underperformance in children of color.</p>
-<p>“There exists a systematic problem … Black children don’t have less capabilities; the system is against them,” Williams-Preston said.</p>
-<p>Tardy emphasized the importance of educational resources and of having a strong focus on elementary schools where foundational skills are taught, such as reading and writing. He also stressed increasing accessibility of mental health resources.</p>
-<p>Robinson spoke of the need for reliable institutions in the education system.</p>
-<p>“We should hold corporations accountable for educating our children and for acknowledging the things that are not working,” Robinson said.</p>
-<p>Black-owned businesses struggle to grow because of the lack of support from big institutions and Indiana’s state government, Williams-Preston said.</p>
-<p>“It’s killing us,” she said.</p>
-<p>Williams-Preston said young people of color, including students, entrepreneurs and members of the community, are leaving South Bend due to a lack of opportunity.</p>
-<p>There is also space for improvement in the community of Notre Dame in eradicating “nepotism and favoritism,” Williams-Preston said. She argued that Notre Dame should support Black community efforts in “mining [their] gold” from the Westside Black communities in order to make them feel more connected.</p>
-<p>Panelists also suggested efforts to improve cooperation between local businesses and Notre Dame, including direct funding from the University in supporting local small Black-owned businesses. Efforts such as these, Williams-Preston explained, would provide much-needed space for business growth, talent training and inclusion within the community.</p>
-<p>“If we can do that, we won’t even be the first, but that’s the kind of thing Notre Dame needs to invest in &#8230; committing to becoming a leader in this community by investing in cooperative businesses right here at home,” Williams-Preston said.</p>
-<span class="tags">Tags: <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/activism/" rel="tag">activism</a>, <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/black-lives-matter/" rel="tag">Black lives matter</a>, <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/black-owned-businesses/" rel="tag">black-owned businesses</a>, <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/civil-rights/" rel="tag">Civil Rights</a>, <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/south-bend/" rel="tag">South Bend</a>, <a href="https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/tag/systemic-racism/" rel="tag">systemic racism</a></p>
-</div> 
-</article> 
+<span class="&#95;_watch ws-noexport noprint"><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><video id="mwe_player_1" poster="//upload.wikimedia.org/wikipedia/commons/thumb/7/74/John_F._Kennedy_Inauguration_Speech.ogv/220px--John_F._Kennedy_Inauguration_Speech.ogv.jpg" controls="" preload="none" class="mw-file-element" width="220" height="165" data-durationhint="931" data-mwtitle="John_F._Kennedy_Inauguration_Speech.ogv" data-mwprovider="wikimediacommons" resource="/wiki/File:John_F._Kennedy_Inauguration_Speech.ogv"><source src="//upload.wikimedia.org/wikipedia/commons/transcoded/7/74/John_F._Kennedy_Inauguration_Speech.ogv/John_F._Kennedy_Inauguration_Speech.ogv.480p.vp9.webm" type="video/webm; codecs=&quot;vp9, opus&quot;" data-transcodekey="480p.vp9.webm" data-width="640" data-height="480" /><source src="//upload.wikimedia.org/wikipedia/commons/7/74/John_F._Kennedy_Inauguration_Speech.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" data-width="640" data-height="480" /><source src="//upload.wikimedia.org/wikipedia/commons/transcoded/7/74/John_F._Kennedy_Inauguration_Speech.ogv/John_F._Kennedy_Inauguration_Speech.ogv.240p.vp9.webm" type="video/webm; codecs=&quot;vp9, opus&quot;" data-transcodekey="240p.vp9.webm" data-width="320" data-height="240" /><source src="//upload.wikimedia.org/wikipedia/commons/transcoded/7/74/John_F._Kennedy_Inauguration_Speech.ogv/John_F._Kennedy_Inauguration_Speech.ogv.360p.vp9.webm" type="video/webm; codecs=&quot;vp9, opus&quot;" data-transcodekey="360p.vp9.webm" data-width="480" data-height="360" /><source src="//upload.wikimedia.org/wikipedia/commons/transcoded/7/74/John_F._Kennedy_Inauguration_Speech.ogv/John_F._Kennedy_Inauguration_Speech.ogv.360p.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;" data-transcodekey="360p.webm" data-width="480" data-height="360" /><track src="https://commons.wikimedia.org/w/api.php?action=timedtext&amp;title=File%3AJohn_F._Kennedy_Inauguration_Speech.ogv&amp;lang=en&amp;trackformat=vtt&amp;origin=%2A" kind="subtitles" type="text/vtt" srclang="en" label="English ‪(en)‬" data-dir="ltr" /></video></span><figcaption>John F. Kennedy delivering his inaugural address<br />(<small>241.44 MB,&#32;15m 30s,&#32;<a href="https://commons.wikimedia.org/wiki/Project:Media_help" class="extiw" title="commons:Project:Media help">help</a>,&#32;<a href="https://commons.wikimedia.org/wiki/File:John_F._Kennedy_Inauguration_Speech.ogv" class="extiw" title="commons:File:John F. Kennedy Inauguration Speech.ogv">file info or download</a></small>)</figcaption></figure></span>
+<p>Vice President Johnson, Mr. Speaker, Mr. Chief Justice, President Eisenhower, Vice President Nixon, President Truman, Reverend Clergy, fellow citizens:
+</p><p>We observe today not a victory of party but a celebration of freedom, symbolizing an end as well as a beginning, signifying renewal as well as change. For I have sworn before you and Almighty God the same solemn oath our forbears prescribed nearly a century and three-quarters ago.
+</p><p>The world is very different now. For man holds in his mortal hands the power to abolish all forms of human poverty and all forms of human life. And yet the same revolutionary beliefs for which our forebears fought are still at issue around the globe–the belief that the rights of man come not from the generosity of the state but from the hand of God.
+</p><p>We dare not forget today that we are the heirs of that first revolution. Let the word go forth from this time and place, to friend and foe alike, that the torch has been passed to a new generation of Americans, born in this century, tempered by war, disciplined by a hard and bitter peace, proud of our ancient heritage, and unwilling to witness or permit the slow undoing of those human rights to which this nation has always been committed, and to which we are committed today at home and around the world.
+</p><p>Let every nation know, whether it wishes us well or ill, that we shall pay any price, bear any burden, meet any hardship, support any friend, oppose any foe to assure the survival and the success of liberty.
+</p><p>This much we pledge–and more.
+</p><p>To those old allies whose cultural and spiritual origins we share, we pledge the loyalty of faithful friends. United there is little we cannot do in a host of cooperative ventures. Divided there is little we can do; for we dare not meet a powerful challenge at odds and split asunder.
+</p><p>To those new states whom we welcome to the ranks of the free, we pledge our word that one form of colonial control shall not have passed away merely to be replaced by a far more iron tyranny. We shall not always expect to find them supporting our view. But we shall always hope to find them strongly supporting their own freedom; and to remember that, in the past, those who foolishly sought power by riding the back of the tiger ended up inside.
+</p><p>To those people in the huts and villages of half the globe struggling to break the bonds of mass misery, we pledge our best efforts to help them help themselves, for whatever period is required–not because the communists may be doing it, not because we seek their votes, but because it is right. If a free society cannot help the many who are poor, it cannot save the few who are rich.
+</p><p>To our sister republics south of our border, we offer a special pledge: to convert our good words into good deeds in a new alliance for progress; to assist free men and free governments in casting off the chains of poverty. But this peaceful revolution of hope cannot become the prey of hostile powers. Let all our neighbors know that we shall join with them to oppose aggression or subversion anywhere in the Americas. And let every other power know that this Hemisphere intends to remain the master of its own house.
+</p><p>To that world assembly of sovereign states, the United Nations, our last best hope in an age where the instruments of war have far outpaced the instruments of peace, we renew our pledge of support, to prevent it from becoming merely a forum for invective, to strengthen its shield of the new and the weak, and to enlarge the area in which its writ may run.
+</p><p>Finally, to those nations who would make themselves our adversary, we offer not a pledge but a request: that both sides begin anew the quest for peace, before the dark powers of destruction unleashed by science engulf all humanity in planned or accidental self-destruction.
+</p><p>We dare not tempt them with weakness. For only when our arms are sufficient beyond doubt can we be certain beyond doubt that they will never be employed.
+</p><p>But neither can two great and powerful groups of nations take comfort from our present course–both sides overburdened by the cost of modern weapons, both rightly alarmed by the steady spread of the deadly atom, yet both racing to alter that uncertain balance of terror that stays the hand of mankind's final war.
+</p><p>So let us begin anew–remembering on both sides that civility is not a sign of weakness, and sincerity is always subject to proof. Let us never negotiate out of fear. But let us never fear to negotiate.
+</p><p>Let both sides explore what problems unite us instead of belaboring those problems which divide us.
+</p><p>Let both sides, for the first time, formulate serious and precise proposals for the inspection and control of arms–and bring the absolute power to destroy other nations under the absolute control of all nations.
+</p><p>Let both sides seek to invoke the wonders of science instead of its terrors. Together let us explore the stars, conquer the deserts, eradicate disease, tap the ocean depths and encourage the arts and commerce.
+</p><p>Let both sides unite to heed in all corners of the Earth the command of Isaiah to "<a href="/wiki/Bible_(King_James)/Isaiah#Chapter_58" title="Bible (King James)/Isaiah">undo the heavy burdens ... (and) let the oppressed go free.</a>"
+</p><p>And if a beachhead of cooperation may push back the jungle of suspicion, let both sides join in creating a new endeavor, not a new balance of power, but a new world of law, where the strong are just and the weak secure and the peace preserved.
+</p><p>All this will not be finished in the first one hundred days. Nor will it be finished in the first one thousand days, nor in the life of this Administration, nor even perhaps in our lifetime on this planet. But let us begin.
+</p><p>In your hands, my fellow citizens, more than mine, will rest the final success or failure of our course. Since this country was founded, each generation of Americans has been summoned to give testimony to its national loyalty. The graves of young Americans who answered the call to service surround the globe.
+</p><p>Now the trumpet summons us again; not as a call to bear arms, though arms we need; not as a call to battle, though embattled we are; but a call to bear the burden of a long twilight struggle, year in and year out, "<a href="/wiki/Bible_(King_James)/Romans#Chapter_12" title="Bible (King James)/Romans">rejoicing in hope, patient in tribulation</a>"–a struggle against the common enemies of man: tyranny, poverty, disease and war itself.
+</p><p>Can we forge against these enemies a grand and global alliance, North and South, East and West, that can assure a more fruitful life for all mankind? Will you join in that historic effort?
+</p><p>In the long history of the world, only a few generations have been granted the role of defending freedom in its hour of maximum danger. I do not shrink from this responsibility; I welcome it. I do not believe that any of us would exchange places with any other people or any other generation. The energy, the faith, the devotion which we bring to this endeavor will light our country and all who serve it–and the glow from that fire can truly light the world.
+</p><p>And so, my fellow Americans: ask not what your country can do for you–ask what you can do for your country.
+</p><p>My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.
+</p><p>Finally, whether you are citizens of America or citizens of the world, ask of us here the same high standards of strength and sacrifice which we ask of you. With a good conscience our only sure reward, with history the final judge of our deeds, let us go forth to lead the land we love, asking His blessing and His help, but knowing that here on Earth God's work must truly be our own.
+</p><p><br />
+</p>
 ```
 
-From taking a look at the page source, we can see `<div class="content-header">` that marks the article title and `<div class="content-body">` that marks the start of the article text. And we can use a `Control-F`/`Command-F` search to see that the `content-body` class appears only once in the page. This means we can use `.find()` to extract this section of the page.
+From taking a look at the page source, we can see `<p>` (paragraph tags) mark each paragraph. And we can use a `Control-F`/`Command-F` search to see that that most of the `<p>` tags appear around the text of the speech. 
 
-```Python
-# isolate HTML with content-body class
-article = soup.find(class_ = "content-body")
-
-# show article HTML
-article
-```
-
-Now we have the section of HTML with the article text isolated.
-
-```HTML
-<p>The Notre Dame Initiative on Race and Resilience hosted a panel Wednesday in DeBartolo Hall on Black civil rights in South Bend, featuring some of South Bend’s prominent community leaders.</p>
-<p>The panel, which intended to explore the immense social inequalities facing South Bend’s Black residents, included Trina Robinson, president of NAACP-South Bend; Regina Williams-Preston, president of Community Action for Education and former South Bend Common Council representative; Jorden Giger, co-founder of Black Lives Matter South Bend and Deacon Mel Tardy, deacon of St. Augustine Parish and an advising faculty at the University.</p>
-<figure id="attachment_234452" class="wp-caption aligncenter" style="width: 700px"> <div class="media-credit-container aligncenter" style="max-width: 710px">
-<img data-attachment-id="234452" data-permalink="https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/screen-shot-2021-10-15-at-8-36-39-pm/" data-orig-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=726%2C538&amp;ssl=1" data-orig-size="726,538" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2021-10-15 at 8.36.39 PM" data-image-description="" data-medium-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" data-large-file="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?fit=700%2C519&amp;ssl=1" class="wp-image-234452 size-medium" src="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&#038;ssl=1" alt="" width="700" height="519" srcset="https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?resize=700%2C519&amp;ssl=1 700w, https://i1.wp.com/ndsmcobserver.com/wp-content/uploads/2021/10/1634330204-71900895f520822.png?w=726&amp;ssl=1 726w" sizes="(max-width: 700px) 100vw, 700px" data-recalc-dims="1" /><span class="media-credit">Valeria Ortiz | The Observer</span> </div>
-<figcaption class="wp-caption-text">In a Wednesday panel, community activists encouraged the University to give to local Black-owned businesses to support inclusion and business growth.</figcaption></figure>
-<p>The panelists offered their experiences and recommendations toward a stronger future for civil rights within the local community. They called for action to combat systemic racism — a historical pattern of denying opportunity to fair education, health and housing opportunities in South Bend.</p>
-<p>“He who wins the war gets to tell the story, so now we believe it all right. Here we are today seeing how that history gets uncovered,” Williams-Preston said.</p>
-```
-
-The next step is to create a list-like object with the sections of text that make up the article. For this web page, those sections are marked by paragraph (`<p>`) tags. We can use `.find_all("p")` to create a list-like object with each `<p>` tag's content as a list item.
+We can use `.find_all("p")` to create a list-like object with each `<p>` tag's content as a list item.
 
 ```Python
 # isolate paragraph tags
-paragraphs = article.find_all("p")
+paragraphs = soup.find_all("p")
+
+# show number of paragraphs
+len(paragraphs)
 ```
 
-The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list. Since the output of `BeautifulSoup`'s `.contents[]` command is still a `BeautifulSoup` object type, we can use the `str()` function to convert the value to a string before appending it to a list.
+```Python
+# show first paragraph
+paragraphs[0]
+```
 
 ```Python
-# create empty list for paragraphs
-paragraph_list = []
+# show last paragraph
+paragraphs[-1]
+```
 
-# for loop that removes HTML markup for each paragraph or instance of "p" tag
-for paragraph in paragraphs:
-    paragraph_list.append(str(paragraph.contents[0]))
-    
-# show list of plain-text paragraphs
-paragraph_list
+We'll need to subset the `paragraphs` list to get just the `<p>` tags that have the speech text. We can do this using list indexing.
+
+```Python
+subset = paragraphs[1:29] # subset paragraph tags
+subset[0].contents[0].strip() # isolate single paragraph; strip removes the "\n" new line regular expression
+```
+
+So now we have just the `<p>` tags connected to the speech. The last step is to use a `for` loop to iterate over each paragraph in `article_paragraphs`, and use `.contents[]` to extract the paragraph contents and append it to a list. Since the output of `BeautifulSoup`'s `.contents[]` command is still a `BeautifulSoup` object type, we can use the `str()` function to convert the value to a string before appending it to a list.
+
+```Python
+for p in subset: # iterate over paragraphs
+  print(p.contents[0].strip()) # show text
+```
+
+```Python
+lines = [] # empty list for text
+
+for p in subset: # iterate over paragraphs
+  lines.append(str(p.contents[0].strip())) # isolate p tag contents and append to list
+
+lines[0] # show first line
 ```
 
 Now that we have a working program, we could write each paragraph to a newly-created `.txt` file.
 
 ```Python
-# create new txt file
-f = open("output.txt", "a")
-
-# for loop that removes HTML markup for each paragraph or instance of "p" tag
-for paragraph in paragraph_list:
-    text = str(paragraph.contents[0])
-    f.write(text)
-```
-
-We could also combine the `paragraph.contents[0]` `for` loop program with the `for` loop that writes content to a `.txt` file. What that might look like:
-
-```Python
-with open("output.txt", "a") as f: # with statement that creates new txt file in append mode
-	for paragraph in paragraphs: # for loop that removes HTML markup for each paragraph and writes to txt file
-		f.write(str(paragraph.contents[0]))
-		f.write("\n") # newline after each paragraph
+with open("output.txt", "a") as f: # new file
+  for p in subset: # iterate over paragraphs
+    f.write(str(p.contents[0].strip())) # write paragraph to file
+    f.write("\n") # preserve line breaks
 ```
 
 Putting that all together:
 
 ```Python
-import requests # import requests
-from bs4 import BeautifulSoup # import beautifulsoup
+# import statements
+import requests, csv, pandas as pd
+from bs4 import BeautifulSoup
 
-page = requests.get("https://web.archive.org/web/20211016150109/https://ndsmcobserver.com/2021/10/south-bend-community-leaders-discuss-role-of-notre-dame-in-fight-for-black-civil-rights/") # get page
+# load page
+page = requests.get("https://en.wikisource.org/wiki/John_F._Kennedy%27s_Inaugural_Address")
 
-soup = BeautifulSoup(page.text, 'html.parser') # create BeautifulSoup object
+# beautifulsoup object
+soup = BeautifulSoup(page.text, 'html.parser')
 
-article = soup.find(class_ = "content-body") # isolate HTML with content-body class
+# isolate paragraph tags
+paragraphs = soup.find_all('p')
 
-paragraphs = article.find_all("p") # isolate paragraph tags
+# subset paragraph tags
+subset = paragraphs[1:29]
 
-with open("output.txt", "a") as f: # with statement that creates new txt file in append mode
-	for paragraph in paragraphs: # for loop that removes HTML markup for each paragraph and writes to txt file
-		f.write(str(paragraph.contents[0]))
-		f.write("\n") # newline after each paragraph
+# write output to text file
+with open("output.txt", "a") as f: # new file
+  for p in subset: # iterate over paragraphs
+    f.write(str(p.contents[0].strip())) # write paragraph to file
+    f.write("\n") # preserve line breaks
+    print(p.contents[0].strip()) # show paragraph
 ```
 
 ## Application
@@ -1268,18 +1082,17 @@ with open("output.txt", "a") as f: # with statement that creates new txt file in
   </tr>
   </table>
 
-Q8A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
+Q4A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
 A few places to start for unstructured text:
-- [The Observer!](https://ndsmcobserver.com) (or another news publication of your choosing)
 - [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
   * [U.S. Presidential State of the Union Addresses](https://en.wikisource.org/wiki/Portal:State_of_the_Union_Speeches_by_United_States_Presidents)
   * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
 - [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
 
-Q8B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+Q4B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
 
-Q8C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+Q4C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -1288,9 +1101,9 @@ A preliminary workflow:
 - IF NEEDED: Extract text contents (isolate text from each section/paragraph)
 - Write text to TXT file
 
-NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q8D: What challenges or roadblocks did you face working on Q8C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+Q4D: What challenges or roadblocks did you face working on Q4C? How did you start to tackle or solve them? 
 
 ## Oh, the Places You Could Go
 
@@ -1301,20 +1114,25 @@ Q8D: What challenges or roadblocks did you face working on Q8C? What parts of th
   </tr>
   </table>
 
-Once we have a `.txt` file, we could use Python to generate a list of words used in the article.
+Once we have the isolated text, we could use Python to generate a list of words used in the speech.
 
 ```Python
-# load file
-text = open("output.txt", 'r')
+lines = [] # empty list for text
 
-# read file to string
-text = text.read()
+for p in subset: # iterate over paragraphs
+  lines.append(str(p.contents[0].strip())) # isolate p tag contents and append to list
 
-# create list of words
-wordlist = text.split()
+lines[0] # show first line
+```
 
-# show first 120 words in wordlist
-print((wordlist[0:120]))
+```Python
+speech = "\n".join(lines) # use list method to concatenate list items
+print(speech) # show speech text
+```
+
+```Python
+wordlist = speech.split() # list of words
+print((wordlist[0:120])) # show first 120 words in wordlist
 ```
 
 Then, we could use the list of words `wordlist` to count term frequency.
@@ -1341,6 +1159,44 @@ word_count = {wordlist[i]: wordfreq[i] for i in range(len(wordlist))}
 word_count
 ```
 
+We could also put that data in a Pandas DataFrame.
+
+```Python
+# import pandas
+import pandas as pd
+
+# create dataframe
+df = pd.DataFrame(list(word_count.items()), columns=['term', 'count'])
+
+# show df with count column sorted
+df.sort_values('count')
+```
+
+And once it's in a DataFrame, we could filter or subset the data, by...
+
+Filtering out commonly-used words:
+
+```Python
+# stopwords
+stopWords = ['a', 'an', 'and', 'the', 'has', 'to', 'of', 'that', 'in', 'for', 'this']
+
+# filter out rows that match list value
+subset = df[~df['term'].isin(stopWords)]
+
+# show updated df
+subset.sort_values('count')
+```
+
+Filtering out rows with terms that only appear 1-2 times.
+
+```Python
+# filter out terms that only 1-2 times
+subset = subset[subset['count'] > 2]
+
+# show updated df
+subset.sort_values('count')
+```
+
 With normalized textual data, we could use Python to do things like:
 - count word frequency
   * William J. Turkel and Adam Crymble, "Counting Word Frequencies with Python," The Programming Historian 1 (2012), https://programminghistorian.org/en/lessons/counting-frequencies.
@@ -1351,8 +1207,8 @@ Why go to all this  trouble? Computational text analysis or other kinds of natur
 
 A few projects that do this with speeches given by U.S. presidents:
 - [Google News Lab's Inaugurate project](http://inauguratespeeches.com/) that looks at the subjects of inauguration speeches
-- ["The Language of the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) an interactive project from the *Atlantic*'s Ben Schmidt and Mitch Fraas that "reveals how the words presidents use reflect the twists and turns of American history"
-- ["Mapping the State of the Union,"](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/), also from Schmidt and Fraas, that "shows the 1,410 different spots on the globe presidents have referenced in 224 speeches"
+- ["The Language of the State of the Union,"](https://web.archive.org/web/20160115062935/https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) an interactive project from the *Atlantic*'s Ben Schmidt and Mitch Fraas that "reveals how the words presidents use reflect the twists and turns of American history"
+- ["Mapping the State of the Union,"](https://web.archive.org/web/20160111132255/https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/), also from Schmidt and Fraas, that "shows the 1,410 different spots on the globe presidents have referenced in 224 speeches"
 
 # Why did we do this?
 
@@ -1383,13 +1239,11 @@ Manually wrangling or manipulating data makes it difficult for colleagues (and f
 
 [Click here](https://colab.research.google.com/drive/1-2ahHpMdSzYFSVLnZGfldEoAuyRs5wj7?usp=sharing) to access the lab notebook template as a Jupyter Notebook (Google Colab, ND Users).
 
-Q1: Describe the general approach to loading a web page in Python using `requests` and isolating the section of HTML you need using `BeautifulSoup`. What are the basic steps involved in this workflow, thinking about what happens at the start of the program to isolate the section of HTML you would need to do further work with to extract the data you want to work with?
+Q1A: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
 
-Q2A: Select another Wikipedia page that includes a table. From looking at the public web page, what data do you want to scrape from this web page (i.e. specific table, multiple tables, etc.)? What do you want the resulting data structure to look like (columns, rows, etc)?
+Q1B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
 
-Q2B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with <code>BeautifulSoup</code> to isolate a section of the web page.
-
-Q2C: Develop an outline for a Python program that scrapes data from the web page you selected. 
+Q1C: Develop an outline for a Python program that scrapes data from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -1402,32 +1256,6 @@ A preliminary workflow:
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
 
 Q2D: What challenges or roadblocks did you face working on Q2C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
-
-Q3: Describe in your own words how the url generation program covered in the previous section of the lab works. The full program is also included below. What is happening in the different program components?
-
-Q4: Select another Sports Reference web page that follows this pattern and write a program that generates a list of full URLs for that team/organization.
-
-A few places to start:
-- Baseball Reference season web pages have the following URL pattern:
-  * `https://www.baseball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.shtml`
-- Basketball Reference season web pages have a similar pattern for NBA teams:
-  * `https://www.basketball-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- Basketball Reference uses a slightly different pattern for its WNBA pages:
-  * `https://www.basketball-reference.com/wnba/teams`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- College Basketball Reference pages also follow a pattern: 
-  * `https://www.sports-reference.com/cbb/schools`, `SCHOOL ABBREVIATION`, `SEASON`, `.html`
-- For Hockey Reference pages: 
-  * `https://www.hockey-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.html`
-- Football Reference pages follow the same pattern for men's and women's teams:
-  * `https://fbref.com/en/squads/`, `SQUAD ID`, `SEASON`, `TEAM NAME`
-- Pro Football Reference pages also have a pattern: 
-  * `https://www.pro-football-reference.com/teams/`, `TEAM ABBREVIATION`, `SEASON`, `.htm`
-
-NOTE: You DO NOT need to write a program that scrapes data from these pages for this question. The purpose of this question is to be able to programmatically generate a list of URLs that cover a date range. 
-
-Q5: Describe the general approach to loading a web page in Python using `pd.read_html()`. What are the basic steps involved in this workflow, thinking about what happens to identify/isolate the specific table you want to work with?
-
-Q6: For Q4, you generated a list of Sports Reference URLs covering a time span for a specific team/organization. Select three years and web pages from that list- something early in the time period covered, something in the middle of the time period covered, and something toward the end of the time period covered. Do these pages have the same pattern in terms of number and order of tables? For one of these pages, what table or tables on these pages would you want to be able to extract and work with?
 
 Q7A: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from one of the web pages you select in Q6.
 
@@ -1446,7 +1274,6 @@ Q7B: What challenges or roadblocks did you face working on Q7A? What parts of th
 Q8A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
 A few places to start for unstructured text:
-- [The Observer!](https://ndsmcobserver.com) (or another news publication of your choosing)
 - [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
   * [U.S. Presidential State of the Union Addresses](https://en.wikisource.org/wiki/Portal:State_of_the_Union_Speeches_by_United_States_Presidents)
   * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
@@ -1466,36 +1293,3 @@ A preliminary workflow:
 NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
 
 Q8D: What challenges or roadblocks did you face working on Q8C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
-
-# Final Project Next Steps
-
-<table>
- <tr><td>
-<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d0206a3-4f08-47da-9cd9-af360173b157">Final Project Next Steps</a></td>
-  </tr>
-  </table>
-
-Our work in this lab is designed to lay the foundation and serve as a springboard for final project work. Specifically, Q2, Q7, and Q8 ask you to develop an outline for web scraping programs using `BeautifulSoup` and `pd.read_html()`. Those questions (and other work for this lab) are the starting place for the final project.
-
-The final project for this course involves a web-scraping project written in Python. Specifically, the final project allows you to select a web page (or web pages) and write a Python program (or programs) that downloads select content from that web page as a plain-text file (`.csv`, `.txt`, etc). That content could be paragraphs of text, tables of data, etc. 
-
-Successful final projects will include two main components:
-- a well-documented, working Python program written in Jupyter Notebooks
-- a written reflection (minimum 300 words) that documents how you approached the final project/what you wanted to accomplish via the final project, resources consulted, how you handled challenges you encountered, key takeaways, etc.
-  * That reflection can come at the end of the Jupyter Notebook or be embedded throughout the Jupyter Notebook, if you want to approach authoring the notebook as a type of tutorial or "report".
-
-Expect to spend at least 10 hours working on the final project. That includes brainstorming, meeting with instructor/TAs, in-class work time, etc. If you’re working on a project that is not going to take that much time, think about how to add complexity or take on another smaller scale project.
-
-Contact the instructor with questions.
-
-So where to start? The instructor and TAs are going to move quickly on getting you feedback on this lab. But your work in Q2, Q7, and Q8 should be the starting place for how you think about and approach the final project. Specifically, think about the kinds of web content you were able to scrape for these questions and how you might further develop, refine, or expand your work.
-
-For example, these questions asked you to develop an outline for specific types of webscraping programs. 
-- One next step for the final project could be selecting 1-2 of these programs and further developing or refining the code.
-- Another next step (especially if you were able to develop working programs for these questions) is to think about how you could expand or extend these workflows to multiple web pages or other web data sources.
-- A third option for next steps would involve thinking expansively about how you could apply the concepts and approaches covered in this lab to a different type of data source/structure. 
-
-So in the interim, as you're waiting for feedback on this lab, think about where you could go next with expanding and extending your work in this lab, and start to flesh out or develop some of your own ideas about where you put your time and effort as you work on the final project.
-
-Contact the instructor with questions.
