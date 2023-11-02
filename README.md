@@ -1253,11 +1253,12 @@ A preliminary workflow:
 - Create Pandas DataFrame
 - Write extracted row contents to CSV file
 
-NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q2D: What challenges or roadblocks did you face working on Q2C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+Q1D: What challenges or roadblocks did you face working on Q1C? How did you start to tackle or solve them?
 
-Q7A: Develop an outline for a Python program that uses `pd.read_html()` to scrape data from one of the web pages you select in Q6.
+Q2A: Develop an outline for a Python program that uses pd.read_html() to scrape data from a web page of your choosing.
+- *Wikipedia tables are fair game, but folks interested in sport data may want to head over to a [Sports Reference site](https://www.sports-reference.com/).*
 
 A preliminary workflow:
 - Use `pd.read_html()` to create a list of DataFrame objects
@@ -1265,13 +1266,13 @@ A preliminary workflow:
 - Isolate the list element to create a new DataFrame
 - Write the new DataFrame to a CSV file
 
-NOTE: For Q3, you did not need to have working code for all components of this program. Since `pd.read_html()` has an easier learning curve, let's see if we can flesh out more of this program. But if you run into problems, it's okay to focus on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: Even though `pd.read_html()` has an easier learning curve than `BeautifulSoup`, this program will have a few moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
 ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
 
-Q7B: What challenges or roadblocks did you face working on Q7A? What parts of the program do you understand and/or were able to develop? What parts of the program are less clear?
+Q3B: What challenges or roadblocks did you face working on Q3A? How did you start to tackle or solve them?
 
-Q8A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
+Q4A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
 A few places to start for unstructured text:
 - [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
@@ -1279,9 +1280,9 @@ A few places to start for unstructured text:
   * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
 - [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
 
-Q8B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+Q4B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
 
-Q8C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+Q4C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -1290,6 +1291,6 @@ A preliminary workflow:
 - IF NEEDED: Extract text contents (isolate text from each section/paragraph)
 - Write text to TXT file
 
-NOTE: You do not need to have working code for all components of this program. That's where we're heading with the final project. At this point, we're focusing on the conceptual framework for the web scraping program. Start to build out code where you can, but think about the programming version of outlining a paper.
+NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q8D: What challenges or roadblocks did you face working on Q8C? What parts of the program do you understand/feel ready to develop at this point? What parts of the program are less clear?
+Q4D: What challenges or roadblocks did you face working on Q4C? How did you start to tackle or solve them?
