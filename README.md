@@ -783,7 +783,7 @@ df.to_csv("output.csv", index=False)
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b7e2f787-47cf-4f61-af59-af3601729e4d">Lab Notebook Questions 1-2</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b7e2f787-47cf-4f61-af59-af3601729e4d">Lab Notebook Question 1</a></td>
   </tr>
   </table>
 
@@ -908,7 +908,7 @@ df.to_csv("output.csv", index=False)
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234b8c5b-7641-47bf-a61c-af3601731318">Lab Notebook Questions 5-7</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234b8c5b-7641-47bf-a61c-af3601731318">Lab Notebook Question 2</a></td>
   </tr>
   </table>
   
@@ -925,7 +925,7 @@ NOTE: Even though `pd.read_html()` has an easier learning curve than `BeautifulS
 
 ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
 
-Q3B: What challenges or roadblocks did you face working on Q3A? How did you start to tackle or solve them? 
+Q2B: What challenges or roadblocks did you face working on Q2A? How did you start to tackle or solve them? 
 
 # `Beautiful Soup` & Unstructured Text
 
@@ -1078,11 +1078,11 @@ with open("output.txt", "a") as f: # new file
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ee5be045-9655-4f34-a03e-af36017356f3">Lab Notebook Question 8</a></td>
+  <td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ee5be045-9655-4f34-a03e-af36017356f3">Lab Notebook Question 3</a></td>
   </tr>
   </table>
 
-Q4A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
+Q3A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
 A few places to start for unstructured text:
 - [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
@@ -1090,9 +1090,9 @@ A few places to start for unstructured text:
   * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
 - [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
 
-Q4B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+Q3B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
 
-Q4C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+Q3C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -1103,7 +1103,7 @@ A preliminary workflow:
 
 NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q4D: What challenges or roadblocks did you face working on Q4C? How did you start to tackle or solve them? 
+Q3D: What challenges or roadblocks did you face working on Q3C? How did you start to tackle or solve them? 
 
 ## Oh, the Places You Could Go
 
@@ -1270,9 +1270,9 @@ NOTE: Even though `pd.read_html()` has an easier learning curve than `BeautifulS
 
 ANOTHER NOTE: For many Sports Reference pages, tables further down the page are buried in HTML comments. These tables will not show up when you use `pd.read_html()`. We can come back to these "hidden tables" in the final project, but for now, focus on the tables that do show up when you use `pd.read_html()`.
 
-Q3B: What challenges or roadblocks did you face working on Q3A? How did you start to tackle or solve them?
+Q2B: What challenges or roadblocks did you face working on Q2A? How did you start to tackle or solve them?
 
-Q4A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
+Q3A: Select another web page that includes unstructured text. From looking at the public web page, what text do you want to scrape from this web page (i.e. specific sections, multiple paragraphs, etc.)?
 
 A few places to start for unstructured text:
 - [WikiSource](https://en.wikisource.org/wiki/Main_Page)(a library of texts that are not covered by copyright)
@@ -1280,9 +1280,9 @@ A few places to start for unstructured text:
   * [U.S. Presidential Inaugural Speeches](https://en.wikisource.org/wiki/Portal:Inaugural_Speeches_by_United_States_Presidents)
 - [Project Gutenberg](https://www.gutenberg.org) (a library of literary works or texts that are not covered by copyright)
 
-Q4B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
+Q3B: Take a look at the HTML for this page. What tags or other HTML components do you see around the section of the page you want to work with? For this question, we're thinking about how we will end up writing a program with `BeautifulSoup` to isolate a section of the web page.
 
-Q4C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
+Q3C: Develop an outline for a Python program that scrapes unstructured text from the web page you selected. 
 
 A preliminary workflow:
 - Load URL and create BeautifulSoup object
@@ -1293,4 +1293,4 @@ A preliminary workflow:
 
 NOTE: This program will have a lot of moving parts! Starting with pseudocode to think about the underlying logic can help you organize the components you're building. As you start to build out your own program, think about where you can draw on sample code from the lab (or follow the same conceptual workflow).
 
-Q4D: What challenges or roadblocks did you face working on Q4C? How did you start to tackle or solve them?
+Q3D: What challenges or roadblocks did you face working on Q3C? How did you start to tackle or solve them?
